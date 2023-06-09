@@ -1,0 +1,23 @@
+package database;
+
+import java.sql.Date;
+import java.sql.ArrayList;
+
+
+
+public static class IstitutoDAO{
+        
+        public static IstitutoDAO(){
+            super();
+        }
+        
+        public int verificaclasse(){
+        
+        }
+        
+        public int verificamaterie(){
+        
+        }
+
+
+}
