@@ -107,11 +107,11 @@ public class ValutazioneDAO {
 	
 
 	//aggiunto per implementare la funzione AggiungiVoto	
-	public int SalvaInDB(int idvalutazioni) {
+	public int SalvaInDB(int idvalutazioni, int matricola, int idmaterie, Date data, float voto) {
 		
 		int ret=0;
 		
-		String query = "INSERT INTO valutazioni(idvalutazioni,data,voto) VALUES ( \'"+idvalutazioni+"\','"+"\'"+this.data+"\','"+this.voto+"')";
+		String query = "INSERT INTO valutazioni(idvalutazioni,matricola,materia,data,voto) VALUES ( \'"+idvalutazioni+"\','"+"\'"+matricola+"\','"+idmaterie+"\','"+this.data+"\','"+this.voto+"')";
 		System.out.println(query);
 		try {
 			ret=DBConnectionManager.updateQuery(query);
