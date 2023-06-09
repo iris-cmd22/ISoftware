@@ -81,4 +81,12 @@ public class MateriaDAO {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}   
+	
+	public ArrayList<ValutazioneDAO> getValutazioni(){
+		return valutazioni;
+	}
+	
+	public void setValutazioni(ArrayList<ValutazioneDAO> valutazioni) {
+		this.valutazioni = valutazioni;
+	}
 }
