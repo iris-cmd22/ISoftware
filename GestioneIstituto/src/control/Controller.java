@@ -27,7 +27,7 @@ public class Controller {
     public static int aggiungiVoto(int idvalutazioni, int matricola, int idmaterie, Date data, int voto){
     	EntityValutazione valutazione = new EntityValutazione();
     	
-    	int ret = valutazione.scriviSuDB(idvalutazioni);
+    	int ret = valutazione.scriviSuDB(idvalutazioni,matricola,idmaterie,data,voto);
     	
     	if(ret!=-1) {
     		valutazione.setData(data);
