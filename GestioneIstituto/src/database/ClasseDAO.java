@@ -14,6 +14,14 @@ public class ClasseDAO {
 	private ArrayList<StudenteDAO> studenti;
 	private ArrayList<MateriaDAO> materie;
 	
+	public ArrayList<MateriaDAO> getMaterie() {
+		return materie;
+	}
+
+	public void setMaterie(ArrayList<MateriaDAO> materie) {
+		this.materie = materie;
+	}
+
 	public ClasseDAO() {
 		super();
 		this.studenti= new ArrayList<StudenteDAO>();
@@ -70,7 +78,7 @@ public class ClasseDAO {
 				studente.setNome(rs.getString("nome"));
 				studente.setCognome(rs.getString("cognome"));
 				studente.setCodiceFiscale(rs.getString("codiceFiscale"));
-				studente.setDataNascita(rs.getString("dataNascita"));
+				studente.setDataNascita(rs.getDate("dataNascita"));
 				studente.setComuneResidenza(rs.getString("comuneResidenza"));
 				studente.setEmail(rs.getString("email"));
 				studente.setNumeroCellulare(rs.getString("numeroCellulare"));
