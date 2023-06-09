@@ -1,32 +1,65 @@
 package entity;
 
+import database.ValutazioneDAO;
+
 public class EntityValutazione {
 	
-	private int idvalutazione;
+	private int idvalutazioni;
 	private String data;
-	private String tipo;
 	private float voto;
+	private EntityMateria materia;
+	private EntityStudente studente;
 
 	public EntityValutazione() {
-		// TODO Auto-generated constructor stub
 		super();
 	}
 	
 	
 
-	public EntityValutazione(int idvalutazione) {
-		super();
-		this.idvalutazione = idvalutazione;
+	public EntityValutazione(int idvalutazioni) {
+		ValutazioneDAO valutazione= new ValutazioneDAO(idvalutazioni);
+		
+		this.data=valutazione.getData();
+		this.voto=valutazione.getVoto();
+		this.idvalutazioni=idvalutazioni;
+		
+		valutazione.caricaMateriaDaDB();
+		caricaMateria(valutazione);
+		valutazione.caricaStudenteDaDB();
+		caricaStudente(valutazione);
+		
+	}
+
+	public EntityValutazione(ValutazioneDAO valutazione) {
+		this.data=valutazione.getData();
+		this.voto=valutazione.getVoto();
+		this.idvalutazioni=valutazione.getIdvalutazioni();
+		valutazione.caricaMateriaDaDB();
+		caricaMateria(valutazione);
+		valutazione.caricaStudenteDaDB();
+		caricaStudente(valutazione);
+		
+	}
+	
+	
+	public void caricaMateria(ValutazioneDAO valutazione) {
+		EntityMateria materia = new EntityMateria(valutazione.getMateria());
+		this.materia=materia;
+		
+	}
+	
+	public void caricaStudente(ValutazioneDAO valutazione) {
+		EntityStudente studente = new EntityStudente(valutazione.getStudente());
+		this.studente=studente;
 	}
 
 
-
-	public int getIdvalutazione() {
-		return idvalutazione;
+	public int getIdvalutazioni() {
+		return idvalutazioni;
 	}
 
-	public void setIdvalutazione(int idvalutazione) {
-		this.idvalutazione = idvalutazione;
+	public void setIdvalutazioni(int idvalutazioni) {
+		this.idvalutazioni = idvalutazioni;
 	}
 
 	public String getData() {
@@ -37,13 +70,6 @@ public class EntityValutazione {
 		this.data = data;
 	}
 
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
 
 	public float getVoto() {
 		return voto;
@@ -51,6 +77,30 @@ public class EntityValutazione {
 
 	public void setVoto(float voto) {
 		this.voto = voto;
+	}
+
+
+
+	public EntityMateria getMateria() {
+		return materia;
+	}
+
+
+
+	public void setMateria(EntityMateria materie) {
+		this.materia = materie;
+	}
+
+
+
+	public EntityStudente getStudente() {
+		return studente;
+	}
+
+
+
+	public void setStudente(EntityStudente studenti) {
+		this.studente = studenti;
 	}
 	
 	
