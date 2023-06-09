@@ -1,7 +1,9 @@
 package entity;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
+import database.DocenteDAO;
 import database.MateriaDAO;
 
 public class EntityDocente {
@@ -9,7 +11,7 @@ public class EntityDocente {
 	private String nome;
 	private String cognome;
 	private int matricola;
-	private String dataNascita;
+	private Date dataNascita;
 	private String codiceFiscale;
 	private String comuneResidenza;
 	private String email;
@@ -25,13 +27,54 @@ public class EntityDocente {
 	}
 	
 	
-
+	//costruttore con la PK
 	public EntityDocente(String username) {
-		super();
-		this.username = username;
+		
+		DocenteDAO docente = new DocenteDAO(username);
+		
+		this.nome = docente.getNome();
+		this.password = docente.getPassword();
+		this.nome = docente.getNome();
+		this.cognome = docente.getCognome();
+		this.dataNascita = docente.getDataNascita();
+		this.codiceFiscale = docente.getCodiceFiscale();
+		this.comuneResidenza = docente.getComuneResidenza();
+		this.email = docente.getEmail();
+		this.numeroCellulare = docente.getNumeroCellulare();
+		this.materie = new ArrayList<EntityMateria>();
+		
+		//System.out.println("EntityDocente: "+docente.toString());
+		docente.caricaMaterieDaDB();
+		//System.out.println("EntityDocente ->: "+docente.toString());
+		caricaMaterie(docente);
 	}
 
-
+	public void caricaMaterie(DocenteDAO docente) {
+		
+		for(int i=0; i<docente.getMaterie().size(); i++) {
+			
+			EntityMateria materia = new EntityMateria(docente.getMaterie().get(i));
+			this.materie.add(materia);
+		}
+	}
+	
+	public int scriviSuDB(String username) {
+		
+		DocenteDAO d = new DocenteDAO();
+		
+		d.setNome(this.nome);
+		d.setCognome(this.cognome);
+		d.setComuneResidenza(this.comuneResidenza);
+		d.setCodiceFiscale(this.codiceFiscale);
+		d.setDataNascita(this.dataNascita);
+		d.setEmail(this.email);
+		d.setNumeroCellulare(this.numeroCellulare);
+		d.setPassword(this.password);
+		
+		int i = d.SalvaInDB(username);
+		
+		return i;
+	}
 
 	public String getNome() {
 		return nome;
@@ -57,11 +100,11 @@ public class EntityDocente {
 		this.matricola = matricola;
 	}
 
-	public String getDataNascita() {
+	public Date getDataNascita() {
 		return dataNascita;
 	}
 
-	public void setDataNascita(String dataNascita) {
+	public void setDataNascita(Date dataNascita) {
 		this.dataNascita = dataNascita;
 	}
 
@@ -119,10 +162,19 @@ public class EntityDocente {
 		return materie;
 	}
 
-
-
 	public void setMaterie(ArrayList<EntityMateria> materie) {
 		this.materie = materie;
 	}
+
+
+	@Override
+	public String toString() {
+		return "EntityDocente [nome=" + nome + ", cognome=" + cognome + ", matricola=" + matricola + ", dataNascita="
+				+ dataNascita + ", codiceFiscale=" + codiceFiscale + ", comuneResidenza=" + comuneResidenza + ", email="
+				+ email + ", numeroCellulare=" + numeroCellulare + ", username=" + username + ", password=" + password
+				+ ", materie=" + materie + "]";
+	}
+	
+	
 	
 }
