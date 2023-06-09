@@ -5,10 +5,11 @@ import java.sql.SQLException;
 
 public class ValutazioneDAO {
 	
-	private int idvalutazione;
+	private int idvalutazioni;
 	private String data;
-	private String tipo;
 	private float voto;
+	private MateriaDAO materia;
+	private StudenteDAO studente;
 	
 	
 	public ValutazioneDAO() {
@@ -17,13 +18,13 @@ public class ValutazioneDAO {
 	
 	public ValutazioneDAO(int idvalutazioni) {
 		
-		this.idvalutazione=idvalutazioni;
+		this.idvalutazioni=idvalutazioni;
 		caricaDaDB();
 	}
 	
 	public void caricaDaDB() {
 		
-		String query="SELECT * FROM valutazioni WHERE idvalutazioni='"+this.idvalutazione+"')";
+		String query="SELECT * FROM valutazioni WHERE idvalutazioni='"+this.idvalutazioni+"')";
 		try {
 			
 			ResultSet rs= DBConnectionManager.selectQuery(query);
@@ -31,7 +32,6 @@ public class ValutazioneDAO {
 			if(rs.next()) {
 				
 				this.setData(rs.getString("data"));
-				this.setTipo(rs.getString("tipo"));
 				this.setVoto(rs.getFloat("voto"));
 			
 			}
@@ -40,13 +40,83 @@ public class ValutazioneDAO {
 			e.printStackTrace();	
 		}
 	}
+	
+	public void caricaMateriaDaDB() {
+		
+	
+	
+		String query = new String("SELECT * FROM materie WHERE valutazioni =\'"+this.idvalutazioni+"'");
+	
+		
+		try {
+			
+			ResultSet rs=DBConnectionManager.selectQuery(query);
+			
+			if(rs.next()) {
+				
+				MateriaDAO materie= new MateriaDAO();
+				
+				materie.setIdmateria(rs.getInt("idmaterie"));
+				materie.setNome(rs.getString("nome"));				
+				
+				this.materia=materie;
+			}
+			
+		}catch(ClassNotFoundException | SQLException e) {
+			
+			e.printStackTrace();
+		}
+	}
+	
+	public void caricaStudenteDaDB() {
+		
+		
+		
+		String query = new String("SELECT * FROM studenti WHERE valutazioni =\'"+this.idvalutazioni+"'");
+	
+		
+		try {
+			
+			ResultSet rs=DBConnectionManager.selectQuery(query);
+			
+			if(rs.next()) {
+				
+				StudenteDAO studente=new StudenteDAO();
+				studente.setMatricola(rs.getInt("matricola"));
+				studente.setNome(rs.getString("nome"));
+				studente.setCognome(rs.getString("cognome"));
+				studente.setCodiceFiscale(rs.getString("codiceFiscale"));
+				studente.setDataNascita(rs.getDate("dataNascita"));
+				studente.setComuneResidenza(rs.getString("comuneResidenza"));
+				studente.setEmail(rs.getString("email"));
+				studente.setNumeroCellulare(rs.getString("numeroCellulare"));
+				
+				
+				this.studente=studente;			
+				
+				
+			}
+			
+		}catch(ClassNotFoundException | SQLException e) {
+			
+			e.printStackTrace();
+		}
+	}
+
+	public StudenteDAO getStudente() {
+		return studente;
+	}
+
+	public void setStudente(StudenteDAO studente) {
+		this.studente = studente;
+	}
 
 	public int getIdvalutazioni() {
-		return idvalutazione;
+		return idvalutazioni;
 	}
 
 	public void setIdvalutazioni(int idvalutazioni) {
-		this.idvalutazione = idvalutazioni;
+		this.idvalutazioni = idvalutazioni;
 	}
 
 	public String getData() {
@@ -57,13 +127,6 @@ public class ValutazioneDAO {
 		this.data = data;
 	}
 
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
 
 	public float getVoto() {
 		return voto;
@@ -72,6 +135,16 @@ public class ValutazioneDAO {
 	public void setVoto(float voto) {
 		this.voto = voto;
 	}
+
+	public MateriaDAO getMateria() {
+		return materia;
+	}
+
+	public void setMateria(MateriaDAO materie) {
+		this.materia = materie;
+	}
+	
+	
 	
 	
 }
