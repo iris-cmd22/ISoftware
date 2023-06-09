@@ -172,3 +172,6 @@ public class EntityClasse {
 				+ ", anno=" + anno + ", registro=" + registro + ", studenti=" + studenti + ", materie=" + materie + "]";
 	}
 	
+	
+}
+	
