@@ -2,11 +2,12 @@ package database;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Date;
 
 public class ValutazioneDAO {
 	
 	private int idvalutazioni;
-	private String data;
+	private Date data;
 	private float voto;
 	private MateriaDAO materia;
 	private StudenteDAO studente;
@@ -31,7 +32,7 @@ public class ValutazioneDAO {
 			
 			if(rs.next()) {
 				
-				this.setData(rs.getString("data"));
+				this.setData(rs.getDate("data"));
 				this.setVoto(rs.getFloat("voto"));
 			
 			}
@@ -119,11 +120,11 @@ public class ValutazioneDAO {
 		this.idvalutazioni = idvalutazioni;
 	}
 
-	public String getData() {
+	public Date getData() {
 		return data;
 	}
 
-	public void setData(String data) {
+	public void setData(Date data) {
 		this.data = data;
 	}
 
