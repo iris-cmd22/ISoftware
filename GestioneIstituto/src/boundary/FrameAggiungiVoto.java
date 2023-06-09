@@ -61,30 +61,30 @@ public class FrameAggiungiVoto extends JFrame {
 		lbl_AggiungiVoto.setBounds(10, 10, 106, 19);
 		contentPane.add(lbl_AggiungiVoto);
 		
-		JLabel lbl_materia = new JLabel("Materia");
-		lbl_materia.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lbl_materia.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_materia.setBounds(20, 44, 45, 13);
-		contentPane.add(lbl_materia);
+		JLabel lbl_classe = new JLabel("Classe");
+		lbl_classe.setFont(new Font("Tahoma", Font.BOLD, 10));
+		lbl_classe.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_classe.setBounds(25, 57, 45, 13);
+		contentPane.add(lbl_classe);
 		
 		textField_classe = new JTextField();
-		textField_classe.setBounds(111, 39, 96, 19);
+		textField_classe.setBounds(111, 53, 96, 19);
 		contentPane.add(textField_classe);
 		textField_classe.setColumns(10);
 		
 		JLabel lbl_nome = new JLabel("Nome");
 		lbl_nome.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lbl_nome.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_nome.setBounds(20, 80, 45, 13);
+		lbl_nome.setBounds(25, 93, 45, 13);
 		contentPane.add(lbl_nome);
 		
 		textField_nome = new JTextField();
-		textField_nome.setBounds(111, 75, 96, 19);
+		textField_nome.setBounds(111, 89, 96, 19);
 		contentPane.add(textField_nome);
 		textField_nome.setColumns(10);
 		
 		textField_cognome = new JTextField();
-		textField_cognome.setBounds(111, 104, 96, 19);
+		textField_cognome.setBounds(111, 119, 96, 19);
 		contentPane.add(textField_cognome);
 		textField_cognome.setColumns(10);
 				
@@ -93,39 +93,34 @@ public class FrameAggiungiVoto extends JFrame {
 		JLabel lbl_cognome = new JLabel("Cognome");
 		lbl_cognome.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lbl_cognome.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_cognome.setBounds(10, 108, 60, 13);
+		lbl_cognome.setBounds(21, 123, 60, 13);
 		contentPane.add(lbl_cognome);
 		
 		
 		JLabel lbl_data = new JLabel("Data");
 		lbl_data.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lbl_data.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_data.setBounds(10, 138, 60, 13);
+		lbl_data.setBounds(10, 159, 60, 13);
 		contentPane.add(lbl_data);
 		
 		JLabel lbl_voto = new JLabel("Voto");
 		lbl_voto.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lbl_voto.setBounds(32, 178, 48, 14);
+		lbl_voto.setBounds(33, 198, 48, 14);
 		contentPane.add(lbl_voto);
 		
 		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setBounds(111, 134, 96, 20);
+		dateChooser.setBounds(111, 159, 96, 20);
 		contentPane.add(dateChooser);
 		
 	
 		
 		JSpinner spinner = new JSpinner();
 		spinner.setModel(new SpinnerNumberModel(1, 1, 10, 1));
-		spinner.setBounds(111, 175, 96, 20);
+		spinner.setBounds(111, 195, 96, 20);
 		contentPane.add(spinner);
 		
 		
-		
-		
-		
-		
 	
-		
 	
 		
 		
