@@ -46,8 +46,8 @@ public class EntityStudente {
 			this.pagelle= new ArrayList<EntityPagella>(); //devo inizializzare gli arrayList vuoti
 			this.valutazioni= new ArrayList<EntityValutazione>();
 			
-			studente.caricaPagelleStudenteDaDB();
-			caricaPagelle(studente);
+			//studente.caricaPagelleStudenteDaDB();
+			//caricaPagelle(studente);
 			studente.caricaValutazioniDaDB();
 			caricaValutazioni(studente);
 			studente.caricaGenitoreDaDB();
@@ -89,7 +89,7 @@ public class EntityStudente {
 		}
 		
 		
-	public void caricaPagelle(StudenteDAO studente) {
+	/*public void caricaPagelle(StudenteDAO studente) {
 			
 			
 			for(int i=0;i<studente.getPagelle().size();i++) {
@@ -98,7 +98,7 @@ public class EntityStudente {
 				this.pagelle.add(pagelle);
 			}
 		}
-		
+		*/
 		public void caricaGenitore(StudenteDAO studente) {
 			
 			
