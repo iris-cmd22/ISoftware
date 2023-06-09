@@ -178,7 +178,7 @@ public void caricaValutazioniDaDB(){
 				//NB:
 				ValutazioneDAO valutazione =new ValutazioneDAO();
 				valutazione.setIdvalutazioni(rs.getInt("idvalutazioni"));
-                valutazione.setData(rs.getString("data"));
+                valutazione.setData(rs.getDate("data"));
 				
 				valutazione.setVoto(rs.getFloat("voto"));
 				valutazione.caricaMateriaDaDB(); //caricamento in cascata
