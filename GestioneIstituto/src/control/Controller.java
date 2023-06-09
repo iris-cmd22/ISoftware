@@ -1,6 +1,8 @@
 package control;
 
+import java.sql.Date;
 import java.util.ArrayList;
+import entity.EntityValutazione;
 
 public class Controller {
 
@@ -15,16 +17,24 @@ public class Controller {
         return ret;
     }
 
-    public static int inserisciClasse(int idClasse, String sezione, String anno, int annoscolastico, ArrayList<int> idmaterie){
+    /*public static int inserisciClasse(int idClasse, String sezione, String anno, int annoscolastico, ArrayList<int> idmaterie){
 
         int ret=0;
 
         return ret;
-    }
+    }*/
 
-    public static int aggiungiVoto(){
+    public static int aggiungiVoto(int idvalutazioni, int matricola, int idmaterie, Date data, int voto){
+    	EntityValutazione valutazione = new EntityValutazione();
+    	
+    	int ret = valutazione.scriviSuDB(idvalutazioni);
+    	
+    	if(ret!=-1) {
+    		valutazione.setData(data);
+    		valutazione.setVoto(voto);
+    	}
 
-        int ret=0;
+       
 
         return ret;
     }
