@@ -192,7 +192,13 @@ public class DocenteDAO {
 		this.password = password;
 	}
 	
-
+	public ArrayList<MateriaDAO> getMaterie(){
+		return materie;
+	}
+	
+	public void setMaterie(ArrayList<MateriaDAO> materie) {
+		this.materie = materie;
+	}
 
     @Override
 	public String toString() {
