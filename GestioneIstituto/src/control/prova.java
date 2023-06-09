@@ -8,7 +8,7 @@ public class prova {
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
-		EntityStudente s=new EntityStudente("1");
+		EntityStudente s=new EntityStudente(1);
 		System.out.println(s);
 	}
 
