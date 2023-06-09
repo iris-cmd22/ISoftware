@@ -51,8 +51,7 @@ public class MateriaDAO {
 				//NB:
 				ValutazioneDAO valutazione =new ValutazioneDAO();
 				valutazione.setIdvalutazioni(rs.getInt("idvalutazioni"));
-                valutazione.setData(rs.getString("data"));
-				valutazione.setTipo(rs.getString("tipo"));
+                		valutazione.setData(rs.getString("data"));
 				valutazione.setVoto(rs.getFloat("voto"));
 						
 				this.valutazioni.add(valutazione);
