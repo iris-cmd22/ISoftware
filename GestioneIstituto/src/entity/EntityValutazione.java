@@ -1,11 +1,12 @@
 package entity;
 
 import database.ValutazioneDAO;
+import java.sql.Date;
 
 public class EntityValutazione {
 	
 	private int idvalutazioni;
-	private String data;
+	private Date data;
 	private float voto;
 	private EntityMateria materia;
 	private EntityStudente studente;
