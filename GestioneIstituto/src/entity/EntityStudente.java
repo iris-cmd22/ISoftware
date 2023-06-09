@@ -69,8 +69,8 @@ public class EntityStudente {
 			this.pagelle= new ArrayList<EntityPagella>(); 
 			this.valutazioni= new ArrayList<EntityValutazione>();
 			
-			studente.caricaPagelleStudenteDaDB();
-			caricaPagelle(studente);
+			//studente.caricaPagelleStudenteDaDB();
+			//caricaPagelle(studente);
 			studente.caricaValutazioniDaDB();
 			caricaValutazioni(studente);
 			studente.caricaGenitoreDaDB();
