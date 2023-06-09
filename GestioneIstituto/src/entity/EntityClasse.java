@@ -2,9 +2,8 @@ package entity;
 
 import java.util.ArrayList;
 
-import database.MateriaDAO;
+import database.ClasseDAO;
 import database.RegistroDAO;
-import database.StudenteDAO;
 
 public class EntityClasse {
 	
@@ -24,13 +23,92 @@ public class EntityClasse {
 	}
 	
 
+	//costruttore con la PK
 	public EntityClasse(int idClasse) {
-		super();
-		this.idClasse = idClasse;
+		
+		ClasseDAO classe = new ClasseDAO(idClasse);
+		
+		this.annoscolastico=classe.getAnnoscolastico();
+		this.sezione=classe.getSezione();
+		this.anno=classe.getSezione();
+		this.registro= classe.getRegistro();
+		this.studenti= new ArrayList<EntityStudente>();
+		this.materie = new ArrayList<EntityMateria>();
+		
+		//classe.caricaRegistroDaDB();
+		//caricaRegistro(classe);
+		
+		classe.caricaStudentiDaDB();
+		caricaStudenti(classe);
+		
+		classe.caricaMaterieDaDB();
+		caricaMaterie(classe);
+		
+	}
+	
+	//costruttore con DAO
+	public EntityClasse(ClasseDAO classe) {
+		this.annoscolastico=classe.getAnnoscolastico();
+		this.sezione=classe.getSezione();
+		this.anno=classe.getSezione();
+		this.registro= classe.getRegistro();
+		this.studenti= new ArrayList<EntityStudente>();
+		this.materie = new ArrayList<EntityMateria>();
+		
+		//classe.caricaRegistroDaDB();
+		//caricaRegistro(classe);
+		
+		classe.caricaStudentiDaDB();
+		caricaStudenti(classe);
+		
+		classe.caricaMaterieDaDB();
+		caricaMaterie(classe);
 	}
 
 
 
+	private void caricaMaterie(ClasseDAO classe) {
+		
+		for(int i=0;i<classe.getMaterie().size();i++) {
+			
+			EntityMateria materia =new EntityMateria(classe.getMaterie().get(i));
+			this.materie.add(materia);
+	
+		}
+	}
+ 
+
+	private void caricaStudenti(ClasseDAO classe) {
+		
+		for(int i=0;i<classe.getStudenti().size();i++) {
+			
+			EntityStudente studente =new EntityStudente(classe.getStudenti().get(i));
+			this.studenti.add(studente);
+	
+		}
+		
+	}
+
+	/*
+	private void caricaRegistro(ClasseDAO classe) {
+		// TODO Auto-generated method stub
+		EntityRegistro registro= new EntityRegistro(classe.getRegistro());
+		this.registro=registro;
+		
+	} */
+
+	public int scriviSuDB(int idClasse) {
+		
+		ClasseDAO s= new ClasseDAO(idClasse); //DAO
+		
+		s.setAnno(this.anno);
+		s.setSezione(this.sezione);
+		s.setAnnoscolastico(this.annoscolastico);
+		int i = s.SalvaInDB(idClasse);
+		
+		return i;
+	}
+	
 	public int getIdClasse() {
 		return idClasse;
 	}
@@ -86,7 +164,11 @@ public class EntityClasse {
 	public void setMaterie(ArrayList<EntityMateria> materie) {
 		this.materie = materie;
 	}
-	
-	
 
-}
+
+	@Override
+	public String toString() {
+		return "EntityClasse [idClasse=" + idClasse + ", annoscolastico=" + annoscolastico + ", sezione=" + sezione
+				+ ", anno=" + anno + ", registro=" + registro + ", studenti=" + studenti + ", materie=" + materie + "]";
+	}
+	
