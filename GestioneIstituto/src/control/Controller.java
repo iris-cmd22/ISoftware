@@ -17,12 +17,12 @@ public class Controller {
         return ret;
     }
 
-    /*public static int inserisciClasse(int idClasse, String sezione, String anno, int annoscolastico, ArrayList<int> idmaterie){
+    public static int inserisciClasse(int idClasse, String sezione, String anno, int annoscolastico, ArrayList<int> idmaterie){
 
         int ret=0;
 
         return ret;
-    }*/
+    }
 
     public static int aggiungiVoto(int idvalutazioni, int matricola, int idmaterie, Date data, int voto){
     	EntityValutazione valutazione = new EntityValutazione();
