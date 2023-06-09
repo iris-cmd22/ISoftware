@@ -15,7 +15,7 @@ public class Controller {
         return ret;
     }
 
-    public static int inserisciClasse(int idClasse, String sezione, String anno, int annoscolastico, ArrayList<Int> idmaterie){
+    public static int inserisciClasse(int idClasse, String sezione, String anno, int annoscolastico, ArrayList<int> idmaterie){
 
         int ret=0;
 
