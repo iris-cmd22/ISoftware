@@ -103,6 +103,25 @@ public class ValutazioneDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	
+
+	//aggiunto per implementare la funzione AggiungiVoto	
+	public int SalvaInDB(int idvalutazioni) {
+		
+		int ret=0;
+		
+		String query = "INSERT INTO valutazioni(idvalutazioni,data,voto) VALUES ( \'"+idvalutazioni+"\','"+"\'"+this.data+"\','"+this.voto+"')";
+		System.out.println(query);
+		try {
+			ret=DBConnectionManager.updateQuery(query);
+			
+		}catch(ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+			ret = -1; //per l'errore di scrittura
+		}
+		return ret;
+	}
 
 	public StudenteDAO getStudente() {
 		return studente;
