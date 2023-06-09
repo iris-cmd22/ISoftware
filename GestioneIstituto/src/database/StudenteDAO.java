@@ -80,7 +80,6 @@ public class StudenteDAO {
 					ValutazioneDAO valutazione =new ValutazioneDAO();
 					valutazione.setIdvalutazioni(rs.getInt("idvalutazioni"));
 					valutazione.setData(rs.getString("data"));
-					valutazione.setTipo(rs.getString("tipo"));
 					valutazione.setVoto(rs.getFloat("voto"));
 					
 					this.valutazioni.add(valutazione);
@@ -180,9 +179,9 @@ public void caricaValutazioniDaDB(){
 				ValutazioneDAO valutazione =new ValutazioneDAO();
 				valutazione.setIdvalutazioni(rs.getInt("idvalutazioni"));
                 valutazione.setData(rs.getString("data"));
-				valutazione.setTipo(rs.getString("tipo"));
+				
 				valutazione.setVoto(rs.getFloat("voto"));
-						
+				valutazione.caricaMateriaDaDB(); //caricamento in cascata
 				this.valutazioni.add(valutazione);
 				
 			}	
@@ -333,6 +332,17 @@ public void caricaValutazioniDaDB(){
 	public void setGenitore(GenitoreDAO genitore) {
 		this.genitore = genitore;
 	}
+
+
+	public ArrayList<ValutazioneDAO> getValutazioni() {
+		return valutazioni;
+	}
+
+
+	public void setValutazioni(ArrayList<ValutazioneDAO> valutazioni) {
+		this.valutazioni = valutazioni;
+	}
+	
 	
 	
 	
