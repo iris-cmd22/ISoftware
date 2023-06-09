@@ -1,11 +1,14 @@
 package entity;
 
+import java.sql.Date;
+import database.GenitoreDAO;
+
 public class EntityGenitore {
 
 	private String nome;
 	private String cognome;
 	private int matricola;
-	private String dataNascita;
+	private Date dataNascita;
 	private String codiceFiscale;
 	private String comuneResidenza;
 	private String email;
@@ -13,23 +16,61 @@ public class EntityGenitore {
 	private String username;
 	private String password;
 	
-	
+	//costruttore di default
 	public EntityGenitore() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	
 	
-	
-
-
+	//costruttore con PK
 	public EntityGenitore(String username) {
-		super();
-		this.username = username;
+		
+		GenitoreDAO genitore =new GenitoreDAO(username); //creo un oggetto DAO per comunicare con il DB
+		
+		this.username=username;
+		this.password=genitore.getPassword();
+		this.nome=genitore.getNome();
+		this.cognome=genitore.getCognome();
+		this.dataNascita=genitore.getDataNascita();
+		this.codiceFiscale=genitore.getCodiceFiscale();
+		this.comuneResidenza=genitore.getComuneResidenza();
+		this.email=genitore.getEmail();
+		this.numeroCellulare=genitore.getNumeroCellulare();
+		
+	}
+	
+	//costruttore che prende in ingresso la DAO
+	public EntityGenitore(GenitoreDAO genitore) {
+		this.nome=genitore.getNome();
+		this.cognome=genitore.getCognome();
+		this.dataNascita=genitore.getDataNascita();
+		this.codiceFiscale=genitore.getCodiceFiscale();
+		this.comuneResidenza=genitore.getComuneResidenza();
+		this.email=genitore.getEmail();
+		this.numeroCellulare=genitore.getNumeroCellulare();
+		this.username=genitore.getUsername();
+		this.password=genitore.getPassword();
+
 	}
 
-
+	public int scriviSuDB(String username) {
+		
+		GenitoreDAO s= new GenitoreDAO(username); //DAO
+		
+		s.setPassword(this.password);
+		s.setNome(this.nome);
+		s.setCognome(this.cognome);
+		s.setDataNascita(this.dataNascita);
+		s.setCodiceFiscale(this.codiceFiscale);
+		s.setComuneResidenza(this.comuneResidenza);
+		s.setEmail(this.email);
+		s.setNumeroCellulare(this.numeroCellulare);
+		int i = s.SalvaInDB(username);
+		
+		return i;
+	}
+		
 
 
 
@@ -52,10 +93,10 @@ public class EntityGenitore {
 	public void setMatricola(int matricola) {
 		this.matricola = matricola;
 	}
-	public String getDataNascita() {
+	public Date getDataNascita() {
 		return dataNascita;
 	}
-	public void setDataNascita(String dataNascita) {
+	public void setDataNascita(Date dataNascita) {
 		this.dataNascita = dataNascita;
 	}
 	public String getCodiceFiscale() {
@@ -94,6 +135,17 @@ public class EntityGenitore {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "EntityGenitore [nome=" + nome + ", cognome=" + cognome + ", matricola=" + matricola + ", dataNascita="
+				+ dataNascita + ", codiceFiscale=" + codiceFiscale + ", comuneResidenza=" + comuneResidenza + ", email="
+				+ email + ", numeroCellulare=" + numeroCellulare + ", username=" + username + ", password=" + password
+				+ "]";
+	}
+	
 	
 	
 	
