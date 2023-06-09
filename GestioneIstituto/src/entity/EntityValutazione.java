@@ -56,7 +56,7 @@ public class EntityValutazione {
 
 	
 	//aggiunto per implementare aggiungiVoto
-		public int scriviSuDB(int idvalutazioni) {
+	public int scriviSuDB(int idvalutazioni, int matricola,int idmaterie, Date data, float voto ) {
 		
 		ValutazioneDAO v= new ValutazioneDAO(); //DAO
 		
@@ -65,7 +65,7 @@ public class EntityValutazione {
 		v.setVoto(this.voto);
 		
 		
-		int i = v.SalvaInDB(idvalutazioni);
+		int i = v.SalvaInDB(idvalutazioni, matricola, idmaterie, data, voto );
 		
 		return i;
 	}
