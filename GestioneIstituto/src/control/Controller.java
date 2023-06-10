@@ -103,14 +103,14 @@ public class Controller {
     	    int annoInput = data.toLocalDate().getYear();
     	    int meseInput = data.toLocalDate().getMonthValue();
 
-    	    // Primo quadrimestre: settembre - gennaio
-    	    if ((meseCorrente >= 9 && annoCorrente == annoInput) || (meseCorrente <= 1 && annoCorrente + 1 == annoInput)) {
-    	        if (meseCorrente >= 12 || meseCorrente <= 1) {
+    	    // Primo quadrimestre: settembre - gennaio: 
+    	    if ((meseCorrente >= 9 && meseCorrente <= 12 && annoCorrente  == annoInput)) {
+    	        if (meseInput >= 9 && meseInput <= 12) {
     	            return true;
     	        }
     	    }
     	    // Secondo quadrimestre: febbraio - giugno
-    	    else if (meseCorrente >= 2 && meseCorrente <= 6 && annoCorrente == annoInput) {
+    	    else if (meseCorrente >= 1 && meseCorrente <= 6 && annoCorrente == annoInput) {
     	        if (meseInput >= 2 && meseInput <= 6) {
     	            return true;
     	        }
