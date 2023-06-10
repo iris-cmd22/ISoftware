@@ -82,7 +82,7 @@ public class DialogAggiungiVoto extends JDialog {
 		contentPane.add(lbl_matricola);
 		
 		textField_matricola = new JTextField();
-		textField_matricola.setEnabled(false);
+		textField_matricola.setEditable(false);
 		textField_matricola.setBounds(111, 119, 96, 19);
 		contentPane.add(textField_matricola);
 		textField_matricola.setColumns(10);
@@ -102,12 +102,18 @@ public class DialogAggiungiVoto extends JDialog {
 		contentPane.add(lbl_voto);
 		
 		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.getCalendarButton().setEnabled(false);
+		dateChooser.getCalendarButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		dateChooser.setBounds(111, 169, 96, 20);
 		contentPane.add(dateChooser);
 		
 	
 		
 		JSpinner spinner = new JSpinner();
+		spinner.setEnabled(false);
 		spinner.setModel(new SpinnerNumberModel(1, 1, 10, 1));
 		spinner.setBounds(111, 215, 96, 20);
 		contentPane.add(spinner);
@@ -207,6 +213,7 @@ public class DialogAggiungiVoto extends JDialog {
 				if(i==true) {
 					
 					//se ho trovato lo studente
+					dateChooser.setEnabled(true);
 					
 					
 					
@@ -239,6 +246,7 @@ public class DialogAggiungiVoto extends JDialog {
 				boolean i=Controller.isDataValida((Date)data);
 				if(i==true) {
 					//se la data è valida
+					spinner.setEnabled(i);
 					textOut_data.setText("DataValida");
 				}
 				else {
