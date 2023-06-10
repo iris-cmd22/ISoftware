@@ -12,13 +12,19 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import com.toedter.calendar.JDateChooser;
+
+import control.Controller;
+
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JComboBox;
+import javax.sound.midi.SysexMessage;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class DialogRegistraUtente extends JDialog {
 
@@ -31,6 +37,7 @@ public class DialogRegistraUtente extends JDialog {
 	private JTextField textField_Username;
 	private JTextField textField_Password;
 	private JTextField textField_ComuneResidenza;
+	private JTextField textOut;
 
 	/**
 	 * Launch the application.
@@ -55,6 +62,7 @@ public class DialogRegistraUtente extends JDialog {
 	public DialogRegistraUtente() {
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
+		contentPane.setForeground(Color.RED);
 		contentPane.setBackground(new Color(0, 0, 139));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -215,14 +223,92 @@ public class DialogRegistraUtente extends JDialog {
 		cmb_Ruolo.setBounds(111, 39, 96, 21);
 		contentPane.add(cmb_Ruolo);
 		
+		//Bottone INSERISCI
 		JButton btn_Inserisci = new JButton("INSERISCI");
-		btn_Inserisci.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btn_Inserisci.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		btn_Inserisci.setEnabled(false);
+		btn_Inserisci.setForeground(Color.RED);
+		
+		btn_Inserisci.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				int ret = -1;
+				
+				String ruolo = (String) cmb_Ruolo.getSelectedItem();
+		
+				String nome = textField_Nome.getText();
+				String cognome = textField_Cognome.getText();
+				String codiceFiscale = textField_codiceFiscale.getText();
+				String email = textField_Email.getText();
+				String numeroCellulare = textField_NumeroCellulare.getText();
+				String username = textField_Username.getText();
+				String password = textField_Password.getText();
+				String comune = textField_ComuneResidenza.getText();
+				
+				if(ruolo == "Docente") {
+					//jdialog classi e materie
+					
+					
+				}
+				
+				if(ruolo == "Studente") {
+					//assegnazione matricola
+				}
+				
+				if(ruolo == "Genitore") {
+					//matricola dello studente
+				}
+				
+				ret = Controller.registraUtente(ruolo,nome,cognome,codiceFiscale,email,
+						numeroCellulare,username,password,comune);
+				
+				System.out.println(ret);
+				
+				if(ret!=-1) {
+					
+					
+					
+				}
 			}
 		});
+		btn_Inserisci.setFont(new Font("Tahoma", Font.BOLD, 13));
+		
 		btn_Inserisci.setBounds(287, 232, 139, 21);
 		contentPane.add(btn_Inserisci);
+		
+		//Bottotone Check Username
+		JButton btn_checkUsername = new JButton("Check Username");
+		btn_checkUsername.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//Verifichiamo che l'username inserito non sia già utilizzato
+				
+				String username = textField_Username.getText();
+				String ruolo = (String) cmb_Ruolo.getSelectedItem();
+				
+				int i = Controller.CercaUsername(username,ruolo);
+				
+				if(i==1) {
+					//se ho trovato l'username
+					textOut.setText("Username non disponibile");
+					
+				}else {
+					btn_Inserisci.setEnabled(true);
+					textOut.setText("Username disponibile");
+				}
+				
+			}
+		});
+		btn_checkUsername.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btn_checkUsername.setBounds(10, 233, 131, 21);
+		contentPane.add(btn_checkUsername);
+		
+		textOut = new JTextField();
+		textOut.setForeground(new Color(255, 255, 255));
+		textOut.setBackground(new Color(0, 0, 128));
+		textOut.setBounds(151, 234, 96, 19);
+		contentPane.add(textOut);
+		textOut.setColumns(10);
 		
 	}
 }
