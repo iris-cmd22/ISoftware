@@ -21,6 +21,8 @@ import control.Controller;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class DialogAggiungiVoto extends JDialog {
 
@@ -29,6 +31,9 @@ public class DialogAggiungiVoto extends JDialog {
 	private JTextField textField_materia;
 	
 	private static int idval = 1; // variabile statica per l'ID valutazioni progressivo
+	private JTextField textOut_materia;
+	private JTextField textOut_matricola;
+	private JTextField textOut_data;
 
 
 	
@@ -55,7 +60,7 @@ public class DialogAggiungiVoto extends JDialog {
 	 */
 	public DialogAggiungiVoto() {
 		//setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 575, 355);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -144,10 +149,109 @@ public class DialogAggiungiVoto extends JDialog {
 				
 			}
 		});
-		btnAggiungiVoto.setBounds(296, 231, 89, 23);
+		btnAggiungiVoto.setBounds(464, 286, 89, 23);
 		contentPane.add(btnAggiungiVoto);
 		
+		JButton btnCheckMateria = new JButton("Check Materia");
+		btnCheckMateria.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String materia = textField_materia.getText();
+				
+				boolean i = Controller.esisteMateria(Integer.parseInt(materia));
+				
+				if(i==true) {
+					
+					//se ho trovato la materia
+					textField_matricola.setEditable(true);
+					
+					
+					textOut_materia.setText("Materia Trovata");
+				
+				}else {
+					
+					textOut_materia.setText("Materia non trovata");
+				}
+			}
+		});
 		
+		btnCheckMateria.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnCheckMateria.setBounds(217, 66, 123, 23);
+		contentPane.add(btnCheckMateria);
+		
+		JButton btnCheckMatricola = new JButton("Check Matricola");
+		btnCheckMatricola.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String matricola = textField_matricola.getText();
+				
+				boolean i = Controller.esisteStudente(Integer.parseInt(matricola));
+				
+				if(i==true) {
+					
+					//se ho trovato lo studente
+					
+					
+					
+					textOut_materia.setText("Studente Trovato");
+				
+				}else {
+					
+					textOut_materia.setText("Studente non trovato");
+				}
+			}
+		});
+		
+		
+		
+		btnCheckMatricola.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnCheckMatricola.setBounds(217, 118, 123, 23);
+		contentPane.add(btnCheckMatricola);
+		
+		JButton btnCheckData = new JButton("Check Data");
+		btnCheckData.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				
+				java.util.Date data = dateChooser.getDate();
+				
+				boolean i=Controller.isDataValida((Date)data);
+				if(i==true) {
+					//se la data è valida
+					textOut_data.setText("DataValida");
+				}
+				else {
+					textOut_data.setText("Data non valida");
+				}
+				
+				
+				
+			}
+		});
+		btnCheckData.setBounds(217, 171, 123, 23);
+		contentPane.add(btnCheckData);
+		
+		textOut_materia = new JTextField();
+		textOut_materia.setBounds(386, 67, 112, 20);
+		contentPane.add(textOut_materia);
+		textOut_materia.setColumns(10);
+		
+		textOut_matricola = new JTextField();
+		textOut_matricola.setBounds(386, 119, 112, 20);
+		contentPane.add(textOut_matricola);
+		textOut_matricola.setColumns(10);
+		
+		textOut_data = new JTextField();
+		textOut_data.setBounds(386, 172, 112, 20);
+		contentPane.add(textOut_data);
+		textOut_data.setColumns(10);
 
 		
 	}
