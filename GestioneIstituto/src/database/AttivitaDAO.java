@@ -11,7 +11,6 @@ public class AttivitaDAO {
 	private DocenteDAO docente;
 	
 	public AttivitaDAO() {
-		// TODO Auto-generated constructor stub
 		super();
 	}
 	

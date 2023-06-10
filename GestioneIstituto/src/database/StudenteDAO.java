@@ -14,12 +14,12 @@ public class StudenteDAO {
 	private String codiceFiscale;
 	private String comuneResidenza;
 	private String email;
-	private String numeroCellulare;
+	private int numeroCellulare;
 	private String username;
 	private String password;
-	private GenitoreDAO genitore;
-	private ArrayList<PagellaDAO> pagelle;
-	private ArrayList<ValutazioneDAO> valutazioni;
+	private GenitoreDAO genitore; //mi serve per risalire all'email del genitore per inviare una notifica in caso di insufficienza
+	private ArrayList<PagellaDAO> pagelle;//mi serve per generare i quadri di fine quadrimestre
+	private ArrayList<ValutazioneDAO> valutazioni;//mi serve per caricare una vista dei voti dello studente per il genitore
 	
 	//questo costruttore mi servira' per riempire la classe con i dati che carico nel database
 	public StudenteDAO() {
@@ -28,7 +28,7 @@ public class StudenteDAO {
 		this.valutazioni=new ArrayList<ValutazioneDAO>();
 	}
 	
-	
+	//questo costruttore mi servirà per caricare uno studente da DB a partire dalla sua PK
 	public StudenteDAO(int matricola) {
 		this.matricola = matricola;
 		this.pagelle= new ArrayList<PagellaDAO>();
@@ -36,12 +36,14 @@ public class StudenteDAO {
 		caricaDaDB();
 	}
 	
+	//carico solo l'anagrafica dello studente
 	public void caricaDaDB() {
 		
 		String query = "SELECT * FROM studenti WHERE matricola='"+this.matricola+"';";
 		try {
 			
 			ResultSet rs =DBConnectionManager.selectQuery(query);
+			System.out.println(query); //per debug
 			
 			if(rs.next()) {
 				
@@ -52,7 +54,7 @@ public class StudenteDAO {
 				this.setCodiceFiscale(rs.getString("codiceFiscale"));
 				this.setComuneResidenza(rs.getString("comuneResidenza"));
 				this.setEmail(rs.getString("email"));
-				this.setNumeroCellulare(rs.getString("numeroCellulare"));
+				this.setNumeroCellulare(rs.getInt("numeroCellulare"));
 				this.setUsername(rs.getString("username"));
 				this.setPassword(rs.getString("password"));
 				
@@ -65,10 +67,8 @@ public class StudenteDAO {
 	
 	public void caricaValutazioniStudenteDaDB() {
 			
-			
-			
-			String query= new String("SELECT * FROM valutazioni WHERE studente=\'"+this.matricola+"')");
-			//System.out.println(query); //per debug
+			String query= new String("SELECT * FROM valutazioni WHERE studente='"+this.matricola+"';");
+			System.out.println(query); //per debug
 			
 			try {
 				
@@ -76,7 +76,7 @@ public class StudenteDAO {
 				
 				while(rs.next()) {
 					
-					//NB:
+					//NB: devo istanziare una nuova DAO per riempirla
 					ValutazioneDAO valutazione =new ValutazioneDAO();
 					valutazione.setIdvalutazioni(rs.getInt("idvalutazioni"));
 					valutazione.setData(rs.getDate("data"));
@@ -104,8 +104,8 @@ public class StudenteDAO {
 		
 		
 		
-		String query= new String("SELECT * FROM pagelle WHERE studente=\'"+this.matricola+"')");
-		//System.out.println(query); //per debug
+		String query= new String("SELECT * FROM pagelle WHERE studente='"+this.matricola+"';");
+		System.out.println(query); //per debug
 		
 		try {
 			
@@ -132,10 +132,10 @@ public class StudenteDAO {
 	
 	
 	}
-	
+	/*
 	public void caricaGenitoreDaDB() {
 		
-		String query = new String("SELECT * FROM genitori WHERE studente_figlio =\'"+this.matricola+"'");
+		String query = new String("SELECT * FROM genitori WHERE studente_figlio ='"+this.matricola+"';");
 		System.out.println(query); //per debug
 		
 		try {
@@ -163,10 +163,10 @@ public class StudenteDAO {
 			e.printStackTrace();
 		}
 	}
-	
+	*/
 public void caricaValutazioniDaDB(){
         
-        String query= new String("SELECT * FROM valutazioni WHERE studente=\'"+this.matricola+"')");
+        String query= new String("SELECT * FROM valutazioni WHERE studente='"+this.matricola+"';");
         //System.out.println(query); //per debug
 
         	try {
@@ -179,7 +179,6 @@ public void caricaValutazioniDaDB(){
 				ValutazioneDAO valutazione =new ValutazioneDAO();
 				valutazione.setIdvalutazioni(rs.getInt("idvalutazioni"));
                 valutazione.setData(rs.getDate("data"));
-				
 				valutazione.setVoto(rs.getFloat("voto"));
 				valutazione.caricaMateriaDaDB(); //caricamento in cascata
 				this.valutazioni.add(valutazione);
@@ -196,7 +195,7 @@ public void caricaValutazioniDaDB(){
 		
 		int ret=0;
 		
-		String query = "INSERT INTO studenti(matricola,nome,cognome,codicefiscale, datanascita, comuneresidenza, email, numerocellulare, username, password) VALUES ( \'"+matricola+"\','"+"\'"+this.nome+"\','"+this.cognome+"\','"+this.codiceFiscale+"\','"+this.dataNascita+"\','"+this.comuneResidenza+"\','"+this.email+"\','"+this.numeroCellulare+"\','"+this.username+"\','"+this.password+"')";
+		String query = "INSERT INTO studenti(matricola,nome,cognome,codicefiscale, datanascita, comuneresidenza, email, numerocellulare, username, password) VALUES ( \'"+matricola+"\','"+"\'"+this.nome+"\','"+this.cognome+"\','"+this.codiceFiscale+"\','"+this.dataNascita+"\','"+this.comuneResidenza+"\','"+this.email+"\','"+this.numeroCellulare+"\','"+this.username+"\','"+this.password+"');";
 		System.out.println(query);
 		try {
 			ret=DBConnectionManager.updateQuery(query);
@@ -279,12 +278,12 @@ public void caricaValutazioniDaDB(){
 	}
 
 
-	public String getNumeroCellulare() {
+	public int getNumeroCellulare() {
 		return numeroCellulare;
 	}
 
 
-	public void setNumeroCellulare(String numeroCellulare) {
+	public void setNumeroCellulare(int numeroCellulare) {
 		this.numeroCellulare = numeroCellulare;
 	}
 
@@ -320,7 +319,7 @@ public void caricaValutazioniDaDB(){
 	
 	@Override
 	public String toString() {
-		return "DBStudente [nome=" + nome + ", cognome=" +cognome+ ",codice fiscale=" + codiceFiscale + ", data di nascita=" + dataNascita + ", comune di residenza=" + comuneResidenza + ", email=" + email + ", numero di cellulare=" + numeroCellulare + "]";
+		return "DBStudente [nome=" + nome + ", cognome=" +cognome+ ",codice fiscale=" + codiceFiscale + ", data di nascita=" + dataNascita.toString() + ", comune di residenza=" + comuneResidenza + ", email=" + email + ", numero di cellulare=" + numeroCellulare + "]";
 	}
 
 
@@ -342,8 +341,5 @@ public void caricaValutazioniDaDB(){
 	public void setValutazioni(ArrayList<ValutazioneDAO> valutazioni) {
 		this.valutazioni = valutazioni;
 	}
-	
-	
-	
 	
 }

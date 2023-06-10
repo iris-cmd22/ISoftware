@@ -12,9 +12,10 @@ public class GenitoreDAO {
 	private String codiceFiscale;
 	private String comuneResidenza;
 	private String email;
-	private String numeroCellulare;
+	private int numeroCellulare;
 	private String username;
 	private String password;
+	private StudenteDAO studente; //mi serve per risalire alle valutazioni dello studente
 	
 	public GenitoreDAO() {
 		super();
@@ -55,12 +56,46 @@ public class GenitoreDAO {
 				this.setDataNascita(rs.getDate("dataNascita"));
 				this.setCodiceFiscale(rs.getString("codiceFiscale"));
 				this.setComuneResidenza(rs.getString("comuneResidenza"));
-				this.setNumeroCellulare(rs.getString("numeroCellulare"));
+				this.setNumeroCellulare(rs.getInt("numeroCellulare"));
 				this.setUsername(rs.getString("username"));
 				this.setPassword(rs.getString("password"));
 				
 			}
 		}catch(ClassNotFoundException | SQLException e) {
+			
+			e.printStackTrace();
+		}
+	}
+	
+	public void caricaStudenteDaDB() {
+		String query= new String("SELECT * FROM studenti WHERE genitore =\'"+this.username+"')");
+        System.out.println(query); //per debug
+
+        	try {
+			
+			ResultSet rs= DBConnectionManager.selectQuery(query);
+			
+			//Uso un if perchè mi aspetto un solo risultato
+			if(rs.next()) {
+				
+				//NB:
+				StudenteDAO studente =new StudenteDAO();
+				
+				studente.setMatricola(rs.getInt("matricola"));
+				studente.setNome(rs.getString("nome"));
+				studente.setCognome(rs.getString("cognome"));
+				studente.setCodiceFiscale(rs.getString("codiceFiscale"));
+				studente.setDataNascita(rs.getDate("dataNascita"));
+				studente.setComuneResidenza(rs.getString("comuneResidenza"));
+				studente.setEmail(rs.getString("email"));
+				studente.setNumeroCellulare(rs.getInt("numeroCellulare"));
+				studente.caricaValutazioniDaDB();
+						
+				this.studente=studente;
+				
+			}	
+			
+		}catch( ClassNotFoundException | SQLException e) {
 			
 			e.printStackTrace();
 		}
@@ -130,11 +165,11 @@ public class GenitoreDAO {
 		this.email = email;
 	}
 
-	public String getNumeroCellulare() {
+	public int getNumeroCellulare() {
 		return numeroCellulare;
 	}
 
-	public void setNumeroCellulare(String numeroCellulare) {
+	public void setNumeroCellulare(int numeroCellulare) {
 		this.numeroCellulare = numeroCellulare;
 	}
 
@@ -154,7 +189,15 @@ public class GenitoreDAO {
 		this.password = password;
 	}
 	
+	public StudenteDAO getStudente() {
+		return studente;
+	}
+
+	public void setStudente(StudenteDAO studente) {
+		this.studente = studente;
+	}
+
+	
 	
 	
 }
-

@@ -81,7 +81,7 @@ public class ClasseDAO {
 				studente.setDataNascita(rs.getDate("dataNascita"));
 				studente.setComuneResidenza(rs.getString("comuneResidenza"));
 				studente.setEmail(rs.getString("email"));
-				studente.setNumeroCellulare(rs.getString("numeroCellulare"));
+				studente.setNumeroCellulare(rs.getInt("numeroCellulare"));
 				
 				
 				this.studenti.add(studente); //aggiungo l'oggetto all'array

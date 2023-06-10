@@ -1,8 +1,8 @@
 package database;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Date;
 
 public class ValutazioneDAO {
 	
@@ -43,8 +43,6 @@ public class ValutazioneDAO {
 	}
 	
 	public void caricaMateriaDaDB() {
-		
-	
 	
 		String query = new String("SELECT * FROM materie WHERE valutazioni =\'"+this.idvalutazioni+"'");
 	
@@ -90,7 +88,7 @@ public class ValutazioneDAO {
 				studente.setDataNascita(rs.getDate("dataNascita"));
 				studente.setComuneResidenza(rs.getString("comuneResidenza"));
 				studente.setEmail(rs.getString("email"));
-				studente.setNumeroCellulare(rs.getString("numeroCellulare"));
+				studente.setNumeroCellulare(rs.getInt("numeroCellulare"));
 				
 				
 				this.studente=studente;			
@@ -104,8 +102,6 @@ public class ValutazioneDAO {
 		}
 	}
 	
-	
-
 	//aggiunto per implementare la funzione AggiungiVoto	
 	public int SalvaInDB(int idvalutazioni, int matricola, int idmaterie, Date data, float voto) {
 		

@@ -13,7 +13,7 @@ public class DocenteDAO {
 	private String codiceFiscale;
 	private String comuneResidenza;
 	private String email;
-	private String numeroCellulare;
+	private int numeroCellulare;
 	private String username;
 	private String password;
     private ArrayList<MateriaDAO> materie;
@@ -59,7 +59,7 @@ public class DocenteDAO {
 				this.setDataNascita(rs.getDate("dataNascita"));
 				this.setCodiceFiscale(rs.getString("codiceFiscale"));
 				this.setComuneResidenza(rs.getString("comuneResidenza"));
-                this.setNumeroCellulare(rs.getString("numeroCellulare"));
+                this.setNumeroCellulare(rs.getInt("numeroCellulare"));
 				this.setUsername(rs.getString("username"));
 				this.setPassword(rs.getString("password"));
 				
@@ -168,11 +168,11 @@ public class DocenteDAO {
 		this.email = email;
 	}
 
-	public String getNumeroCellulare() {
+	public int getNumeroCellulare() {
 		return numeroCellulare;
 	}
 
-	public void setNumeroCellulare(String numeroCellulare) {
+	public void setNumeroCellulare(int numeroCellulare) {
 		this.numeroCellulare = numeroCellulare;
 	}
 
