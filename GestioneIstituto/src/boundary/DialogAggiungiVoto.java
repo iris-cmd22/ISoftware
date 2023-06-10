@@ -185,6 +185,7 @@ public class DialogAggiungiVoto extends JDialog {
 				}else {
 					textOut_materia.setText("Materia non trovata");
 					
+					
 				}
 			}
 		});
@@ -248,6 +249,8 @@ public class DialogAggiungiVoto extends JDialog {
 		contentPane.add(btnCHECK_DATA);
 		
 		textOut_materia = new JTextField();
+		textOut_materia.setHorizontalAlignment(SwingConstants.CENTER);
+		textOut_materia.setForeground(new Color(255, 255, 255));
 		textOut_materia.setBackground(new Color(0, 0, 128));
 		textOut_materia.setEditable(false);
 		textOut_materia.setBounds(467, 67, 96, 20);
@@ -255,6 +258,7 @@ public class DialogAggiungiVoto extends JDialog {
 		textOut_materia.setColumns(10);
 		
 		textOut_matricola = new JTextField();
+		textOut_matricola.setForeground(new Color(255, 255, 255));
 		textOut_matricola.setBackground(new Color(0, 0, 128));
 		textOut_matricola.setEditable(false);
 		textOut_matricola.setBounds(467, 119, 96, 20);
@@ -262,6 +266,7 @@ public class DialogAggiungiVoto extends JDialog {
 		textOut_matricola.setColumns(10);
 		
 		textOut_data = new JTextField();
+		textOut_data.setForeground(new Color(255, 255, 255));
 		textOut_data.setBackground(new Color(0, 0, 128));
 		textOut_data.setEditable(false);
 		textOut_data.setBounds(467, 172, 96, 20);
