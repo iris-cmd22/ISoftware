@@ -27,6 +27,8 @@ public class DialogAggiungiVoto extends JDialog {
 	private JPanel contentPane;
 	private JTextField textField_matricola;
 	private JTextField textField_materia;
+	
+	private static int idval = 1; // variabile statica per l'ID valutazioni progressivo
 
 
 	
@@ -114,7 +116,7 @@ public class DialogAggiungiVoto extends JDialog {
 			public void mouseClicked(MouseEvent e) {
 				int ret=-1;
 				
-				int idvalutazioni = 0;
+				int idvalutazioni = idval++;
 				
 				String matricola = textField_matricola.getText();
 				String materia = textField_materia.getText();
@@ -134,13 +136,18 @@ public class DialogAggiungiVoto extends JDialog {
 
 				}
 				
-		
+				
+				
+				
+				
 				
 				
 			}
 		});
 		btnAggiungiVoto.setBounds(296, 231, 89, 23);
 		contentPane.add(btnAggiungiVoto);
+		
+		
 
 		
 	}
