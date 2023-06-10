@@ -111,7 +111,7 @@ public class Controller {
     	    }
     	    // Secondo quadrimestre: febbraio - giugno
     	    else if (meseCorrente >= 1 && meseCorrente <= 6 && annoCorrente == annoInput) {
-    	        if (meseInput >= 2 && meseInput <= 6) {
+    	        if (meseInput >= 1 && meseInput <= 6) {
     	            return true;
     	        }
     	    }
