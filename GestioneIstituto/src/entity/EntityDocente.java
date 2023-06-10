@@ -4,7 +4,6 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import database.DocenteDAO;
-import database.MateriaDAO;
 
 public class EntityDocente {
 	
@@ -15,7 +14,7 @@ public class EntityDocente {
 	private String codiceFiscale;
 	private String comuneResidenza;
 	private String email;
-	private String numeroCellulare;
+	private int numeroCellulare;
 	private String username;
 	private String password;
 	private ArrayList<EntityMateria> materie;
@@ -132,11 +131,11 @@ public class EntityDocente {
 		this.email = email;
 	}
 
-	public String getNumeroCellulare() {
+	public int getNumeroCellulare() {
 		return numeroCellulare;
 	}
 
-	public void setNumeroCellulare(String numeroCellulare) {
+	public void setNumeroCellulare(int numeroCellulare) {
 		this.numeroCellulare = numeroCellulare;
 	}
 

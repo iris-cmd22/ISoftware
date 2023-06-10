@@ -1,6 +1,7 @@
 package entity;
 
 import java.sql.Date;
+
 import database.GenitoreDAO;
 
 public class EntityGenitore {
@@ -12,17 +13,18 @@ public class EntityGenitore {
 	private String codiceFiscale;
 	private String comuneResidenza;
 	private String email;
-	private String numeroCellulare;
+	private int numeroCellulare;
 	private String username;
 	private String password;
+	private EntityStudente studente;
 	
 	//costruttore di default
 	public EntityGenitore() {
 		super();
 	}
 	
-	
-	
+
+
 	//costruttore con PK
 	public EntityGenitore(String username) {
 		
@@ -53,6 +55,15 @@ public class EntityGenitore {
 		this.password=genitore.getPassword();
 
 	}
+	
+	private void caricaStudente(GenitoreDAO genitore) {
+			
+			EntityStudente studente =new EntityStudente(genitore.getStudente());
+			this.studente=studente;
+	
+		}
+		
+
 
 	public int scriviSuDB(String username) {
 		
@@ -117,10 +128,10 @@ public class EntityGenitore {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getNumeroCellulare() {
+	public int getNumeroCellulare() {
 		return numeroCellulare;
 	}
-	public void setNumeroCellulare(String numeroCellulare) {
+	public void setNumeroCellulare(int numeroCellulare) {
 		this.numeroCellulare = numeroCellulare;
 	}
 	public String getUsername() {
@@ -135,6 +146,15 @@ public class EntityGenitore {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public EntityStudente getStudente() {
+		return studente;
+	}
+
+	public void setStudente(EntityStudente studente) {
+		this.studente = studente;
+	}
+
 
 
 

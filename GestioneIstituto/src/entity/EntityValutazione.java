@@ -1,7 +1,8 @@
 package entity;
 
-import database.ValutazioneDAO;
 import java.sql.Date;
+
+import database.ValutazioneDAO;
 
 public class EntityValutazione {
 	
@@ -54,23 +55,20 @@ public class EntityValutazione {
 		this.studente=studente;
 	}
 
-	
 	//aggiunto per implementare aggiungiVoto
-	public int scriviSuDB(int idvalutazioni, int matricola,int idmaterie, Date data, float voto ) {
-		
-		ValutazioneDAO v= new ValutazioneDAO(); //DAO
-		
-		
-		v.setData(this.data);
-		v.setVoto(this.voto);
-		
-		
-		int i = v.SalvaInDB(idvalutazioni, matricola, idmaterie, data, voto );
-		
-		return i;
-	}
-
-	
+		public int scriviSuDB(int idvalutazioni, int matricola,int idmaterie, Date data, float voto ) {
+			
+			ValutazioneDAO v= new ValutazioneDAO(); //DAO
+			
+			
+			v.setData(this.data);
+			v.setVoto(this.voto);
+			
+			
+			int i = v.SalvaInDB(idvalutazioni, matricola, idmaterie, data, voto );
+			
+			return i;
+		}
 
 	public int getIdvalutazioni() {
 		return idvalutazioni;
@@ -120,6 +118,15 @@ public class EntityValutazione {
 	public void setStudente(EntityStudente studenti) {
 		this.studente = studenti;
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "data=" + data.toString() + ", materia="+ materia.getNome()+ ", voto=" + voto + "\n";
+	}
+	
+	
 	
 	
 

@@ -2,7 +2,7 @@ package entity;
 
 import java.util.ArrayList;
 
-import database.GiudizioDAO;
+import database.PagellaDAO;
 import database.StudenteDAO;
 
 public class EntityPagella {
@@ -29,7 +29,9 @@ public class EntityPagella {
 		this.studente = studente;
 	}
 
-
+	public EntityPagella(PagellaDAO pagella) {
+		super();
+	}
 
 
 	public boolean isStato() {
