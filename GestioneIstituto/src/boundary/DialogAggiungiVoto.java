@@ -1,22 +1,3 @@
-package boundary;
-
-
-
-import javax.swing.JDialog;
-import java.sql.Date;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
-import java.awt.EventQueue;
-import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import com.toedter.calendar.JDateChooser;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
-
 import control.Controller;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
@@ -27,6 +8,10 @@ import java.awt.Color;
 
 public class DialogAggiungiVoto extends JDialog {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField_matricola;
 	private JTextField textField_materia;
@@ -152,10 +137,7 @@ public class DialogAggiungiVoto extends JDialog {
 
 				}
 				
-				
-				
-				
-				
+
 				
 				
 			}
