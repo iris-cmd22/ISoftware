@@ -41,7 +41,7 @@ public class DialogSegreteria extends JDialog {
 	 * Create the dialog.
 	 */
 	public DialogSegreteria() {
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
