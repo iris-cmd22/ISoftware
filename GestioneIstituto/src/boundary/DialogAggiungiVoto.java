@@ -23,6 +23,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class DialogAggiungiVoto extends JDialog {
 
@@ -62,34 +63,40 @@ public class DialogAggiungiVoto extends JDialog {
 		//setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 575, 355);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(0, 0, 139));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lbl_AggiungiVoto = new JLabel("Aggiungi Voto");
-		lbl_AggiungiVoto.setFont(new Font("Arial Black", Font.PLAIN, 12));
-		lbl_AggiungiVoto.setBounds(10, 10, 106, 19);
+		lbl_AggiungiVoto.setForeground(new Color(255, 255, 255));
+		lbl_AggiungiVoto.setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 14));
+		lbl_AggiungiVoto.setBounds(10, 10, 197, 19);
 		contentPane.add(lbl_AggiungiVoto);
 		
 		JLabel lbl_matricola = new JLabel("Matricola");
+		lbl_matricola.setForeground(new Color(255, 255, 255));
 		lbl_matricola.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lbl_matricola.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_matricola.setBounds(25, 123, 60, 13);
 		contentPane.add(lbl_matricola);
 		
 		textField_matricola = new JTextField();
+		textField_matricola.setEnabled(false);
 		textField_matricola.setBounds(111, 119, 96, 19);
 		contentPane.add(textField_matricola);
 		textField_matricola.setColumns(10);
 		
 		
 		JLabel lbl_data = new JLabel("Data");
+		lbl_data.setForeground(new Color(255, 255, 255));
 		lbl_data.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lbl_data.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_data.setBounds(25, 176, 60, 13);
 		contentPane.add(lbl_data);
 		
 		JLabel lbl_voto = new JLabel("Voto");
+		lbl_voto.setForeground(new Color(255, 255, 255));
 		lbl_voto.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lbl_voto.setBounds(39, 218, 48, 14);
 		contentPane.add(lbl_voto);
@@ -106,6 +113,7 @@ public class DialogAggiungiVoto extends JDialog {
 		contentPane.add(spinner);
 		
 		JLabel lbl_materia = new JLabel("Materia");
+		lbl_materia.setForeground(new Color(255, 255, 255));
 		lbl_materia.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lbl_materia.setBounds(37, 70, 48, 14);
 		contentPane.add(lbl_materia);
@@ -115,7 +123,12 @@ public class DialogAggiungiVoto extends JDialog {
 		contentPane.add(textField_materia);
 		textField_materia.setColumns(10);
 		
-		JButton btnAggiungiVoto = new JButton("Aggiungi");
+		JButton btnAggiungiVoto = new JButton("AGGIUNGI");
+		btnAggiungiVoto.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnAggiungiVoto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnAggiungiVoto.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -149,10 +162,11 @@ public class DialogAggiungiVoto extends JDialog {
 				
 			}
 		});
-		btnAggiungiVoto.setBounds(464, 286, 89, 23);
+		btnAggiungiVoto.setBounds(441, 286, 112, 23);
 		contentPane.add(btnAggiungiVoto);
 		
 		JButton btnCheckMateria = new JButton("Check Materia");
+		btnCheckMateria.setBackground(new Color(255, 255, 255));
 		btnCheckMateria.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -239,20 +253,27 @@ public class DialogAggiungiVoto extends JDialog {
 		contentPane.add(btnCheckData);
 		
 		textOut_materia = new JTextField();
+		textOut_materia.setEditable(false);
+		textOut_materia.setEnabled(false);
 		textOut_materia.setBounds(386, 67, 112, 20);
 		contentPane.add(textOut_materia);
 		textOut_materia.setColumns(10);
 		
 		textOut_matricola = new JTextField();
+		textOut_matricola.setEnabled(false);
+		textOut_matricola.setEditable(false);
 		textOut_matricola.setBounds(386, 119, 112, 20);
 		contentPane.add(textOut_matricola);
 		textOut_matricola.setColumns(10);
 		
 		textOut_data = new JTextField();
+		textOut_data.setEnabled(false);
+		textOut_data.setEditable(false);
 		textOut_data.setBounds(386, 172, 112, 20);
 		contentPane.add(textOut_data);
 		textOut_data.setColumns(10);
-
 		
+		
+
 	}
 }
