@@ -57,7 +57,7 @@ public class MainFrame extends JFrame {
 		btn_FrameSegreteria.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				FrameSegreteria fs = new FrameSegreteria(); //apri il jFrame Segreteria
+				DialogSegreteria fs = new DialogSegreteria(); //apri il jFrame Segreteria
 				fs.show(); //display frame segreteria
 				
 				dispose();//chiudi il jFrame corrente dopo aver aperto il jFrame Segreteria
