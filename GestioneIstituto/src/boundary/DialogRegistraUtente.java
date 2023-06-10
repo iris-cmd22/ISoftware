@@ -1,9 +1,8 @@
 package boundary;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
@@ -11,7 +10,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class FrameRegistraUtente extends JFrame {
+public class DialogRegistraUtente extends JDialog {
 
 	private JPanel contentPane;
 	private JTextField textField_ruolo;
@@ -32,8 +31,8 @@ public class FrameRegistraUtente extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FrameRegistraUtente frame = new FrameRegistraUtente();
-					frame.setVisible(true);
+					DialogRegistraUtente dialog = new DialogRegistraUtente();
+					dialog.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -44,8 +43,8 @@ public class FrameRegistraUtente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public FrameRegistraUtente() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public DialogRegistraUtente() {
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
