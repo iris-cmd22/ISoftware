@@ -98,7 +98,11 @@ public static int CercaUsername(String username, String ruolo) {
 
 	return ret;
     }
-
+public static boolean controllodata(Date data) {
+		
+		EntityIstituto singleton = EntityIstituto.getInstance();
+		return singleton.controllodata(data);
+	}
 
 }
 
