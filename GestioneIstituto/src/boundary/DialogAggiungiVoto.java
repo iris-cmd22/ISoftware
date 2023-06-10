@@ -47,7 +47,7 @@ public class DialogAggiungiVoto extends JDialog {
 	}
 
 	/**
-	 * Create the frame.
+	 * Create the dialog.
 	 */
 	public DialogAggiungiVoto() {
 		//setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
