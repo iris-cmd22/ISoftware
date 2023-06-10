@@ -99,7 +99,7 @@ public class IstitutoDAO {
     	    int meseCorrente = dataCorrente.getMonthValue();
     	    int annoInput = data.toLocalDate().getYear();
     	    int meseInput = data.toLocalDate().getMonthValue();
-    	    LocalDate convertedDate = data.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    	    LocalDate convertedDate = data.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(); //converto la data attuale in LocalDate per poter fare il compare
 
             //Si controlla che la data della valutazione sia nel quadrimestre (e anno) corrente, e che non sia successiva alla data corrente
           
