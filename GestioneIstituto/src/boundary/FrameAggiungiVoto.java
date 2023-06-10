@@ -26,7 +26,7 @@ public class FrameAggiungiVoto extends JFrame {
 	private JTextField textField_materia;
 	private JTextField textField_voto;
 	private JTextField textField_data;
-	private JTextField textField;
+	private JTextField textField_Voto;
 
 	
 
@@ -125,11 +125,14 @@ public class FrameAggiungiVoto extends JFrame {
 		lbl_materia.setBounds(20, 32, 48, 14);
 		contentPane.add(lbl_materia);
 		
-		textField = new JTextField();
-		textField.setBounds(111, 22, 96, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		textField_materia = new JTextField();
+		textField_materia.setBounds(111, 22, 96, 20);
+		contentPane.add(textField_materia);
+		textField_materia.setColumns(10);
 		
 	
+	
+		
+		
 	}
 }
