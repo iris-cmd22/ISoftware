@@ -198,5 +198,14 @@ public class EntityIstituto {
 			return false;
 		}
 	}
+	
+	public int CercaUsername(String username, String ruolo) {
+		
+		IstitutoDAO singleton = IstitutoDAO.getInstance();
+		
+		int ret = singleton.esisteUsername(username, ruolo);
+		
+		return ret;
+	}
 
 }
