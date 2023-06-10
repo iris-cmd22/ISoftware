@@ -72,6 +72,17 @@ public class MainFrame extends JFrame {
 		contentPane.add(btn_FrameSegreteria);
 		
 		JButton btn_Genitore = new JButton("Genitore");
+		btn_Genitore.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				DialogGenitore fd = new DialogGenitore();
+				fd.show();
+				
+				dispose();
+				
+				
+			}
+		});
 		btn_Genitore.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btn_Genitore.setBounds(306, 160, 120, 21);
 		contentPane.add(btn_Genitore);
