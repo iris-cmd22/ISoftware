@@ -39,7 +39,7 @@ public class DialogDocente extends JDialog {
 	}
 
 	/**
-	 * Create the frame.
+	 * Create the dialog.
 	 */
 	public DialogDocente() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
