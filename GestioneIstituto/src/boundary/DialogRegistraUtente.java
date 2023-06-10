@@ -15,11 +15,14 @@ import com.toedter.calendar.JDateChooser;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class DialogRegistraUtente extends JDialog {
 
 	private JPanel contentPane;
-	private JTextField textField_ruolo;
 	private JTextField textField_Nome;
 	private JTextField textField_Cognome;
 	private JTextField textField_codiceFiscale;
@@ -52,27 +55,27 @@ public class DialogRegistraUtente extends JDialog {
 	public DialogRegistraUtente() {
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(0, 0, 139));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lbl_RegistraUtente = new JLabel("Registra Utente");
-		lbl_RegistraUtente.setFont(new Font("Arial Black", Font.PLAIN, 12));
-		lbl_RegistraUtente.setBounds(10, 10, 106, 19);
+		lbl_RegistraUtente.setForeground(new Color(255, 255, 255));
+		lbl_RegistraUtente.setBackground(new Color(255, 255, 255));
+		lbl_RegistraUtente.setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 14));
+		lbl_RegistraUtente.setBounds(10, 10, 131, 19);
 		contentPane.add(lbl_RegistraUtente);
 		
 		JLabel lbl_ruolo = new JLabel("Ruolo");
+		lbl_ruolo.setForeground(new Color(255, 255, 255));
 		lbl_ruolo.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lbl_ruolo.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_ruolo.setBounds(20, 44, 45, 13);
 		contentPane.add(lbl_ruolo);
 		
-		textField_ruolo = new JTextField();
-		textField_ruolo.setBounds(111, 39, 96, 19);
-		contentPane.add(textField_ruolo);
-		textField_ruolo.setColumns(10);
-		
 		JLabel lbl_nome = new JLabel("Nome");
+		lbl_nome.setForeground(new Color(255, 255, 255));
 		lbl_nome.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lbl_nome.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_nome.setBounds(20, 80, 45, 13);
@@ -127,51 +130,59 @@ public class DialogRegistraUtente extends JDialog {
 		textField_ComuneResidenza.setColumns(10);
 		
 		JLabel lbl_cognome = new JLabel("Cognome");
+		lbl_cognome.setForeground(new Color(255, 255, 255));
 		lbl_cognome.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lbl_cognome.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_cognome.setBounds(10, 107, 60, 13);
 		contentPane.add(lbl_cognome);
 		
 		JLabel lbl_dataNascita = new JLabel("Data di Nascita");
+		lbl_dataNascita.setForeground(new Color(255, 255, 255));
 		lbl_dataNascita.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lbl_dataNascita.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_dataNascita.setBounds(10, 138, 79, 13);
 		contentPane.add(lbl_dataNascita);
 		
 		JLabel lbl_codiceFiscale = new JLabel("Codice Fiscale");
+		lbl_codiceFiscale.setForeground(new Color(255, 255, 255));
 		lbl_codiceFiscale.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lbl_codiceFiscale.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_codiceFiscale.setBounds(10, 167, 70, 13);
 		contentPane.add(lbl_codiceFiscale);
 		
 		JLabel lbl_ComuneResidenza = new JLabel("Comune di Residenza");
+		lbl_ComuneResidenza.setForeground(new Color(255, 255, 255));
 		lbl_ComuneResidenza.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lbl_ComuneResidenza.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_ComuneResidenza.setBounds(0, 198, 101, 13);
+		lbl_ComuneResidenza.setBounds(0, 198, 109, 13);
 		contentPane.add(lbl_ComuneResidenza);
 		
 		JLabel lbl_email = new JLabel("Email");
+		lbl_email.setForeground(new Color(255, 255, 255));
 		lbl_email.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lbl_email.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_email.setBounds(275, 78, 45, 13);
+		lbl_email.setBounds(274, 78, 46, 13);
 		contentPane.add(lbl_email);
 		
 		JLabel lbl_numeroCellulare = new JLabel("Numero Cellulare");
+		lbl_numeroCellulare.setForeground(new Color(255, 255, 255));
 		lbl_numeroCellulare.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lbl_numeroCellulare.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_numeroCellulare.setBounds(229, 107, 91, 13);
+		lbl_numeroCellulare.setBounds(228, 107, 92, 13);
 		contentPane.add(lbl_numeroCellulare);
 		
 		JLabel lbl_username = new JLabel("Username");
+		lbl_username.setForeground(new Color(255, 255, 255));
 		lbl_username.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lbl_username.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_username.setBounds(264, 136, 63, 13);
 		contentPane.add(lbl_username);
 		
 		JLabel lbl_password = new JLabel("Password");
+		lbl_password.setForeground(new Color(255, 255, 255));
 		lbl_password.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lbl_password.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_password.setBounds(275, 165, 45, 13);
+		lbl_password.setBounds(260, 165, 60, 13);
 		contentPane.add(lbl_password);
 		
 		JDateChooser dateChooser = new JDateChooser();
@@ -183,8 +194,35 @@ public class DialogRegistraUtente extends JDialog {
 		list.setBounds(287, 44, 60, 0);
 		contentPane.add(list);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(297, 40, 29, 21);
-		contentPane.add(comboBox);
+		JComboBox cmb_Ruolo = new JComboBox();
+		cmb_Ruolo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(cmb_Ruolo.getSelectedItem().equals("Docente") || cmb_Ruolo.getSelectedItem().equals("Studente") || cmb_Ruolo.getSelectedItem().equals("Genitore") ) {
+					
+					textField_Nome.setEditable(true);
+					textField_Cognome.setEditable(true);;
+					textField_codiceFiscale.setEditable(true);;
+					textField_Email.setEditable(true);;
+					textField_NumeroCellulare.setEditable(true);;
+					textField_Username.setEditable(true);;
+					textField_Password.setEditable(true);;
+					textField_ComuneResidenza.setEditable(true);;
+					dateChooser.setEnabled(true);
+				}
+			}
+		});
+		cmb_Ruolo.setModel(new DefaultComboBoxModel(new String[] {"Docente", "Studente", "Genitore"}));
+		cmb_Ruolo.setBounds(111, 39, 96, 21);
+		contentPane.add(cmb_Ruolo);
+		
+		JButton btn_Inserisci = new JButton("INSERISCI");
+		btn_Inserisci.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btn_Inserisci.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btn_Inserisci.setBounds(287, 232, 139, 21);
+		contentPane.add(btn_Inserisci);
+		
 	}
 }
