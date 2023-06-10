@@ -28,8 +28,9 @@ public class DialogDocente extends JDialog {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DialogDocente frame = new DialogDocente();
-					frame.setVisible(true);
+					DialogDocente dialog = new DialogDocente();
+					dialog.setVisible(true);
+					dialog.setDefaultCloseOperation(dialog.DISPOSE_ON_CLOSE);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
