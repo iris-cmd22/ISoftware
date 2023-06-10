@@ -1,28 +1,37 @@
 package boundary;
 
-import java.awt.EventQueue;
+
 
 import javax.swing.JDialog;
+import java.sql.Date;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.EventQueue;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import com.toedter.calendar.JDateChooser;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
-public class DialogRegistraUtente extends JDialog {
+import control.Controller;
+import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+public class DialogAggiungiVoto extends JDialog {
 
 	private JPanel contentPane;
-	private JTextField textField_ruolo;
-	private JTextField textField_Nome;
-	private JTextField textField_Cognome;
-	private JTextField textField_dataNascita;
-	private JTextField textField_codiceFiscale;
-	private JTextField textField_Email;
-	private JTextField textField_NumeroCellulare;
-	private JTextField textField_Username;
-	private JTextField textField_Password;
-	private JTextField textField_ComuneResidenza;
+	private JTextField textField_matricola;
+	private JTextField textField_materia;
+	
+	private static int idval = 1; // variabile statica per l'ID valutazioni progressivo
+
+
+	
 
 	/**
 	 * Launch the application.
@@ -31,148 +40,115 @@ public class DialogRegistraUtente extends JDialog {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DialogRegistraUtente dialog = new DialogRegistraUtente();
+					DialogAggiungiVoto dialog = new DialogAggiungiVoto();
+					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 					dialog.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
+		}
 		});
 	}
 
 	/**
 	 * Create the dialog.
 	 */
-	public DialogRegistraUtente() {
-		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+	public DialogAggiungiVoto() {
+		//setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lbl_RegistraUtente = new JLabel("Registra Utente");
-		lbl_RegistraUtente.setFont(new Font("Arial Black", Font.PLAIN, 12));
-		lbl_RegistraUtente.setBounds(10, 10, 106, 19);
-		contentPane.add(lbl_RegistraUtente);
+		JLabel lbl_AggiungiVoto = new JLabel("Aggiungi Voto");
+		lbl_AggiungiVoto.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		lbl_AggiungiVoto.setBounds(10, 10, 106, 19);
+		contentPane.add(lbl_AggiungiVoto);
 		
-		JLabel lbl_ruolo = new JLabel("Ruolo");
-		lbl_ruolo.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lbl_ruolo.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_ruolo.setBounds(20, 44, 45, 13);
-		contentPane.add(lbl_ruolo);
+		JLabel lbl_matricola = new JLabel("Matricola");
+		lbl_matricola.setFont(new Font("Tahoma", Font.BOLD, 10));
+		lbl_matricola.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_matricola.setBounds(25, 123, 60, 13);
+		contentPane.add(lbl_matricola);
 		
-		textField_ruolo = new JTextField();
-		textField_ruolo.setBounds(111, 39, 96, 19);
-		contentPane.add(textField_ruolo);
-		textField_ruolo.setColumns(10);
+		textField_matricola = new JTextField();
+		textField_matricola.setBounds(111, 119, 96, 19);
+		contentPane.add(textField_matricola);
+		textField_matricola.setColumns(10);
 		
-		JLabel lbl_nome = new JLabel("Nome");
-		lbl_nome.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lbl_nome.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_nome.setBounds(20, 80, 45, 13);
-		contentPane.add(lbl_nome);
 		
-		textField_Nome = new JTextField();
-		textField_Nome.setEditable(false);
-		textField_Nome.setBounds(111, 75, 96, 19);
-		contentPane.add(textField_Nome);
-		textField_Nome.setColumns(10);
+		JLabel lbl_data = new JLabel("Data");
+		lbl_data.setFont(new Font("Tahoma", Font.BOLD, 10));
+		lbl_data.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_data.setBounds(25, 176, 60, 13);
+		contentPane.add(lbl_data);
 		
-		textField_Cognome = new JTextField();
-		textField_Cognome.setEditable(false);
-		textField_Cognome.setBounds(111, 104, 96, 19);
-		contentPane.add(textField_Cognome);
-		textField_Cognome.setColumns(10);
+		JLabel lbl_voto = new JLabel("Voto");
+		lbl_voto.setFont(new Font("Tahoma", Font.BOLD, 10));
+		lbl_voto.setBounds(39, 218, 48, 14);
+		contentPane.add(lbl_voto);
 		
-		textField_dataNascita = new JTextField();
-		textField_dataNascita.setEditable(false);
-		textField_dataNascita.setBounds(111, 133, 96, 19);
-		contentPane.add(textField_dataNascita);
-		textField_dataNascita.setColumns(10);
+		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.setBounds(111, 169, 96, 20);
+		contentPane.add(dateChooser);
 		
-		textField_codiceFiscale = new JTextField();
-		textField_codiceFiscale.setEditable(false);
-		textField_codiceFiscale.setBounds(111, 162, 96, 19);
-		contentPane.add(textField_codiceFiscale);
-		textField_codiceFiscale.setColumns(10);
+	
 		
-		textField_Email = new JTextField();
-		textField_Email.setEditable(false);
-		textField_Email.setBounds(330, 75, 96, 19);
-		contentPane.add(textField_Email);
-		textField_Email.setColumns(10);
+		JSpinner spinner = new JSpinner();
+		spinner.setModel(new SpinnerNumberModel(1, 1, 10, 1));
+		spinner.setBounds(111, 215, 96, 20);
+		contentPane.add(spinner);
 		
-		textField_NumeroCellulare = new JTextField();
-		textField_NumeroCellulare.setEditable(false);
-		textField_NumeroCellulare.setBounds(330, 104, 96, 19);
-		contentPane.add(textField_NumeroCellulare);
-		textField_NumeroCellulare.setColumns(10);
+		JLabel lbl_materia = new JLabel("Materia");
+		lbl_materia.setFont(new Font("Tahoma", Font.BOLD, 10));
+		lbl_materia.setBounds(37, 70, 48, 14);
+		contentPane.add(lbl_materia);
 		
-		textField_Username = new JTextField();
-		textField_Username.setEditable(false);
-		textField_Username.setBounds(330, 133, 96, 19);
-		contentPane.add(textField_Username);
-		textField_Username.setColumns(10);
+		textField_materia = new JTextField();
+		textField_materia.setBounds(111, 67, 96, 20);
+		contentPane.add(textField_materia);
+		textField_materia.setColumns(10);
 		
-		textField_Password = new JTextField();
-		textField_Password.setEditable(false);
-		textField_Password.setBounds(330, 162, 96, 19);
-		contentPane.add(textField_Password);
-		textField_Password.setColumns(10);
+		JButton btnAggiungiVoto = new JButton("Aggiungi");
+		btnAggiungiVoto.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int ret=-1;
+				
+				int idvalutazioni = idval++;
+				
+				String matricola = textField_matricola.getText();
+				String materia = textField_materia.getText();
+				java.util.Date data = dateChooser.getDate();
+				int voto = (int) spinner.getValue();
+				
+				ret=Controller.aggiungiVoto(idvalutazioni, Integer.parseInt(materia),Integer.parseInt(materia),(Date) data, voto);
+				
+				if(ret!=-1) {
+					
+					JOptionPane.showMessageDialog(btnAggiungiVoto, "Testo inserito correttamente", "Plain Text", JOptionPane.PLAIN_MESSAGE);
+
+
+				}else {
+					
+					JOptionPane.showMessageDialog(btnAggiungiVoto, "Inserimennto non andato a buon fine", "Error", JOptionPane.ERROR_MESSAGE);
+
+				}
+				
+				
+				
+				
+				
+				
+				
+			}
+		});
+		btnAggiungiVoto.setBounds(296, 231, 89, 23);
+		contentPane.add(btnAggiungiVoto);
 		
-		textField_ComuneResidenza = new JTextField();
-		textField_ComuneResidenza.setEditable(false);
-		textField_ComuneResidenza.setBounds(111, 193, 96, 19);
-		contentPane.add(textField_ComuneResidenza);
-		textField_ComuneResidenza.setColumns(10);
 		
-		JLabel lbl_cognome = new JLabel("Cognome");
-		lbl_cognome.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lbl_cognome.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_cognome.setBounds(10, 107, 60, 13);
-		contentPane.add(lbl_cognome);
+
 		
-		JLabel lbl_dataNascita = new JLabel("Data di Nascita");
-		lbl_dataNascita.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lbl_dataNascita.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_dataNascita.setBounds(10, 138, 79, 13);
-		contentPane.add(lbl_dataNascita);
-		
-		JLabel lbl_codiceFiscale = new JLabel("Codice Fiscale");
-		lbl_codiceFiscale.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lbl_codiceFiscale.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_codiceFiscale.setBounds(10, 167, 70, 13);
-		contentPane.add(lbl_codiceFiscale);
-		
-		JLabel lbl_ComuneResidenza = new JLabel("Comune di Residenza");
-		lbl_ComuneResidenza.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lbl_ComuneResidenza.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_ComuneResidenza.setBounds(0, 198, 101, 13);
-		contentPane.add(lbl_ComuneResidenza);
-		
-		JLabel lbl_email = new JLabel("Email");
-		lbl_email.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lbl_email.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_email.setBounds(275, 78, 45, 13);
-		contentPane.add(lbl_email);
-		
-		JLabel lbl_numeroCellulare = new JLabel("Numero Cellulare");
-		lbl_numeroCellulare.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lbl_numeroCellulare.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_numeroCellulare.setBounds(229, 107, 91, 13);
-		contentPane.add(lbl_numeroCellulare);
-		
-		JLabel lbl_username = new JLabel("Username");
-		lbl_username.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lbl_username.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_username.setBounds(264, 136, 63, 13);
-		contentPane.add(lbl_username);
-		
-		JLabel lbl_password = new JLabel("Password");
-		lbl_password.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lbl_password.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_password.setBounds(275, 165, 45, 13);
-		contentPane.add(lbl_password);
 	}
 }
