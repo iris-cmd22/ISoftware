@@ -76,10 +76,25 @@ public class MainFrame extends JFrame {
 		btn_Genitore.setBounds(306, 160, 120, 21);
 		contentPane.add(btn_Genitore);
 		
-		JButton btn_Docente = new JButton("Docente");
-		btn_Docente.setBounds(10, 206, 120, 25);
-		btn_Docente.setFont(new Font("Tahoma", Font.BOLD, 14));
-		contentPane.add(btn_Docente);
+		
+		
+		
+		JButton btn_DialogDocente = new JButton("Docente");
+		btn_DialogDocente.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				DialogDocente fd = new DialogDocente(); //apri il jDialog Docente
+				fd.show(); //display dialog docente
+				
+				dispose();//chiudi il jFrame corrente dopo aver aperto il jDialog Docente
+			}
+		});
+		btn_DialogDocente.setBounds(10, 206, 120, 25);
+		btn_DialogDocente.setFont(new Font("Tahoma", Font.BOLD, 14));
+		contentPane.add(btn_DialogDocente);
+		
+		
+		
 		
 		JButton btn_Alunno = new JButton("Alunno");
 		btn_Alunno.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -87,7 +102,7 @@ public class MainFrame extends JFrame {
 		contentPane.add(btn_Alunno);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\vince\\Downloads\\Screenshot 2023-06-07 115520.png"));
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\39388\\Downloads\\MicrosoftTeams-image.png"));
 		lblNewLabel.setBounds(85, 10, 286, 95);
 		contentPane.add(lblNewLabel);
 	}
