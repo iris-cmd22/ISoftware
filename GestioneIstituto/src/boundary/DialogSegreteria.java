@@ -10,12 +10,14 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class FrameSegreteria extends JFrame {
+public class DialogSegreteria extends JDialog {
 
 	private JPanel contentPane;
 
@@ -26,8 +28,8 @@ public class FrameSegreteria extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FrameSegreteria frame = new FrameSegreteria();
-					frame.setVisible(true);
+					DialogSegreteria dialog = new DialogSegreteria();
+					dialog.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -36,10 +38,10 @@ public class FrameSegreteria extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Create the dialog.
 	 */
-	public FrameSegreteria() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public DialogSegreteria() {
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -55,7 +57,7 @@ public class FrameSegreteria extends JFrame {
 		btn_RegistraUtente.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				FrameRegistraUtente fs = new FrameRegistraUtente(); //apri il jFrame di Registrazione Utente
+				DialogRegistraUtente fs = new DialogRegistraUtente(); //apri il jFrame di Registrazione Utente
 				fs.show(); //display frame di inserimento
 				
 				dispose();//chiudi il jFrame corrente dopo aver aperto il jFrame di Registrazione
