@@ -128,7 +128,7 @@ public class DialogAggiungiVoto extends JDialog {
 				java.util.Date data = dateChooser.getDate();
 				int voto = (int) spinner.getValue();
 				
-				ret=Controller.aggiungiVoto(idvalutazioni, Integer.parseInt(materia),Integer.parseInt(materia),(Date) data, voto);
+				ret=Controller.aggiungiVoto(idvalutazioni, Integer.parseInt(matricola),Integer.parseInt(materia),(Date) data, voto);
 				
 				if(ret!=-1) {
 					
