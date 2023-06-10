@@ -72,23 +72,32 @@ public static ArrayList<String> visualizzaVoti(String usernameGenitore){
         return valutazioni;
     }
 
-public boolean controllomateria(int idmateria) {
+public static boolean controllomateria(int idmateria) {
 			
 			EntityIstituto singleton = EntityIstituto.getInstance();
 			return singleton.controllomateria(idmateria);
 		}
 	
-public boolean controllostudente(int matricola) {
+public static boolean controllostudente(int matricola) {
 		
 		EntityIstituto singleton = EntityIstituto.getInstance();
 		return singleton.controllostudente(matricola);
 	}
 	
-public boolean controlloclasse(int classe) {
+public static boolean controlloclasse(int classe) {
 		
 		EntityIstituto singleton = EntityIstituto.getInstance();
 		return singleton.controlloclasse(classe);
 	}
+
+public static int CercaUsername(String username, String ruolo) {
+
+	int ret = 0;
+	EntityIstituto singleton = EntityIstituto.getInstance();
+	ret = singleton.CercaUsername(username, ruolo);
+
+	return ret;
+    }
 
 
 }
