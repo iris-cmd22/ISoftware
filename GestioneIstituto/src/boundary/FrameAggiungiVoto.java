@@ -24,9 +24,7 @@ public class FrameAggiungiVoto extends JFrame {
 	private JTextField textField_cognome;
 	private JTextField textField_nome;
 	private JTextField textField_materia;
-	private JTextField textField_voto;
-	private JTextField textField_data;
-	private JTextField textField_Voto;
+
 
 	
 
