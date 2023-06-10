@@ -1,13 +1,14 @@
 package boundary;
 
-import java.awt.EventQueue;
+
 
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+
+import java.awt.EventQueue;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -15,7 +16,9 @@ import com.toedter.calendar.JDateChooser;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
-public class FrameAggiungiVoto extends JFrame {
+import control.Controller;
+
+public class DialogAggiungiVoto extends JDialog {
 
 	private JPanel contentPane;
 	private JTextField textField_classe;
@@ -33,20 +36,21 @@ public class FrameAggiungiVoto extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FrameAggiungiVoto frame = new FrameAggiungiVoto();
-					frame.setVisible(true);
+					DialogAggiungiVoto dialog = new DialogAggiungiVoto();
+					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialog.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
+		}
 		});
 	}
 
 	/**
 	 * Create the frame.
 	 */
-	public FrameAggiungiVoto() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public DialogAggiungiVoto() {
+		//setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -126,7 +130,7 @@ public class FrameAggiungiVoto extends JFrame {
 		contentPane.add(textField_materia);
 		textField_materia.setColumns(10);
 		
-	
+
 		
 	}
 }
