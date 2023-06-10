@@ -96,7 +96,7 @@ public class Controller {
         }
     }
 
-      public static boolean isDataValida(Date data) {
+      public static boolean isDataValida(Date data) { //in ingresso c'è la data della valutazione, che non è necessariamente la data corrente
     	 LocalDate dataCorrente = LocalDate.now();
     	    int annoCorrente = dataCorrente.getYear();
     	    int meseCorrente = dataCorrente.getMonthValue();
@@ -104,14 +104,14 @@ public class Controller {
     	    int meseInput = data.toLocalDate().getMonthValue();
 
     	    // Primo quadrimestre: settembre - gennaio: 
-    	    if ((meseCorrente >= 9 && meseCorrente <= 12 && annoCorrente  == annoInput)) {
-    	        if (meseInput >= 9 && meseInput <= 12) {
+    	    if ((meseCorrente >= 9 && meseCorrente <= 1 && (annoCorrente  == annoInput || annoCorrente == annoInput +1)) {
+    	        if (meseInput >= 9 && meseInput <= 1) {
     	            return true;
     	        }
     	    }
     	    // Secondo quadrimestre: febbraio - giugno
-    	    else if (meseCorrente >= 1 && meseCorrente <= 6 && annoCorrente == annoInput) {
-    	        if (meseInput >= 1 && meseInput <= 6) {
+    	    else if (meseCorrente >= 2 && meseCorrente <= 6 && annoCorrente == annoInput) {
+    	        if (meseInput >= 2 && meseInput <= 6) {
     	            return true;
     	        }
     	    }
