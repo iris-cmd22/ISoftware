@@ -10,12 +10,14 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class FrameDocente extends JFrame {
+public class DialogDocente extends JDialog {
 
 	private JPanel contentPane;
 
@@ -26,7 +28,7 @@ public class FrameDocente extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FrameDocente frame = new FrameDocente();
+					DialogDocente frame = new DialogDocente();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -38,8 +40,8 @@ public class FrameDocente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public FrameDocente() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public DialogDocente() {
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -55,10 +57,10 @@ public class FrameDocente extends JFrame {
 		btn_AggiungiVoto.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				FrameAggiungiVoto fv = new FrameAggiungiVoto(); //apri il jFrame di Aggiungi Voto
-				fv.show(); //display frame di inserimento
+				DialogAggiungiVoto dv = new DialogAggiungiVoto(); //apri il jDialog di Aggiungi Voto
+				dv.show(); //display frame di inserimento
 				
-				dispose();//chiudi il jFrame corrente dopo aver aperto il jFrame di Aggiungi voto
+				dispose();//chiudi il jFrame corrente dopo aver aperto il jDialog di Aggiungi voto
 			}
 		});
 		btn_AggiungiVoto.setFont(new Font("Tahoma", Font.BOLD, 13));
