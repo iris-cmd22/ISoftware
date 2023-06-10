@@ -58,9 +58,9 @@ public class DialogSegreteria extends JDialog {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				DialogRegistraUtente fs = new DialogRegistraUtente(); //apri il jFrame di Registrazione Utente
-				fs.show(); //display frame di inserimento
+				fs.show(); //display dialog di inserimento
 				
-				dispose();//chiudi il jFrame corrente dopo aver aperto il jFrame di Registrazione
+				dispose();//chiudi il jdialog corrente dopo aver aperto il jdialog di Registrazione
 			}
 		});
 		btn_RegistraUtente.setFont(new Font("Tahoma", Font.BOLD, 13));
