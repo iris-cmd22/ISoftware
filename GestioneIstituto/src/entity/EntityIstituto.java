@@ -199,6 +199,11 @@ public class EntityIstituto {
 		}
 	}
 	
+	public boolean controllodata(Date data) {
+		IstitutoDAO singleton = IstitutoDAO.getInstance();
+		return singleton.isDataValida(data);
+	}
+	
 	public int CercaUsername(String username, String ruolo) {
 		
 		IstitutoDAO singleton = IstitutoDAO.getInstance();
