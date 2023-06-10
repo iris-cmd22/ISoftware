@@ -41,7 +41,7 @@ public class DialogRegistraUtente extends JDialog {
 	}
 
 	/**
-	 * Create the frame.
+	 * Create the dialog.
 	 */
 	public DialogRegistraUtente() {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
