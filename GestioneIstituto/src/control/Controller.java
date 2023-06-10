@@ -87,7 +87,8 @@ public class Controller {
     public static boolean esisteMateria(int idmaterie){
         try {
         	
-            ResultSet rs = DBConnectionManager.selectQuery("SELECT idmaterie FROM materie WHERE idmaterie = ?"+idmaterie+"';");
+            ResultSet rs = DBConnectionManager.selectQuery("SELECT idmaterie FROM materie WHERE idmaterie = "+idmaterie+";");
+
             return rs.next();
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
