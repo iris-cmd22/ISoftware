@@ -3,10 +3,11 @@ package boundary;
 
 
 import javax.swing.JDialog;
-
+import java.sql.Date;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -17,13 +18,14 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
 import control.Controller;
+import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class DialogAggiungiVoto extends JDialog {
 
 	private JPanel contentPane;
-	private JTextField textField_classe;
-	private JTextField textField_cognome;
-	private JTextField textField_nome;
+	private JTextField textField_matricola;
 	private JTextField textField_materia;
 
 
@@ -62,74 +64,83 @@ public class DialogAggiungiVoto extends JDialog {
 		lbl_AggiungiVoto.setBounds(10, 10, 106, 19);
 		contentPane.add(lbl_AggiungiVoto);
 		
-		JLabel lbl_classe = new JLabel("Classe");
-		lbl_classe.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lbl_classe.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_classe.setBounds(25, 57, 45, 13);
-		contentPane.add(lbl_classe);
+		JLabel lbl_matricola = new JLabel("Matricola");
+		lbl_matricola.setFont(new Font("Tahoma", Font.BOLD, 10));
+		lbl_matricola.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_matricola.setBounds(25, 123, 60, 13);
+		contentPane.add(lbl_matricola);
 		
-		textField_classe = new JTextField();
-		textField_classe.setBounds(111, 53, 96, 19);
-		contentPane.add(textField_classe);
-		textField_classe.setColumns(10);
-		
-		JLabel lbl_nome = new JLabel("Nome");
-		lbl_nome.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lbl_nome.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_nome.setBounds(25, 93, 45, 13);
-		contentPane.add(lbl_nome);
-		
-		textField_nome = new JTextField();
-		textField_nome.setBounds(111, 89, 96, 19);
-		contentPane.add(textField_nome);
-		textField_nome.setColumns(10);
-		
-		textField_cognome = new JTextField();
-		textField_cognome.setBounds(111, 119, 96, 19);
-		contentPane.add(textField_cognome);
-		textField_cognome.setColumns(10);
-				
-
-		
-		JLabel lbl_cognome = new JLabel("Cognome");
-		lbl_cognome.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lbl_cognome.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_cognome.setBounds(21, 123, 60, 13);
-		contentPane.add(lbl_cognome);
+		textField_matricola = new JTextField();
+		textField_matricola.setBounds(111, 119, 96, 19);
+		contentPane.add(textField_matricola);
+		textField_matricola.setColumns(10);
 		
 		
 		JLabel lbl_data = new JLabel("Data");
 		lbl_data.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lbl_data.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_data.setBounds(10, 159, 60, 13);
+		lbl_data.setBounds(25, 176, 60, 13);
 		contentPane.add(lbl_data);
 		
 		JLabel lbl_voto = new JLabel("Voto");
 		lbl_voto.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lbl_voto.setBounds(33, 198, 48, 14);
+		lbl_voto.setBounds(39, 218, 48, 14);
 		contentPane.add(lbl_voto);
 		
 		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setBounds(111, 159, 96, 20);
+		dateChooser.setBounds(111, 169, 96, 20);
 		contentPane.add(dateChooser);
 		
 	
 		
 		JSpinner spinner = new JSpinner();
 		spinner.setModel(new SpinnerNumberModel(1, 1, 10, 1));
-		spinner.setBounds(111, 195, 96, 20);
+		spinner.setBounds(111, 215, 96, 20);
 		contentPane.add(spinner);
 		
 		JLabel lbl_materia = new JLabel("Materia");
 		lbl_materia.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lbl_materia.setBounds(20, 32, 48, 14);
+		lbl_materia.setBounds(37, 70, 48, 14);
 		contentPane.add(lbl_materia);
 		
 		textField_materia = new JTextField();
-		textField_materia.setBounds(111, 22, 96, 20);
+		textField_materia.setBounds(111, 67, 96, 20);
 		contentPane.add(textField_materia);
 		textField_materia.setColumns(10);
 		
+		JButton btnAggiungiVoto = new JButton("Aggiungi");
+		btnAggiungiVoto.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int ret=-1;
+				
+				int idvalutazioni = 0;
+				
+				String matricola = textField_matricola.getText();
+				String materia = textField_materia.getText();
+				java.util.Date data = dateChooser.getDate();
+				int voto = (int) spinner.getValue();
+				
+				ret=Controller.aggiungiVoto(idvalutazioni, Integer.parseInt(materia),Integer.parseInt(materia),(Date) data, voto);
+				
+				if(ret!=-1) {
+					
+					JOptionPane.showMessageDialog(btnAggiungiVoto, "Testo inserito correttamente", "Plain Text", JOptionPane.PLAIN_MESSAGE);
+
+
+				}else {
+					
+					JOptionPane.showMessageDialog(btnAggiungiVoto, "Inserimennto non andato a buon fine", "Error", JOptionPane.ERROR_MESSAGE);
+
+				}
+				
+		
+				
+				
+			}
+		});
+		btnAggiungiVoto.setBounds(296, 231, 89, 23);
+		contentPane.add(btnAggiungiVoto);
 
 		
 	}
