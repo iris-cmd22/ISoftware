@@ -1,3 +1,22 @@
+package boundary;
+
+
+
+import javax.swing.JDialog;
+import java.sql.Date;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.EventQueue;
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import com.toedter.calendar.JDateChooser;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
+
 import control.Controller;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
@@ -15,6 +34,9 @@ public class DialogAggiungiVoto extends JDialog {
 	private JPanel contentPane;
 	private JTextField textField_matricola;
 	private JTextField textField_materia;
+	private JTextField textOut_materia;
+	private JTextField textOut_matricola;
+	private JTextField textOut_data;
 	
 
 
@@ -42,7 +64,7 @@ public class DialogAggiungiVoto extends JDialog {
 	 */
 	public DialogAggiungiVoto() {
 		//setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 429, 355);
+		setBounds(100, 100, 585, 355);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 0, 139));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -63,6 +85,7 @@ public class DialogAggiungiVoto extends JDialog {
 		contentPane.add(lbl_matricola);
 		
 		textField_matricola = new JTextField();
+		textField_matricola.setEditable(false);
 		textField_matricola.setBounds(111, 119, 145, 19);
 		contentPane.add(textField_matricola);
 		textField_matricola.setColumns(10);
@@ -82,6 +105,7 @@ public class DialogAggiungiVoto extends JDialog {
 		contentPane.add(lbl_voto);
 		
 		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.getCalendarButton().setEnabled(false);
 		dateChooser.getCalendarButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -92,6 +116,7 @@ public class DialogAggiungiVoto extends JDialog {
 	
 		
 		JSpinner spinner = new JSpinner();
+		spinner.setEnabled(false);
 		spinner.setModel(new SpinnerNumberModel(1, 1, 10, 1));
 		spinner.setBounds(111, 215, 145, 20);
 		contentPane.add(spinner);
@@ -128,12 +153,12 @@ public class DialogAggiungiVoto extends JDialog {
 				
 				if(ret!=-1) {
 					
-					JOptionPane.showMessageDialog(btnAggiungiVoto, "Testo inserito correttamente", "Plain Text", JOptionPane.PLAIN_MESSAGE);
+					JOptionPane.showMessageDialog(btnAggiungiVoto, "Voto inserito correttamente", "Plain Text", JOptionPane.PLAIN_MESSAGE);
 
 
 				}else {
 					
-					JOptionPane.showMessageDialog(btnAggiungiVoto, "Inserimennto non andato a buon fine", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(btnAggiungiVoto, "Inserimento non andato a buon fine", "Error", JOptionPane.ERROR_MESSAGE);
 
 				}
 				
@@ -142,8 +167,106 @@ public class DialogAggiungiVoto extends JDialog {
 				
 			}
 		});
-		btnAggiungiVoto.setBounds(251, 264, 112, 23);
+		btnAggiungiVoto.setBounds(396, 264, 112, 23);
 		contentPane.add(btnAggiungiVoto);
+		
+		JButton btnCHECK_MATERIA = new JButton("Check Materia");
+		btnCHECK_MATERIA.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String materia = textField_materia.getText();
+				
+			
+				boolean i = Controller.controllomateria(Integer.parseInt(materia));
+				
+				if(i==true) {
+					textField_matricola.setEditable(true);
+					textOut_materia.setText("OK!");
+				}else {
+					textOut_materia.setText("Materia non trovata");
+					
+				}
+			}
+		});
+		btnCHECK_MATERIA.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnCHECK_MATERIA.setBounds(307, 66, 138, 23);
+		contentPane.add(btnCHECK_MATERIA);
+		
+		
+		
+		JButton btnCHECK_MATRICOLA = new JButton("Check Matricola");
+		btnCHECK_MATRICOLA.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String matricola = textField_matricola.getText();
+				
+				
+				boolean i = Controller.controllostudente(Integer.parseInt(matricola));
+				
+				if(i==true) {
+					dateChooser.setEnabled(true);
+					textOut_matricola.setText("OK!");
+				}else {
+					textOut_matricola.setText("Matricola non trovata");
+				}
+				
+				
+			}
+		});
+		btnCHECK_MATRICOLA.setBounds(307, 118, 138, 23);
+		contentPane.add(btnCHECK_MATRICOLA);
+		
+		JButton btnCHECK_DATA = new JButton("Check Data");
+		btnCHECK_DATA.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				java.util.Date data = dateChooser.getDate();
+
+				boolean i=Controller.controllodata((Date)data);
+				if(i==true) {
+					//se la data è valida
+					spinner.setEnabled(i);
+					
+					textOut_data.setText("OK!");
+				}
+				else {
+					textOut_data.setText("Data non valida");
+				}
+				
+				
+				
+			}
+		});
+		btnCHECK_DATA.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnCHECK_DATA.setBounds(307, 171, 138, 23);
+		contentPane.add(btnCHECK_DATA);
+		
+		textOut_materia = new JTextField();
+		textOut_materia.setBackground(new Color(0, 0, 128));
+		textOut_materia.setEditable(false);
+		textOut_materia.setBounds(467, 67, 96, 20);
+		contentPane.add(textOut_materia);
+		textOut_materia.setColumns(10);
+		
+		textOut_matricola = new JTextField();
+		textOut_matricola.setBackground(new Color(0, 0, 128));
+		textOut_matricola.setEditable(false);
+		textOut_matricola.setBounds(467, 119, 96, 20);
+		contentPane.add(textOut_matricola);
+		textOut_matricola.setColumns(10);
+		
+		textOut_data = new JTextField();
+		textOut_data.setBackground(new Color(0, 0, 128));
+		textOut_data.setEditable(false);
+		textOut_data.setBounds(467, 172, 96, 20);
+		contentPane.add(textOut_data);
+		textOut_data.setColumns(10);
 		
 		
 
