@@ -1,4 +1,4 @@
-ackage boundary;
+package boundary;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
