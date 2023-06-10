@@ -45,7 +45,7 @@ public class Controller {
         }
 
         // Controllo se la data è nel quadrimestre corrente
-        if (!isDataNelQuadrimestreCorrente(data)) {
+        if (!isDataValida(data)) {
             return -1;
         }
 
@@ -96,7 +96,7 @@ public class Controller {
         }
     }
 
-    public static boolean isDataNelQuadrimestreCorrente(Date data) {
+    public static boolean isDataValida(Date data) {
         LocalDate localDate = data.toLocalDate();
         int year = localDate.getYear();
         int month = localDate.getMonthValue();
