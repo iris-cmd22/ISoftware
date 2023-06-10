@@ -96,22 +96,27 @@ public class Controller {
         }
     }
 
-    public static boolean isDataValida(Date data) {
-        LocalDate localDate = data.toLocalDate();
-        int year = localDate.getYear();
-        int month = localDate.getMonthValue();
+      public static boolean isDataValida(Date data) {
+    	 LocalDate dataCorrente = LocalDate.now();
+    	    int annoCorrente = dataCorrente.getYear();
+    	    int meseCorrente = dataCorrente.getMonthValue();
+    	    int annoInput = data.toLocalDate().getYear();
+    	    int meseInput = data.toLocalDate().getMonthValue();
 
-        // Verifica se la data appartiene al primo quadrimestre (settembre-gennaio) dell'anno scolastico corrente
-        if (month >= 9 && month <= 1 && Year.now().getValue() == year) {
-            return true;
-        }
+    	    // Primo quadrimestre: settembre - gennaio
+    	    if ((meseCorrente >= 9 && annoCorrente == annoInput) || (meseCorrente <= 1 && annoCorrente + 1 == annoInput)) {
+    	        if (meseCorrente >= 12 || meseCorrente <= 1) {
+    	            return true;
+    	        }
+    	    }
+    	    // Secondo quadrimestre: febbraio - giugno
+    	    else if (meseCorrente >= 2 && meseCorrente <= 6 && annoCorrente == annoInput) {
+    	        if (meseInput >= 2 && meseInput <= 6) {
+    	            return true;
+    	        }
+    	    }
 
-        // Verifica se la data appartiene al secondo quadrimestre (febbraio-giugno) dell'anno scolastico successivo
-        if (month >= 2 && month <= 6 && Year.now().getValue() + 1 == year) {
-            return true;
-        }
-
-        return false;
+    	    return false;
     }
 
     
