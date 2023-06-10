@@ -118,4 +118,65 @@ public class IstitutoDAO {
 
     	    return false;
     }
+	
+	public int esisteUsername(String username, String ruolo) {
+    	
+    	 int ret = 0;
+    	
+    	 if(ruolo == "Docente") {
+    		 try {
+			 
+			 
+				 ResultSet rs = DBConnectionManager.selectQuery("SELECT username FROM docenti WHERE username = "+username+";");
+					 
+					 if(rs.next()) {
+						 ret=1;
+					 }				 
+		         
+		         
+		     } catch (SQLException | ClassNotFoundException e) {
+		         e.printStackTrace();
+		         ret = -1;
+		         
+		     }
+		}
+    	 
+    	if(ruolo == "Studente") {
+    		try {
+   			 
+   			 
+				 ResultSet rs = DBConnectionManager.selectQuery("SELECT username FROM studenti WHERE username = "+username+";");
+					 
+					 if(rs.next()) {
+						 ret=1;
+					 }				 
+		         
+		         
+		     } catch (SQLException | ClassNotFoundException e) {
+		         e.printStackTrace();
+		         ret = -1;
+		         
+		     }
+    	}
+    	
+    	if(ruolo == "Genitore") {
+    		try {
+   			 
+   			 
+				 ResultSet rs = DBConnectionManager.selectQuery("SELECT username FROM genitori WHERE username = "+username+";");
+					 
+					 if(rs.next()) {
+						 ret=1;
+					 }				 
+		         
+		         
+		     } catch (SQLException | ClassNotFoundException e) {
+		         e.printStackTrace();
+		         ret = -1;
+		         
+		     }
+    	}
+    	 
+    	return ret;
+    }
 }
