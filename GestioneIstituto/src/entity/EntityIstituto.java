@@ -174,5 +174,29 @@ public class EntityIstituto {
 	   	}
        return ret;
 	}
+	
+	public boolean controllomateria(int idmateria) {
+		
+		IstitutoDAO singleton = IstitutoDAO.getInstance();
+		
+		return singleton.esisteMateria(idmateria);
+	}
+	
+	public boolean controllostudente(int matricola) {
+		IstitutoDAO singleton = IstitutoDAO.getInstance();
+		
+		return singleton.esisteStudente(matricola);
+	}
+	
+	public boolean controlloclasse(int classe) {
+		
+		IstitutoDAO singleton = IstitutoDAO.getInstance();
+		
+		if((singleton.verificaclassi(classe))!=-1) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 
 }
