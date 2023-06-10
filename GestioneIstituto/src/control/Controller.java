@@ -61,16 +61,7 @@ public class Controller {
 
         return valutazioni;
     }
-	
-public static ArrayList<String> visualizzaVoti(String usernameGenitore){
 
-    	EntityIstituto singleton = EntityIstituto.getInstance();
-        ArrayList<String> valutazioni = new ArrayList<String>();
-        
-        valutazioni= singleton.getListaValutazioni(usernameGenitore);
-
-        return valutazioni;
-    }
 
 public static boolean controllomateria(int idmateria) {
 			
