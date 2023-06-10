@@ -76,7 +76,7 @@ public class Controller {
     
     public static boolean esisteStudente(int matricola) {
         try {
-            ResultSet rs = DBConnectionManager.selectQuery("SELECT matricola FROM studenti WHERE matricola = "+matricola+"';");
+            ResultSet rs = DBConnectionManager.selectQuery("SELECT matricola FROM studenti WHERE matricola = '"+matricola+"';");;
             return rs.next();
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
