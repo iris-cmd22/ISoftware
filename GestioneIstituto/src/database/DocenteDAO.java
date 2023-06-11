@@ -1,15 +1,14 @@
-package entity;
+package database;
 
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
-import database.DocenteDAO;
+public class DocenteDAO {
 
-public class EntityDocente {
-	
-	private String nome;
+    private String nome;
 	private String cognome;
-	private int matricola;
 	private Date dataNascita;
 	private String codiceFiscale;
 	private String comuneResidenza;
@@ -17,65 +16,111 @@ public class EntityDocente {
 	private String numeroCellulare;
 	private String username;
 	private String password;
-	private ArrayList<EntityMateria> materie;
+    private ArrayList<MateriaDAO> materie;
 
-	public EntityDocente() {
-		// TODO Auto-generated constructor stub
+    public DocenteDAO() {
 		super();
-		this.setMaterie(new ArrayList<EntityMateria>());
+        this.materie =new ArrayList<MateriaDAO>();
 	}
 	
-	
-	//costruttore con la PK
-	public EntityDocente(String username) {
+	public DocenteDAO(String username) {
 		
-		DocenteDAO docente = new DocenteDAO(username);
-		
-		this.nome = docente.getNome();
-		this.password = docente.getPassword();
-		this.nome = docente.getNome();
-		this.cognome = docente.getCognome();
-		this.dataNascita = docente.getDataNascita();
-		this.codiceFiscale = docente.getCodiceFiscale();
-		this.comuneResidenza = docente.getComuneResidenza();
-		this.email = docente.getEmail();
-		this.numeroCellulare = docente.getNumeroCellulare();
-		this.materie = new ArrayList<EntityMateria>();
-		
-		//System.out.println("EntityDocente: "+docente.toString());
-		docente.caricaMaterieDaDB();
-		//System.out.println("EntityDocente ->: "+docente.toString());
-		caricaMaterie(docente);
+		this.username=username;
+		caricaDaDB();
 	}
 
-	public void caricaMaterie(DocenteDAO docente) {
+    	public DocenteDAO(DocenteDAO docente) {
 		
-		for(int i=0; i<docente.getMaterie().size(); i++) {
+		this.username=docente.getUsername();
+		this.password=docente.getPassword();
+		this.nome=docente.getNome();
+		this.cognome=docente.getCognome();
+		this.dataNascita=docente.getDataNascita();
+		this.codiceFiscale=docente.getCodiceFiscale();
+		this.comuneResidenza=docente.getComuneResidenza();
+		this.email=docente.getEmail();
+		this.numeroCellulare=docente.getNumeroCellulare();
+		
+	}
+
+
+    public void caricaDaDB() {
+		
+		String query =new String("SELECT * FROM docenti WHERE username = '"+this.username+"';");
+		
+		try {
+			ResultSet rs = DBConnectionManager.selectQuery(query);
 			
-			EntityMateria materia = new EntityMateria(docente.getMaterie().get(i));
-			this.materie.add(materia);
+			if(rs.next()) {
+				
+				
+				this.setNome(rs.getString("nome"));
+				this.setCognome(rs.getString("cognome"));
+				this.setDataNascita(rs.getDate("dataNascita"));
+				this.setCodiceFiscale(rs.getString("codiceFiscale"));
+				this.setComuneResidenza(rs.getString("comuneResidenza"));
+                this.setNumeroCellulare(rs.getString("numeroCellulare"));
+				this.setUsername(rs.getString("username"));
+				this.setPassword(rs.getString("password"));
+				
+			}
+		}catch(ClassNotFoundException | SQLException e) {
+			
+			e.printStackTrace();
 		}
 	}
-	
-	public int scriviSuDB(String username) {
+
+
+
+    public void caricaMaterieDaDB(){
+        
+        String query= new String("SELECT * FROM materie WHERE docente=\'"+this.username+"')");
+        //System.out.println(query); //per debug
+
+        	try {
+			
+			ResultSet rs= DBConnectionManager.selectQuery(query);
+			
+			while(rs.next()) {
+				
+				//NB:
+				MateriaDAO materia =new MateriaDAO();
+				materia.setNome(rs.getString("nome"));  
+						
+				this.materie.add(materia);
+				
+			}	
+			
+		}catch( ClassNotFoundException | SQLException e) {
+			
+			e.printStackTrace();
+		}
+    }
+
+
+
+	public int SalvaInDB(String username) {
 		
-		DocenteDAO d = new DocenteDAO();
+		int ret=0;
 		
-		d.setNome(this.nome);
-		d.setCognome(this.cognome);
-		d.setComuneResidenza(this.comuneResidenza);
-		d.setCodiceFiscale(this.codiceFiscale);
-		d.setDataNascita(this.dataNascita);
-		d.setEmail(this.email);
-		d.setNumeroCellulare(this.numeroCellulare);
-		d.setPassword(this.password);
-		
-		int i = d.SalvaInDB(username);
-		
-		return i;
+		String query = "INSERT INTO docenti(username, password,nome,cognome,codicefiscale, datanascita, comuneresidenza, email, numerocellulare) VALUES ( \'"+username+"\','"+this.password+"\','"+this.nome+"\','"+this.cognome+"\','"+this.codiceFiscale+"\','"+this.dataNascita+"\','"+this.comuneResidenza+"\','"+this.email+"\','"+this.numeroCellulare+"')";
+		System.out.println(query);
+		try {
+			ret=DBConnectionManager.updateQuery(query);
+			
+		}catch(ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+			ret = -1; //per l'errore di scrittura
+		}
+		return ret;
 	}
 
-	public String getNome() {
+  
+    
+
+    
+    
+    public String getNome() {
 		return nome;
 	}
 
@@ -89,14 +134,6 @@ public class EntityDocente {
 
 	public void setCognome(String cognome) {
 		this.cognome = cognome;
-	}
-
-	public int getMatricola() {
-		return matricola;
-	}
-
-	public void setMatricola(int matricola) {
-		this.matricola = matricola;
 	}
 
 	public Date getDataNascita() {
@@ -154,26 +191,19 @@ public class EntityDocente {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-
-
-	public ArrayList<EntityMateria> getMaterie() {
+	
+	public ArrayList<MateriaDAO> getMaterie(){
 		return materie;
 	}
-
-	public void setMaterie(ArrayList<EntityMateria> materie) {
+	
+	public void setMaterie(ArrayList<MateriaDAO> materie) {
 		this.materie = materie;
 	}
 
-
-	@Override
+    @Override
 	public String toString() {
-		return "EntityDocente [nome=" + nome + ", cognome=" + cognome + ", matricola=" + matricola + ", dataNascita="
-				+ dataNascita + ", codiceFiscale=" + codiceFiscale + ", comuneResidenza=" + comuneResidenza + ", email="
-				+ email + ", numeroCellulare=" + numeroCellulare + ", username=" + username + ", password=" + password
-				+ ", materie=" + materie + "]";
+		return "DBDocente [nome=" + nome + ", cognome=" +cognome+ ",codice fiscale=" + codiceFiscale + ", data di nascita=" + dataNascita + ", comune di residenza=" + comuneResidenza + ", email=" + email + ", numero di cellulare=" + numeroCellulare + "]";
 	}
-	
-	
-	
+
+
 }
