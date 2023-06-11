@@ -198,7 +198,7 @@ public class DialogAggiungiVoto extends JDialog {
 				
 			}
 		});
-		btnCHECK_DOCENTE.setBounds(307, 49, 138, 23);
+		btnCHECK_DOCENTE.setBounds(287, 49, 119, 23);
 		contentPane.add(btnCHECK_DOCENTE);
 		
 		
@@ -229,7 +229,7 @@ public class DialogAggiungiVoto extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnCHECK_MATERIA.setBounds(307, 87, 138, 23);
+		btnCHECK_MATERIA.setBounds(287, 87, 119, 23);
 		contentPane.add(btnCHECK_MATERIA);
 		
 		
@@ -253,7 +253,7 @@ public class DialogAggiungiVoto extends JDialog {
 				
 			}
 		});
-		btnCHECK_MATRICOLA.setBounds(307, 139, 138, 23);
+		btnCHECK_MATRICOLA.setBounds(287, 139, 119, 23);
 		contentPane.add(btnCHECK_MATRICOLA);
 		
 		JButton btnCHECK_DATA = new JButton("Check Data");
@@ -281,7 +281,7 @@ public class DialogAggiungiVoto extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnCHECK_DATA.setBounds(307, 193, 138, 23);
+		btnCHECK_DATA.setBounds(287, 193, 119, 23);
 		contentPane.add(btnCHECK_DATA);
 		
 		textOut_materia = new JTextField();
@@ -289,7 +289,7 @@ public class DialogAggiungiVoto extends JDialog {
 		textOut_materia.setForeground(new Color(255, 255, 255));
 		textOut_materia.setBackground(new Color(0, 0, 128));
 		textOut_materia.setEditable(false);
-		textOut_materia.setBounds(467, 88, 96, 20);
+		textOut_materia.setBounds(416, 88, 147, 20);
 		contentPane.add(textOut_materia);
 		textOut_materia.setColumns(10);
 		
@@ -297,7 +297,7 @@ public class DialogAggiungiVoto extends JDialog {
 		textOut_matricola.setForeground(new Color(255, 255, 255));
 		textOut_matricola.setBackground(new Color(0, 0, 128));
 		textOut_matricola.setEditable(false);
-		textOut_matricola.setBounds(467, 140, 96, 20);
+		textOut_matricola.setBounds(416, 140, 147, 20);
 		contentPane.add(textOut_matricola);
 		textOut_matricola.setColumns(10);
 		
@@ -305,7 +305,7 @@ public class DialogAggiungiVoto extends JDialog {
 		textOut_data.setForeground(new Color(255, 255, 255));
 		textOut_data.setBackground(new Color(0, 0, 128));
 		textOut_data.setEditable(false);
-		textOut_data.setBounds(467, 194, 96, 20);
+		textOut_data.setBounds(416, 194, 147, 20);
 		contentPane.add(textOut_data);
 		textOut_data.setColumns(10);
 		
@@ -323,7 +323,7 @@ public class DialogAggiungiVoto extends JDialog {
 		textOut_docente.setEditable(false);
 		textOut_docente.setColumns(10);
 		textOut_docente.setBackground(new Color(0, 0, 128));
-		textOut_docente.setBounds(467, 50, 96, 20);
+		textOut_docente.setBounds(416, 50, 147, 20);
 		contentPane.add(textOut_docente);
 		
 		
