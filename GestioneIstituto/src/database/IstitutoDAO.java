@@ -253,4 +253,30 @@ public class IstitutoDAO {
 		
 		return materie;
 	}
+	
+	public ArrayList<String> visualizzastudenti(){
+		
+		IstitutoDAO singleton = IstitutoDAO.getInstance();
+		ArrayList<String> studenti = new ArrayList<String>();
+		
+		for(int i=0; i<singleton.visualizzastudenti().size(); i++) {
+			EntityStudente studente = new EntityStudente(singleton.visualizzastudenti().get(i).getMatricola());
+			studenti.add(studente.toString());
+		}
+		
+		return studenti;
+	}
+	
+	public ArrayList<String> visualizzaclassi(){
+		
+		IstitutoDAO singleton = IstitutoDAO.getInstance();
+		ArrayList<String> classi = new ArrayList<String>();
+		
+		for(int i=0; i<singleton.visualizzaclassi().size(); i++) {
+			EntityClasse classe = new EntityClasse(singleton.visualizzaclassi().get(i).getIdClasse());
+			classi.add(classe.toString());
+		}
+		
+		return classi;
+	}
 }
