@@ -16,7 +16,7 @@ public class EntityStudente {
 		private String codiceFiscale;
 		private String comuneResidenza;
 		private String email;
-		private int numeroCellulare;
+		private String numeroCellulare;
 		private String username;
 		private String password;
 		private ArrayList<EntityPagella> pagelle;
@@ -198,12 +198,12 @@ public class EntityStudente {
 		}
 
 
-		public int getNumeroCellulare() {
+		public String getNumeroCellulare() {
 			return numeroCellulare;
 		}
 
 
-		public void setNumeroCellulare(int numeroCellulare) {
+		public void setNumeroCellulare(String numeroCellulare) {
 			this.numeroCellulare = numeroCellulare;
 		}
 
