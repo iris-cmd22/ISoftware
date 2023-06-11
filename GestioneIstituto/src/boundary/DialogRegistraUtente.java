@@ -25,19 +25,12 @@ import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.BoxLayout;
+import java.awt.GridLayout;
 
 public class DialogRegistraUtente extends JDialog {
 
 	private JPanel contentPane;
-	private JTextField textField_Nome;
-	private JTextField textField_Cognome;
-	private JTextField textField_codiceFiscale;
-	private JTextField textField_Email;
-	private JTextField textField_NumeroCellulare;
-	private JTextField textField_Username;
-	private JTextField textField_Password;
-	private JTextField textField_ComuneResidenza;
-	private JTextField textOut;
 
 	/**
 	 * Launch the application.
@@ -69,246 +62,66 @@ public class DialogRegistraUtente extends JDialog {
 		contentPane.setLayout(null);
 		
 		JLabel lbl_RegistraUtente = new JLabel("Registra Utente");
+		lbl_RegistraUtente.setBounds(5, 5, 142, 59);
 		lbl_RegistraUtente.setForeground(new Color(255, 255, 255));
 		lbl_RegistraUtente.setBackground(new Color(255, 255, 255));
 		lbl_RegistraUtente.setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 14));
-		lbl_RegistraUtente.setBounds(10, 10, 131, 19);
 		contentPane.add(lbl_RegistraUtente);
 		
-		JLabel lbl_ruolo = new JLabel("Ruolo");
+		JLabel lbl_ruolo = new JLabel("Seleziona Ruolo");
+		lbl_ruolo.setBounds(10, 105, 127, 49);
 		lbl_ruolo.setForeground(new Color(255, 255, 255));
-		lbl_ruolo.setFont(new Font("Tahoma", Font.BOLD, 10));
+		lbl_ruolo.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lbl_ruolo.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_ruolo.setBounds(20, 44, 45, 13);
 		contentPane.add(lbl_ruolo);
 		
-		JLabel lbl_nome = new JLabel("Nome");
-		lbl_nome.setForeground(new Color(255, 255, 255));
-		lbl_nome.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lbl_nome.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_nome.setBounds(20, 80, 45, 13);
-		contentPane.add(lbl_nome);
+		JLabel label_selezionaRuolo = new JLabel("");
+		label_selezionaRuolo.setBounds(5, 89, 142, 84);
+		contentPane.add(label_selezionaRuolo);
 		
-		textField_Nome = new JTextField();
-		textField_Nome.setEditable(false);
-		textField_Nome.setBounds(111, 75, 96, 19);
-		contentPane.add(textField_Nome);
-		textField_Nome.setColumns(10);
+		JButton btn_enter = new JButton("Enter");
 		
-		textField_Cognome = new JTextField();
-		textField_Cognome.setEditable(false);
-		textField_Cognome.setBounds(111, 104, 96, 19);
-		contentPane.add(textField_Cognome);
-		textField_Cognome.setColumns(10);
-		
-		textField_codiceFiscale = new JTextField();
-		textField_codiceFiscale.setEditable(false);
-		textField_codiceFiscale.setBounds(111, 162, 96, 19);
-		contentPane.add(textField_codiceFiscale);
-		textField_codiceFiscale.setColumns(10);
-		
-		textField_Email = new JTextField();
-		textField_Email.setEditable(false);
-		textField_Email.setBounds(330, 75, 96, 19);
-		contentPane.add(textField_Email);
-		textField_Email.setColumns(10);
-		
-		textField_NumeroCellulare = new JTextField();
-		textField_NumeroCellulare.setEditable(false);
-		textField_NumeroCellulare.setBounds(330, 104, 96, 19);
-		contentPane.add(textField_NumeroCellulare);
-		textField_NumeroCellulare.setColumns(10);
-		
-		textField_Username = new JTextField();
-		textField_Username.setEditable(false);
-		textField_Username.setBounds(330, 133, 96, 19);
-		contentPane.add(textField_Username);
-		textField_Username.setColumns(10);
-		
-		textField_Password = new JTextField();
-		textField_Password.setEditable(false);
-		textField_Password.setBounds(330, 162, 96, 19);
-		contentPane.add(textField_Password);
-		textField_Password.setColumns(10);
-		
-		textField_ComuneResidenza = new JTextField();
-		textField_ComuneResidenza.setEditable(false);
-		textField_ComuneResidenza.setBounds(111, 193, 96, 19);
-		contentPane.add(textField_ComuneResidenza);
-		textField_ComuneResidenza.setColumns(10);
-		
-		JLabel lbl_cognome = new JLabel("Cognome");
-		lbl_cognome.setForeground(new Color(255, 255, 255));
-		lbl_cognome.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lbl_cognome.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_cognome.setBounds(10, 107, 60, 13);
-		contentPane.add(lbl_cognome);
-		
-		JLabel lbl_dataNascita = new JLabel("Data di Nascita");
-		lbl_dataNascita.setForeground(new Color(255, 255, 255));
-		lbl_dataNascita.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lbl_dataNascita.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_dataNascita.setBounds(10, 138, 79, 13);
-		contentPane.add(lbl_dataNascita);
-		
-		JLabel lbl_codiceFiscale = new JLabel("Codice Fiscale");
-		lbl_codiceFiscale.setForeground(new Color(255, 255, 255));
-		lbl_codiceFiscale.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lbl_codiceFiscale.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_codiceFiscale.setBounds(10, 167, 70, 13);
-		contentPane.add(lbl_codiceFiscale);
-		
-		JLabel lbl_ComuneResidenza = new JLabel("Comune di Residenza");
-		lbl_ComuneResidenza.setForeground(new Color(255, 255, 255));
-		lbl_ComuneResidenza.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lbl_ComuneResidenza.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_ComuneResidenza.setBounds(0, 198, 109, 13);
-		contentPane.add(lbl_ComuneResidenza);
-		
-		JLabel lbl_email = new JLabel("Email");
-		lbl_email.setForeground(new Color(255, 255, 255));
-		lbl_email.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lbl_email.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_email.setBounds(274, 78, 46, 13);
-		contentPane.add(lbl_email);
-		
-		JLabel lbl_numeroCellulare = new JLabel("Numero Cellulare");
-		lbl_numeroCellulare.setForeground(new Color(255, 255, 255));
-		lbl_numeroCellulare.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lbl_numeroCellulare.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_numeroCellulare.setBounds(228, 107, 92, 13);
-		contentPane.add(lbl_numeroCellulare);
-		
-		JLabel lbl_username = new JLabel("Username");
-		lbl_username.setForeground(new Color(255, 255, 255));
-		lbl_username.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lbl_username.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_username.setBounds(264, 136, 63, 13);
-		contentPane.add(lbl_username);
-		
-		JLabel lbl_password = new JLabel("Password");
-		lbl_password.setForeground(new Color(255, 255, 255));
-		lbl_password.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lbl_password.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_password.setBounds(260, 165, 60, 13);
-		contentPane.add(lbl_password);
-		
-		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setEnabled(false);
-		dateChooser.setBounds(111, 133, 96, 19);
-		contentPane.add(dateChooser);
-		
-		JList list = new JList();
-		list.setBounds(287, 44, 60, 0);
-		contentPane.add(list);
+		btn_enter.setEnabled(false);
+		btn_enter.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btn_enter.setBounds(341, 232, 85, 21);
+		contentPane.add(btn_enter);
 		
 		JComboBox cmb_Ruolo = new JComboBox();
+		cmb_Ruolo.setFont(new Font("Tahoma", Font.BOLD, 12));
+		cmb_Ruolo.setBounds(157, 107, 142, 49);
 		cmb_Ruolo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(cmb_Ruolo.getSelectedItem().equals("Docente") || cmb_Ruolo.getSelectedItem().equals("Studente") || cmb_Ruolo.getSelectedItem().equals("Genitore") ) {
 					
-					textField_Nome.setEditable(true);
-					textField_Cognome.setEditable(true);;
-					textField_codiceFiscale.setEditable(true);;
-					textField_Email.setEditable(true);;
-					textField_NumeroCellulare.setEditable(true);;
-					textField_Username.setEditable(true);;
-					textField_Password.setEditable(true);;
-					textField_ComuneResidenza.setEditable(true);;
-					dateChooser.setEnabled(true);
+					btn_enter.setEnabled(true);
 				}
 			}
 		});
 		cmb_Ruolo.setModel(new DefaultComboBoxModel(new String[] {"Docente", "Studente", "Genitore"}));
-		cmb_Ruolo.setBounds(111, 39, 96, 21);
 		contentPane.add(cmb_Ruolo);
 		
-		//Bottone INSERISCI
-		JButton btn_Inserisci = new JButton("INSERISCI");
-		btn_Inserisci.setEnabled(false);
-		btn_Inserisci.setForeground(Color.RED);
-		
-		btn_Inserisci.addMouseListener(new MouseAdapter() {
+		btn_enter.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-				int ret = -1;
-				
-				String ruolo = (String) cmb_Ruolo.getSelectedItem();
-		
-				String nome = textField_Nome.getText();
-				String cognome = textField_Cognome.getText();
-				String codiceFiscale = textField_codiceFiscale.getText();
-				String email = textField_Email.getText();
-				String numeroCellulare = textField_NumeroCellulare.getText();
-				String username = textField_Username.getText();
-				String password = textField_Password.getText();
-				String comune = textField_ComuneResidenza.getText();
-				
-				if(ruolo == "Docente") {
-					//jdialog classi e materie
+				if(cmb_Ruolo.getSelectedItem().equals("Docente")) {
+					DialogRegistraDocente dr = new DialogRegistraDocente();
+					dr.show();
+					dispose();
 					
+				}else if(cmb_Ruolo.getSelectedItem().equals("Studente")) {
+					DialogRegistraStudente dr = new DialogRegistraStudente();
+					dr.show();
+					dispose();
 					
-				}
+				}else if(cmb_Ruolo.getSelectedItem().equals("Genitore")) {
+					DialogRegistraGenitore dr = new DialogRegistraGenitore();
+					dr.show();
+					dispose();
 				
-				if(ruolo == "Studente") {
-					//assegnazione matricola
-				}
-				
-				if(ruolo == "Genitore") {
-					//matricola dello studente
-				}
-				
-				ret = Controller.registraUtente(ruolo,nome,cognome,codiceFiscale,email,
-						numeroCellulare,username,password,comune);
-				
-				System.out.println(ret);
-				
-				if(ret!=-1) {
-					
-					
-					
 				}
 			}
 		});
-		btn_Inserisci.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
-		btn_Inserisci.setBounds(287, 232, 139, 21);
-		contentPane.add(btn_Inserisci);
-		
-		//Bottotone Check Username
-		JButton btn_checkUsername = new JButton("Check Username");
-		btn_checkUsername.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				//Verifichiamo che l'username inserito non sia già utilizzato
-				
-				String username = textField_Username.getText();
-				String ruolo = (String) cmb_Ruolo.getSelectedItem();
-				
-				int i = Controller.CercaUsername(username,ruolo);
-				
-				if(i==1) {
-					//se ho trovato l'username
-					textOut.setText("Username non disponibile");
-					
-				}else {
-					btn_Inserisci.setEnabled(true);
-					textOut.setText("Username disponibile");
-				}
-				
-			}
-		});
-		btn_checkUsername.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btn_checkUsername.setBounds(10, 233, 131, 21);
-		contentPane.add(btn_checkUsername);
-		
-		textOut = new JTextField();
-		textOut.setForeground(new Color(255, 255, 255));
-		textOut.setBackground(new Color(0, 0, 128));
-		textOut.setBounds(151, 234, 96, 19);
-		contentPane.add(textOut);
-		textOut.setColumns(10);
 		
 	}
 }
