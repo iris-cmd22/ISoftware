@@ -26,6 +26,7 @@ public class DocenteDAO {
 	public DocenteDAO(String username) {
 		
 		this.username=username;
+		this.materie =new ArrayList<MateriaDAO>();
 		caricaDaDB();
 	}
 
@@ -46,7 +47,7 @@ public class DocenteDAO {
 
     public void caricaDaDB() {
 		
-		String query =new String("SELECT * FROM docenti WHERE username = '"+this.username+"';");
+		String query =new String("SELECT * FROM docenti WHERE username = '"+this.username+"'");
 		
 		try {
 			ResultSet rs = DBConnectionManager.selectQuery(query);
@@ -74,7 +75,7 @@ public class DocenteDAO {
 
     public void caricaMaterieDaDB(){
         
-        String query= new String("SELECT * FROM materie WHERE docente=\'"+this.username+"')");
+        String query= new String("SELECT * FROM materie WHERE docente=\'"+this.username+"'");
         //System.out.println(query); //per debug
 
         	try {
@@ -115,11 +116,6 @@ public class DocenteDAO {
 		return ret;
 	}
 
-  
-    
-
-    
-    
     public String getNome() {
 		return nome;
 	}

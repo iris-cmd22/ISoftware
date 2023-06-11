@@ -25,7 +25,7 @@ public class ValutazioneDAO {
 	
 	public void caricaDaDB() {
 		
-		String query="SELECT * FROM valutazioni WHERE idvalutazioni='"+this.idvalutazioni+"')";
+		String query="SELECT * FROM valutazioni WHERE idvalutazioni='"+this.idvalutazioni+"'";
 		try {
 			
 			ResultSet rs= DBConnectionManager.selectQuery(query);
@@ -44,7 +44,7 @@ public class ValutazioneDAO {
 	
 	public void caricaMateriaDaDB() {
 	
-		String query = new String("SELECT * FROM materie WHERE valutazioni =\'"+this.idvalutazioni+"'");
+		String query = new String("SELECT * FROM materie WHERE idmaterie =\'"+this.materia.getIdmateria()+"'");
 	
 		
 		try {
@@ -54,7 +54,6 @@ public class ValutazioneDAO {
 			if(rs.next()) {
 				
 				MateriaDAO materie= new MateriaDAO();
-				
 				materie.setIdmateria(rs.getInt("idmaterie"));
 				materie.setNome(rs.getString("nome"));				
 				
@@ -71,7 +70,7 @@ public class ValutazioneDAO {
 		
 		
 		
-		String query = new String("SELECT * FROM studenti WHERE valutazioni =\'"+this.idvalutazioni+"'");
+		String query = new String("SELECT * FROM studenti WHERE matricola =\'"+this.studente.getMatricola()+"'");
 	
 		
 		try {
@@ -103,11 +102,11 @@ public class ValutazioneDAO {
 	}
 	
 	//aggiunto per implementare la funzione AggiungiVoto	
-	public int SalvaInDB(int idvalutazioni, int matricola, int idmaterie, Date data, float voto) {
+	public int SalvaInDB(int idvalutazioni) {
 		
 		int ret=0;
 		
-		String query = "INSERT INTO valutazioni(idvalutazioni,matricola,materia,data,voto) VALUES ( \'"+idvalutazioni+"\','"+"\'"+matricola+"\','"+idmaterie+"\','"+this.data+"\','"+this.voto+"')";
+		String query = "INSERT INTO valutazioni(idvalutazioni,studente,materia,data,voto) VALUES ( \'"+idvalutazioni+"\','"+this.studente.getMatricola()+"\','"+this.materia.getIdmateria()+"\','"+this.data+"\','"+this.voto+"')";
 		System.out.println(query);
 		try {
 			ret=DBConnectionManager.updateQuery(query);

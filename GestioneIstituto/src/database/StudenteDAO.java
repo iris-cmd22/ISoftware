@@ -65,40 +65,10 @@ public class StudenteDAO {
 		}
 	}
 	
-	public void caricaValutazioniStudenteDaDB() {
-			
-			String query= new String("SELECT * FROM valutazioni WHERE studente='"+this.matricola+"';");
-			System.out.println(query); //per debug
-			
-			try {
-				
-				ResultSet rs= DBConnectionManager.selectQuery(query);
-				
-				while(rs.next()) {
-					
-					//NB: devo istanziare una nuova DAO per riempirla
-					ValutazioneDAO valutazione =new ValutazioneDAO();
-					valutazione.setIdvalutazioni(rs.getInt("idvalutazioni"));
-					valutazione.setData(rs.getDate("data"));
-					valutazione.setVoto(rs.getFloat("voto"));
-					
-					this.valutazioni.add(valutazione);
-				}	
-				
-			}catch( ClassNotFoundException | SQLException e) {
-				
-				e.printStackTrace();
-			}
-		}
-
-	
 	
 	
 	//devo caricare le pagelle(che sono a loro volta un oggetto)
 	//ne ho una associata ad ogni studente per ogni anno
-	
-	
-	
 	
 	public void caricaPagelleStudenteDaDB() {
 		
@@ -132,7 +102,7 @@ public class StudenteDAO {
 	
 	
 	}
-	/*
+	
 	public void caricaGenitoreDaDB() {
 		
 		String query = new String("SELECT * FROM genitori WHERE studente_figlio ='"+this.matricola+"';");
@@ -163,11 +133,12 @@ public class StudenteDAO {
 			e.printStackTrace();
 		}
 	}
-	*/
-public void caricaValutazioniDaDB(){
+	
+	
+	public void caricaValutazioniDaDB(){
         
         String query= new String("SELECT * FROM valutazioni WHERE studente='"+this.matricola+"';");
-        //System.out.println(query); //per debug
+        System.out.println(query); //per debug
 
         	try {
 			
@@ -195,7 +166,7 @@ public void caricaValutazioniDaDB(){
 		
 		int ret=0;
 		
-		String query = "INSERT INTO studenti(matricola,nome,cognome,codicefiscale, datanascita, comuneresidenza, email, numerocellulare, username, password) VALUES ( \'"+matricola+"\','"+"\'"+this.nome+"\','"+this.cognome+"\','"+this.codiceFiscale+"\','"+this.dataNascita+"\','"+this.comuneResidenza+"\','"+this.email+"\','"+this.numeroCellulare+"\','"+this.username+"\','"+this.password+"');";
+		String query = "INSERT INTO studenti(matricola,nome,cognome,codicefiscale, datanascita, comuneresidenza, email, numerocellulare, username, password) VALUES ( \'"+matricola+"\',"+"\'"+this.nome+"\','"+this.cognome+"\','"+this.codiceFiscale+"\','"+this.dataNascita+"\','"+this.comuneResidenza+"\','"+this.email+"\','"+this.numeroCellulare+"\','"+this.username+"\','"+this.password+"');";
 		System.out.println(query);
 		try {
 			ret=DBConnectionManager.updateQuery(query);
@@ -341,5 +312,6 @@ public void caricaValutazioniDaDB(){
 	public void setValutazioni(ArrayList<ValutazioneDAO> valutazioni) {
 		this.valutazioni = valutazioni;
 	}
+
 	
 }

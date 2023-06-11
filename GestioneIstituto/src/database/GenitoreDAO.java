@@ -68,7 +68,7 @@ public class GenitoreDAO {
 	}
 	
 	public void caricaStudenteDaDB() {
-		String query= new String("SELECT * FROM studenti WHERE genitore =\'"+this.username+"')");
+		String query= new String("SELECT * FROM studenti WHERE matricola in (SELECT studente_figlio FROM genitori WHERE username =\'"+this.username+"')");
         System.out.println(query); //per debug
 
         	try {
@@ -105,7 +105,7 @@ public class GenitoreDAO {
 		
 		int ret=0;
 		
-		String query = "INSERT INTO genitori(username, password,nome,cognome,codicefiscale, datanascita, comuneresidenza, email, numerocellulare) VALUES ( \'"+username+"\','"+this.password+"\','"+this.nome+"\','"+this.cognome+"\','"+this.codiceFiscale+"\','"+this.dataNascita+"\','"+this.comuneResidenza+"\','"+this.email+"\','"+this.numeroCellulare+"')";
+		String query = "INSERT INTO genitori(username, password,nome,cognome,codicefiscale, datanascita, comuneresidenza, email, numerocellulare, studente_figlio) VALUES ( \'"+username+"\','"+this.password+"\','"+this.nome+"\','"+this.cognome+"\','"+this.codiceFiscale+"\','"+this.dataNascita+"\','"+this.comuneResidenza+"\','"+this.email+"\','"+this.numeroCellulare+"','"+ studente.getMatricola()+"')";
 		System.out.println(query);
 		try {
 			ret=DBConnectionManager.updateQuery(query);
@@ -196,8 +196,4 @@ public class GenitoreDAO {
 	public void setStudente(StudenteDAO studente) {
 		this.studente = studente;
 	}
-
-	
-	
-	
 }
