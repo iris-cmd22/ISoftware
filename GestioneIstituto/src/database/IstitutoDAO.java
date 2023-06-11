@@ -123,6 +123,32 @@ public class IstitutoDAO {
     	    return false;
     }
 	
+	
+	
+	
+	      
+      
+    public boolean esisteDocente(String username) {
+    	
+   	 
+   		 try {
+			 
+			 
+				 ResultSet rs = DBConnectionManager.selectQuery("SELECT username FROM docenti WHERE username = "+username+";");
+					 
+					return rs.next();	 
+		         
+		         
+		     } catch (SQLException | ClassNotFoundException e) {
+		         e.printStackTrace();
+		         return false;
+		         
+		     }
+		  	
+    }
+      
+    
+	
 	public int esisteUsername(String username, String ruolo) {
     	
     	 int ret = 0;
