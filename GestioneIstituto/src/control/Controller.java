@@ -13,7 +13,7 @@ public class Controller {
 	}
 	
     public static int registraUtente(String ruolo,String nome,String cognome,Date dataNascita, String codiceFiscale, 
-    								String comuneResidenza, String email,int numeroCellulare, String username,
+    								String comuneResidenza, String email,String numeroCellulare, String username,
     								String password,ArrayList<Integer> materie, String figlio, int classe ){
     	int ret=0;
     	
