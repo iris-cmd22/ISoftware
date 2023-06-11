@@ -3,177 +3,241 @@ package entity;
 import java.sql.Date;
 import java.util.ArrayList;
 
-import database.DocenteDAO;
+import database.IstitutoDAO;
 
-public class EntityDocente {
+//class facade del package entity: viene richiamata nel controller come singleton
+public class EntityIstituto {
+
+	private static EntityIstituto instance=null; //servirà per verificare che l'istanza sia unica
 	
-	private String nome;
-	private String cognome;
-	private int matricola;
-	private Date dataNascita;
-	private String codiceFiscale;
-	private String comuneResidenza;
-	private String email;
-	private String numeroCellulare;
-	private String username;
-	private String password;
-	private ArrayList<EntityMateria> materie;
-
-	public EntityDocente() {
-		// TODO Auto-generated constructor stub
-		super();
-		this.setMaterie(new ArrayList<EntityMateria>());
+	//gli id vengono definiti dal sistema in modo che siano univoci
+	public static int matricola=0; 
+	public static int idvalutazione=0;
+	
+	
+	private EntityIstituto() {
+		//costruttore
 	}
 	
-	
-	//costruttore con la PK
-	public EntityDocente(String username) {
-		
-		DocenteDAO docente = new DocenteDAO(username);
-		
-		this.nome = docente.getNome();
-		this.password = docente.getPassword();
-		this.nome = docente.getNome();
-		this.cognome = docente.getCognome();
-		this.dataNascita = docente.getDataNascita();
-		this.codiceFiscale = docente.getCodiceFiscale();
-		this.comuneResidenza = docente.getComuneResidenza();
-		this.email = docente.getEmail();
-		this.numeroCellulare = docente.getNumeroCellulare();
-		this.materie = new ArrayList<EntityMateria>();
-		
-		//System.out.println("EntityDocente: "+docente.toString());
-		docente.caricaMaterieDaDB();
-		//System.out.println("EntityDocente ->: "+docente.toString());
-		caricaMaterie(docente);
+	//Pattern singleton
+	public static EntityIstituto getInstance() {
+		if(instance==null) {
+			instance = new EntityIstituto();
+		}
+		return instance;
 	}
-
-	public void caricaMaterie(DocenteDAO docente) {
+	
+	public int creaDocente(String nome,String cognome,Date dataNascita, String codiceFiscale, 
+			String comuneResidenza, String email,String numeroCellulare, String username,
+			String password,ArrayList<Integer> materie) {
 		
-		for(int i=0; i<docente.getMaterie().size(); i++) {
+		int ret=0;
+		
+		EntityDocente docente= new EntityDocente(username);
+		
+		docente.setPassword(password);
+		docente.setNome(nome);
+		docente.setCognome(cognome);
+		docente.setDataNascita(dataNascita);
+		docente.setCodiceFiscale(codiceFiscale);
+		docente.setComuneResidenza(comuneResidenza);
+		docente.setEmail(email);
+		docente.setNumeroCellulare(numeroCellulare);
+		
+		IstitutoDAO singleton = IstitutoDAO.getInstance();
+		
+		for(int i=0; i<materie.size();i++) {
 			
-			EntityMateria materia = new EntityMateria(docente.getMaterie().get(i));
-			this.materie.add(materia);
+			ret=singleton.verificamaterie(materie.get(i));
+		}
+		
+		if(ret != -1) {
+			
+			ret=docente.scriviSuDB(username);
+			
+		}else {
+			
+			System.out.println("Materie non verificate");
+		}
+		
+		return ret;
+		
+	}
+	
+	public int creaStudente(String nome,String cognome,Date dataNascita, String codiceFiscale, 
+			String comuneResidenza, String email,String numeroCellulare, String username,
+			String password, int classe) {
+		
+		int ret=0;
+		
+		matricola++;
+	
+		EntityStudente studente= new EntityStudente();
+		
+				studente.setMatricola(matricola);
+				studente.setPassword(password);
+				studente.setNome(nome);
+				studente.setCognome(cognome);
+				studente.setDataNascita(dataNascita);
+				studente.setCodiceFiscale(codiceFiscale);
+				studente.setComuneResidenza(comuneResidenza);
+				studente.setEmail(email);
+				studente.setNumeroCellulare(numeroCellulare);
+				
+					
+				IstitutoDAO singleton = IstitutoDAO.getInstance();
+				ret=singleton.verificaclassi(classe);
+				
+				if(ret != -1) {
+					
+					ret=studente.scriviSuDB(matricola);
+					
+				}else {
+					
+					System.out.println("Materie non verificate");
+				}
+		
+		return ret;
+		
+	}
+	
+	public int creaGenitore(String nome,String cognome,Date dataNascita, String codiceFiscale, 
+			String comuneResidenza, String email,String numeroCellulare, String username,
+			String password,String figlio ) {
+		
+		int ret=0;
+		
+		return ret;
+		
+	}
+	
+	//stampa nome, data e voto per ogni materia più una media
+	public ArrayList<String> getListaValutazioni(String usernameGenitore){
+		
+		ArrayList<String> valutazioni = new ArrayList<String>();		
+		
+		EntityGenitore utente= new EntityGenitore(usernameGenitore);
+		
+		float media=0;
+		
+		for (int i=0; i<utente.getStudente().getValutazioni().size();i++) {
+			
+			valutazioni.add(utente.getStudente().getValutazioni().get(i).toString()+" \n");
+			//nel tostring verrà stampato anche il nome della materia di riferimento
+			
+			media += utente.getStudente().getValutazioni().get(i).getVoto();
+			
+		}
+		
+		media = media/ utente.getStudente().getValutazioni().size();
+		
+		valutazioni.add("La media complessiva dello studente nel quadrimestre risulta: "+media+" \n");
+		
+		return valutazioni;
+		
+	}
+	
+	
+	
+	public int aggiungiVoto(String docente, int matricola, int idmaterie, Date data, float voto) {
+		
+		idvalutazione++;
+		
+		EntityValutazione valutazione = new EntityValutazione();
+		IstitutoDAO singleton = IstitutoDAO.getInstance();
+    	
+   	 	// Controllo se esiste uno studente con quella matricola
+       if (!singleton.esisteStudente(matricola)) {
+           return -1;
+       }
+
+       // Controllo se esiste una materia con idmaterie
+       if (!singleton.esisteMateria(idmaterie,docente)) {
+           return -1;
+       }
+
+       // Controllo se la data è nel quadrimestre corrente
+       if (!singleton.isDataValida(data)) {
+           return -1;
+       }
+
+       // Controllo se il voto è compreso tra 0 e 10
+       if (voto < 0 || voto > 10) {
+           return -1;
+       }
+   	
+   	int ret = valutazione.scriviSuDB(idvalutazione, matricola,idmaterie,data,voto);
+   	
+	   	if(ret!=-1) {
+	   		valutazione.setData(data);
+	   		valutazione.setVoto(voto);
+	   	}
+       return ret;
+	}
+	
+	public boolean controllomateria(int idmateria, String docente) {
+		
+		IstitutoDAO singleton = IstitutoDAO.getInstance();
+		
+		return singleton.esisteMateria(idmateria, docente);
+	}
+	
+	public boolean controllostudente(int matricola) {
+		IstitutoDAO singleton = IstitutoDAO.getInstance();
+		
+		return singleton.esisteStudente(matricola);
+	}
+	
+	public boolean controlloclasse(int classe) {
+		
+		IstitutoDAO singleton = IstitutoDAO.getInstance();
+		
+		if((singleton.verificaclassi(classe))!=-1) {
+			return true;
+		}else {
+			return false;
 		}
 	}
 	
-	public int scriviSuDB(String username) {
+	public boolean controllodata(Date data) {
+		IstitutoDAO singleton = IstitutoDAO.getInstance();
+		return singleton.isDataValida(data);
+	}
+	
+	public int CercaUsername(String username, String ruolo) {
 		
-		DocenteDAO d = new DocenteDAO();
+		IstitutoDAO singleton = IstitutoDAO.getInstance();
 		
-		d.setNome(this.nome);
-		d.setCognome(this.cognome);
-		d.setComuneResidenza(this.comuneResidenza);
-		d.setCodiceFiscale(this.codiceFiscale);
-		d.setDataNascita(this.dataNascita);
-		d.setEmail(this.email);
-		d.setNumeroCellulare(this.numeroCellulare);
-		d.setPassword(this.password);
+		int ret = singleton.esisteUsername(username, ruolo);
 		
-		int i = d.SalvaInDB(username);
-		
-		return i;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getCognome() {
-		return cognome;
-	}
-
-	public void setCognome(String cognome) {
-		this.cognome = cognome;
-	}
-
-	public int getMatricola() {
-		return matricola;
-	}
-
-	public void setMatricola(int matricola) {
-		this.matricola = matricola;
-	}
-
-	public Date getDataNascita() {
-		return dataNascita;
-	}
-
-	public void setDataNascita(Date dataNascita) {
-		this.dataNascita = dataNascita;
-	}
-
-	public String getCodiceFiscale() {
-		return codiceFiscale;
-	}
-
-	public void setCodiceFiscale(String codiceFiscale) {
-		this.codiceFiscale = codiceFiscale;
-	}
-
-	public String getComuneResidenza() {
-		return comuneResidenza;
-	}
-
-	public void setComuneResidenza(String comuneResidenza) {
-		this.comuneResidenza = comuneResidenza;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getNumeroCellulare() {
-		return numeroCellulare;
-	}
-
-	public void setNumeroCellulare(String numeroCellulare) {
-		this.numeroCellulare = numeroCellulare;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-
-
-	public ArrayList<EntityMateria> getMaterie() {
-		return materie;
-	}
-
-	public void setMaterie(ArrayList<EntityMateria> materie) {
-		this.materie = materie;
-	}
-
-
-	@Override
-	public String toString() {
-		return "EntityDocente [nome=" + nome + ", cognome=" + cognome + ", matricola=" + matricola + ", dataNascita="
-				+ dataNascita + ", codiceFiscale=" + codiceFiscale + ", comuneResidenza=" + comuneResidenza + ", email="
-				+ email + ", numeroCellulare=" + numeroCellulare + ", username=" + username + ", password=" + password
-				+ ", materie=" + materie + "]";
+		return ret;
 	}
 	
 	
 	
+public boolean controllodocente(String username) {
+		
+		IstitutoDAO singleton = IstitutoDAO.getInstance();
+		
+		return singleton.esisteDocente(username);
+		
+		
+	}
+
+
+public ArrayList<String> visualizzamaterie(){
+	
+	IstitutoDAO singleton = IstitutoDAO.getInstance();
+    ArrayList<String> materie = new ArrayList<String>();
+    
+    for(int i=0;i<singleton.visualizzamaterie().size();i++) {
+    	EntityMateria materia=new EntityMateria(singleton.visualizzamaterie().get(i).getIdmateria());
+    	materie.add(materia.toString());
+    }
+    
+    return materie;
+}
+
+
+
 }
