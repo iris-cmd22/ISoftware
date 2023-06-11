@@ -14,7 +14,7 @@ public class Controller {
 	
     public static int registraUtente(String ruolo,String nome,String cognome,Date dataNascita, String codiceFiscale, 
     								String comuneResidenza, String email,String numeroCellulare, String username,
-    								String password,ArrayList<Integer> materie, String figlio, int classe ){
+    								String password,ArrayList<Integer> materie, int figlio, int classe ){
     	int ret=0;
     	
     	EntityIstituto singleton = EntityIstituto.getInstance();
@@ -63,12 +63,20 @@ public class Controller {
     }
 
 
-public static boolean controllomateria(int idmateria, String docente) {
+public static boolean controllomateria_insegnata(int idmateria, String docente) {
 			
 			EntityIstituto singleton = EntityIstituto.getInstance();
-			return singleton.controllomateria(idmateria, docente);
+			return singleton.controllomateria_insegnata(idmateria, docente);
 		}
 	
+public static boolean controllomateria(int idmateria) {
+	
+	EntityIstituto singleton = EntityIstituto.getInstance();
+	return singleton.controllomateria(idmateria);
+}
+
+
+
 public static boolean controllostudente(int matricola) {
 		
 		EntityIstituto singleton = EntityIstituto.getInstance();
