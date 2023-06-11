@@ -97,7 +97,6 @@ public static boolean controllodata(Date data) {
 
 public static boolean controllodocente(String username) {
 
-	int ret = 0;
 	EntityIstituto singleton = EntityIstituto.getInstance();
 	return singleton.controllodocente(username);
 	
