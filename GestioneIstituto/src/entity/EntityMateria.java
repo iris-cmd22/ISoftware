@@ -89,7 +89,7 @@ public class EntityMateria {
 
 	@Override
 	public String toString() {
-		return "idmaterie=" + idmaterie + ", nome=" + nome+ ", classe=" + classe ;
+		return "idmaterie=" + idmaterie + ", nome=" + nome+ ", classe=" + classe+ "\n" ;
 	}
 
 	public EntityClasse getClasse() {
