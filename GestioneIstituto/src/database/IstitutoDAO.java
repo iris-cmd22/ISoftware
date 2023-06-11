@@ -194,4 +194,33 @@ public class IstitutoDAO {
     	 
     	return ret;
     }
+	
+	public ArrayList<MateriaDAO> visualizzamaterie() {
+		
+		ArrayList<MateriaDAO> materie = new ArrayList<MateriaDAO>();
+		
+		String query="SELECT * FROM materie";
+		
+		try {
+			
+			ResultSet rs =DBConnectionManager.selectQuery(query);
+			System.out.println(query); //per debug
+			
+			while(rs.next()) {
+				
+				MateriaDAO materia = new MateriaDAO();
+				
+				materia.setIdmateria(rs.getInt("idmateria"));
+				materia.setNome(rs.getString("nome"));
+				
+				materie.add(materia);
+				
+			}
+			
+		}catch(ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return materie;
+	}
 }
