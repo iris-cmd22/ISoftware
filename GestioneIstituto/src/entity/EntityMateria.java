@@ -3,12 +3,12 @@ package entity;
 import java.util.ArrayList;
 
 import database.MateriaDAO;
-import database.ValutazioneDAO;
 
 public class EntityMateria {
 	
     private int idmaterie;
     private String nome;
+    private EntityClasse classe;
     private ArrayList<EntityValutazione> valutazioni;
 
 	public EntityMateria() {
@@ -50,6 +50,12 @@ public class EntityMateria {
 		}
 	}
 	
+	public void caricaClasse(MateriaDAO materia) {
+			
+			EntityClasse classe = new EntityClasse(materia.getClasse()); //va implementato il copy in Valutazioni
+			this.classe=classe;
+	}
+	
 	public int getIdmaterie() {
 		return idmaterie;
 	}
@@ -76,7 +82,15 @@ public class EntityMateria {
 
 	@Override
 	public String toString() {
-		return "EntityMateria [idmaterie=" + idmaterie + ", nome=" + nome + ", valutazioni=" + valutazioni + "]";
+		return "idmaterie=" + idmaterie + ", nome=" + nome+ ", classe=" + classe ;
+	}
+
+	public EntityClasse getClasse() {
+		return classe;
+	}
+
+	public void setClasse(EntityClasse classe) {
+		this.classe = classe;
 	}
 	
 	
