@@ -261,10 +261,10 @@ public class EntityStudente {
 
 		@Override
 		public String toString() {
-			return "EntityStudente [nome=" + nome + ", cognome=" + cognome + ", matricola=" + matricola
+			return "[nome=" + nome + ", cognome=" + cognome + ", matricola=" + matricola
 					+ ", dataNascita=" + dataNascita + ", codiceFiscale=" + codiceFiscale + ", comuneResidenza="
 					+ comuneResidenza + ", email=" + email + ", numeroCellulare=" + numeroCellulare + ", username="
-					+ username + ", password=" + password + "]";
+					+ username + ", password=" + password + "]\n";
 		}
 
 }
