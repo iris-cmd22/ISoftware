@@ -80,17 +80,6 @@ public class IstitutoDAO {
     }
     
 
-    public boolean esisteMateria(int idmaterie){
-        try {
-        	
-            ResultSet rs = DBConnectionManager.selectQuery("SELECT idmaterie FROM materie WHERE idmaterie = "+idmaterie+";");
-
-            return rs.next();
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
 
 	
     public boolean esisteMateria(int idmaterie, String docente){
