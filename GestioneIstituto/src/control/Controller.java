@@ -118,5 +118,25 @@ public static boolean controllodocente(String username) {
         
         		return materie;
     }
+	
+public static ArrayList<String> visualizzastudenti(){
+		 
+		 EntityIstituto singleton = EntityIstituto.getInstance();
+		 ArrayList<String> studenti = new ArrayList<String>();
+		 
+		 studenti = singleton.visualizzastudenti();
+		 
+		 return studenti;
+	 }
+	 
+ public static ArrayList<String> visualizzaclassi(){
+
+	 EntityIstituto singleton = EntityIstituto.getInstance();
+	 ArrayList<String> classi = new ArrayList<String>();
+
+	 classi = singleton.visualizzaclassi();
+
+	 return classi;
+ }
 
 }
