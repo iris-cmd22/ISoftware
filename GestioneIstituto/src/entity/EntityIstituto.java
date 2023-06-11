@@ -101,16 +101,54 @@ public class EntityIstituto {
 		
 	}
 	
+
 	public int creaGenitore(String nome,String cognome,Date dataNascita, String codiceFiscale, 
-			String comuneResidenza, String email,String numeroCellulare, String username,
-			String password,String figlio ) {
-		
-		int ret=0;
-		
-		return ret;
-		
-	}
+	            String comuneResidenza, String email,String numeroCellulare, String username,
+	            String password,int figlio ) {
+	        
+
+	        int ret=0;	        
+
+	        EntityGenitore genitore= new EntityGenitore();
+	        
+
+	        genitore.setMatricola(matricola);
+	        genitore.setPassword(password);
+	        genitore.setNome(nome);
+	        genitore.setCognome(cognome);
+	        genitore.setDataNascita(dataNascita);
+	        genitore.setCodiceFiscale(codiceFiscale);
+	        genitore.setComuneResidenza(comuneResidenza);
+	        genitore.setEmail(email);
+	        genitore.setNumeroCellulare(numeroCellulare);
+	        
+	            
+
+	        IstitutoDAO singleton = IstitutoDAO.getInstance();
+	        
+
+	        if(singleton.esisteStudente(figlio)) {	            
+
+	            EntityStudente s=new EntityStudente(figlio);
+            
+
+	            genitore.setStudente(s);
+	            ret=genitore.scriviSuDB(username);
+
+	        }else {
+
+	            System.out.println("Studente figlio non trovato");
+	            ret=-1;
+
+	        }
+
+
+	        return ret;
+
+	        
+	    }
 	
+
 	//stampa nome, data e voto per ogni materia più una media
 	public ArrayList<String> getListaValutazioni(String usernameGenitore){
 		
@@ -152,7 +190,7 @@ public class EntityIstituto {
        }
 
        // Controllo se esiste una materia con idmaterie
-       if (!singleton.esisteMateria(idmaterie,docente)) {
+       if (!singleton.esisteMateriaInsegnata(idmaterie,docente)) {
            return -1;
        }
 
@@ -175,12 +213,21 @@ public class EntityIstituto {
        return ret;
 	}
 	
-	public boolean controllomateria(int idmateria, String docente) {
+	public boolean controllomateria_insegnata(int idmateria, String docente) {
 		
 		IstitutoDAO singleton = IstitutoDAO.getInstance();
 		
-		return singleton.esisteMateria(idmateria, docente);
+		return singleton.esisteMateriaInsegnata(idmateria, docente);
 	}
+	
+public boolean controllomateria(int idmateria) {
+		
+		IstitutoDAO singleton = IstitutoDAO.getInstance();
+		
+		return singleton.esisteMateria(idmateria);
+	}
+	
+	
 	
 	public boolean controllostudente(int matricola) {
 		IstitutoDAO singleton = IstitutoDAO.getInstance();
