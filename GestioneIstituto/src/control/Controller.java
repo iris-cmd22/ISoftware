@@ -43,11 +43,11 @@ public class Controller {
     }
 
 
-    public static int aggiungiVoto(int matricola, int materia, Date data, float voto){
+    public static int aggiungiVoto(String docente, int matricola, int materia, Date data, float voto){
     	
     	
     	EntityIstituto singleton = EntityIstituto.getInstance();
-        int ret=singleton.aggiungiVoto(matricola,materia,data,voto);
+        int ret=singleton.aggiungiVoto(docente, matricola,materia,data,voto);
 
         return ret;
     }
@@ -63,10 +63,10 @@ public class Controller {
     }
 
 
-public static boolean controllomateria(int idmateria) {
+public static boolean controllomateria(int idmateria, String docente) {
 			
 			EntityIstituto singleton = EntityIstituto.getInstance();
-			return singleton.controllomateria(idmateria);
+			return singleton.controllomateria(idmateria, docente);
 		}
 	
 public static boolean controllostudente(int matricola) {
@@ -95,5 +95,13 @@ public static boolean controllodata(Date data) {
 		return singleton.controllodata(data);
 	}
 
-}
+public static boolean controllodocente(String username) {
 
+	int ret = 0;
+	EntityIstituto singleton = EntityIstituto.getInstance();
+	return singleton.controllodocente(username);
+
+	
+    }
+
+}
