@@ -88,7 +88,7 @@ public class ValutazioneDAO {
 				studente.setDataNascita(rs.getDate("dataNascita"));
 				studente.setComuneResidenza(rs.getString("comuneResidenza"));
 				studente.setEmail(rs.getString("email"));
-				studente.setNumeroCellulare(rs.getInt("numeroCellulare"));
+				studente.setNumeroCellulare(rs.getString("numeroCellulare"));
 				
 				
 				this.studente=studente;			
