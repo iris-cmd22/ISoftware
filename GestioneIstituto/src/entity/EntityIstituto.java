@@ -212,5 +212,15 @@ public class EntityIstituto {
 		
 		return ret;
 	}
+	
+	
+	public boolean controllodocente(String username) {
+		
+		IstitutoDAO singleton = IstitutoDAO.getInstance();
+		
+		return singleton.esisteDocente(username);
+		
+		
+	}
 
 }
