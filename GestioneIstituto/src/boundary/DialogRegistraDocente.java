@@ -91,49 +91,41 @@ public class DialogRegistraDocente extends JDialog {
 		contentPane.add(lbl_nome);
 		
 		textField_Nome = new JTextField();
-		textField_Nome.setEditable(false);
 		textField_Nome.setBounds(167, 57, 116, 19);
 		contentPane.add(textField_Nome);
 		textField_Nome.setColumns(10);
 		
 		textField_Cognome = new JTextField();
-		textField_Cognome.setEditable(false);
 		textField_Cognome.setBounds(167, 98, 116, 19);
 		contentPane.add(textField_Cognome);
 		textField_Cognome.setColumns(10);
 		
 		textField_codiceFiscale = new JTextField();
-		textField_codiceFiscale.setEditable(false);
 		textField_codiceFiscale.setBounds(167, 188, 116, 19);
 		contentPane.add(textField_codiceFiscale);
 		textField_codiceFiscale.setColumns(10);
 		
 		textField_Email = new JTextField();
-		textField_Email.setEditable(false);
 		textField_Email.setBounds(167, 267, 116, 19);
 		contentPane.add(textField_Email);
 		textField_Email.setColumns(10);
 		
 		textField_NumeroCellulare = new JTextField();
-		textField_NumeroCellulare.setEditable(false);
 		textField_NumeroCellulare.setBounds(167, 303, 116, 19);
 		contentPane.add(textField_NumeroCellulare);
 		textField_NumeroCellulare.setColumns(10);
 		
 		textField_Username = new JTextField();
-		textField_Username.setEditable(false);
 		textField_Username.setBounds(493, 57, 96, 19);
 		contentPane.add(textField_Username);
 		textField_Username.setColumns(10);
 		
 		textField_Password = new JTextField();
-		textField_Password.setEditable(false);
 		textField_Password.setBounds(493, 98, 96, 19);
 		contentPane.add(textField_Password);
 		textField_Password.setColumns(10);
 		
 		textField_ComuneResidenza = new JTextField();
-		textField_ComuneResidenza.setEditable(false);
 		textField_ComuneResidenza.setBounds(167, 231, 116, 19);
 		contentPane.add(textField_ComuneResidenza);
 		textField_ComuneResidenza.setColumns(10);
@@ -199,7 +191,6 @@ public class DialogRegistraDocente extends JDialog {
 		contentPane.add(lbl_password);
 		
 		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setEnabled(false);
 		dateChooser.setBounds(167, 142, 116, 19);
 		contentPane.add(dateChooser);
 		
