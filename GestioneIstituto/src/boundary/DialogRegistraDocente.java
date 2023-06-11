@@ -44,6 +44,7 @@ public class DialogRegistraDocente extends JDialog {
 	private JTextField textField_ComuneResidenza;
 	private JTextField textOut;
 	private JTextField text_materie;
+	private JTextField textout_inserimento;
 
 	/**
 	 * Launch the application.
@@ -142,6 +143,14 @@ public class DialogRegistraDocente extends JDialog {
 		contentPane.add(textOut);
 		textOut.setColumns(10);
 		
+		textout_inserimento = new JTextField();
+		textout_inserimento.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		textout_inserimento.setBackground(new Color(0, 0, 139));
+		textout_inserimento.setForeground(Color.WHITE);
+		textout_inserimento.setBounds(450, 267, 139, 19);
+		contentPane.add(textout_inserimento);
+		textout_inserimento.setColumns(10);
+		
 		JLabel lbl_cognome = new JLabel("Cognome");
 		lbl_cognome.setForeground(new Color(255, 255, 255));
 		lbl_cognome.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -216,7 +225,7 @@ public class DialogRegistraDocente extends JDialog {
 				String comune = textField_ComuneResidenza.getText();
 				
 				ret = Controller.registraUtente("Docente",nome,cognome,(Date) dataNascita,codiceFiscale,comune ,email,
-						numeroCellulare,username,password,materie, " ", 0);
+						numeroCellulare,username,password,materie, 0, 0);
 				
 				materie.clear();
 				
@@ -283,8 +292,9 @@ public class DialogRegistraDocente extends JDialog {
 
                     // Aggiungi il numero all'ArrayList
                     materie.add(number);
-                   
-                    System.out.println("Id inserito: " + number);
+                    
+                    textout_inserimento.setText("Id inserito: " + number);
+                    text_materie.setText(" ");
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Inserisci un numero valido!", "Errore", JOptionPane.ERROR_MESSAGE);
                 }
@@ -310,6 +320,8 @@ public class DialogRegistraDocente extends JDialog {
 		btn_ListaMaterie.setFont(new Font("Tahoma", Font.BOLD, 10));
 		btn_ListaMaterie.setBounds(348, 187, 101, 21);
 		contentPane.add(btn_ListaMaterie);
+		
+		
 		
 		
 		
