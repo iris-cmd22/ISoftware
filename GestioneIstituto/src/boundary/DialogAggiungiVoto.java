@@ -37,6 +37,8 @@ public class DialogAggiungiVoto extends JDialog {
 	private JTextField textOut_materia;
 	private JTextField textOut_matricola;
 	private JTextField textOut_data;
+	private JTextField textField_docente;
+	private JTextField textOut_docente;
 	
 
 
@@ -81,12 +83,12 @@ public class DialogAggiungiVoto extends JDialog {
 		lbl_matricola.setForeground(new Color(255, 255, 255));
 		lbl_matricola.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lbl_matricola.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_matricola.setBounds(25, 123, 60, 13);
+		lbl_matricola.setBounds(25, 144, 60, 13);
 		contentPane.add(lbl_matricola);
 		
 		textField_matricola = new JTextField();
 		textField_matricola.setEditable(false);
-		textField_matricola.setBounds(111, 119, 145, 19);
+		textField_matricola.setBounds(111, 140, 145, 19);
 		contentPane.add(textField_matricola);
 		textField_matricola.setColumns(10);
 		
@@ -95,13 +97,13 @@ public class DialogAggiungiVoto extends JDialog {
 		lbl_data.setForeground(new Color(255, 255, 255));
 		lbl_data.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lbl_data.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_data.setBounds(25, 176, 60, 13);
+		lbl_data.setBounds(25, 198, 60, 13);
 		contentPane.add(lbl_data);
 		
 		JLabel lbl_voto = new JLabel("Voto");
 		lbl_voto.setForeground(new Color(255, 255, 255));
 		lbl_voto.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lbl_voto.setBounds(39, 218, 48, 14);
+		lbl_voto.setBounds(37, 238, 48, 14);
 		contentPane.add(lbl_voto);
 		
 		JDateChooser dateChooser = new JDateChooser();
@@ -110,7 +112,7 @@ public class DialogAggiungiVoto extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		dateChooser.setBounds(111, 169, 145, 20);
+		dateChooser.setBounds(111, 191, 145, 20);
 		contentPane.add(dateChooser);
 		
 	
@@ -118,17 +120,18 @@ public class DialogAggiungiVoto extends JDialog {
 		JSpinner spinner = new JSpinner();
 		spinner.setEnabled(false);
 		spinner.setModel(new SpinnerNumberModel(1, 1, 10, 1));
-		spinner.setBounds(111, 215, 145, 20);
+		spinner.setBounds(111, 235, 145, 20);
 		contentPane.add(spinner);
 		
 		JLabel lbl_materia = new JLabel("Materia");
 		lbl_materia.setForeground(new Color(255, 255, 255));
 		lbl_materia.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lbl_materia.setBounds(37, 70, 48, 14);
+		lbl_materia.setBounds(37, 91, 48, 14);
 		contentPane.add(lbl_materia);
 		
 		textField_materia = new JTextField();
-		textField_materia.setBounds(111, 67, 145, 20);
+		textField_materia.setEditable(false);
+		textField_materia.setBounds(111, 88, 145, 20);
 		contentPane.add(textField_materia);
 		textField_materia.setColumns(10);
 		
@@ -146,10 +149,11 @@ public class DialogAggiungiVoto extends JDialog {
 				
 				String matricola = textField_matricola.getText();
 				String materia = textField_materia.getText();
+				String docente = textField_docente.getText();
 				java.util.Date data = dateChooser.getDate();
 				int voto = (int) spinner.getValue();
 				
-				ret=Controller.aggiungiVoto(Integer.parseInt(matricola),Integer.parseInt(materia),(Date) data, voto);
+				ret=Controller.aggiungiVoto(docente, Integer.parseInt(matricola),Integer.parseInt(materia),(Date) data, voto);
 				
 				if(ret!=-1) {
 					
@@ -170,14 +174,46 @@ public class DialogAggiungiVoto extends JDialog {
 		btnAggiungiVoto.setBounds(396, 264, 112, 23);
 		contentPane.add(btnAggiungiVoto);
 		
+		
+		
+		
+		textField_docente = new JTextField();
+		textField_docente.setBounds(111, 50, 145, 20);
+		contentPane.add(textField_docente);
+		textField_docente.setColumns(10);
+		
+		JButton btnCHECK_DOCENTE = new JButton("Check Docente");
+		btnCHECK_DOCENTE.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String docente=textField_docente.getText();
+				boolean i= Controller.controllodocente(docente);
+				
+				if(i==true) {
+					textField_materia.setEditable(true);
+					textOut_docente.setText("OK!");
+				}else {
+					textOut_docente.setText("Docente non trovato");
+				}
+				
+			}
+		});
+		btnCHECK_DOCENTE.setBounds(307, 49, 138, 23);
+		contentPane.add(btnCHECK_DOCENTE);
+		
+		
+		
+		
+		
 		JButton btnCHECK_MATERIA = new JButton("Check Materia");
 		btnCHECK_MATERIA.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String materia = textField_materia.getText();
+				String docente = textField_docente.getText();
 				
 			
-				boolean i = Controller.controllomateria(Integer.parseInt(materia));
+				boolean i = Controller.controllomateria(Integer.parseInt(materia), docente);
 				
 				if(i==true) {
 					textField_matricola.setEditable(true);
@@ -193,7 +229,7 @@ public class DialogAggiungiVoto extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnCHECK_MATERIA.setBounds(307, 66, 138, 23);
+		btnCHECK_MATERIA.setBounds(307, 87, 138, 23);
 		contentPane.add(btnCHECK_MATERIA);
 		
 		
@@ -217,7 +253,7 @@ public class DialogAggiungiVoto extends JDialog {
 				
 			}
 		});
-		btnCHECK_MATRICOLA.setBounds(307, 118, 138, 23);
+		btnCHECK_MATRICOLA.setBounds(307, 139, 138, 23);
 		contentPane.add(btnCHECK_MATRICOLA);
 		
 		JButton btnCHECK_DATA = new JButton("Check Data");
@@ -245,7 +281,7 @@ public class DialogAggiungiVoto extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnCHECK_DATA.setBounds(307, 171, 138, 23);
+		btnCHECK_DATA.setBounds(307, 193, 138, 23);
 		contentPane.add(btnCHECK_DATA);
 		
 		textOut_materia = new JTextField();
@@ -253,7 +289,7 @@ public class DialogAggiungiVoto extends JDialog {
 		textOut_materia.setForeground(new Color(255, 255, 255));
 		textOut_materia.setBackground(new Color(0, 0, 128));
 		textOut_materia.setEditable(false);
-		textOut_materia.setBounds(467, 67, 96, 20);
+		textOut_materia.setBounds(467, 88, 96, 20);
 		contentPane.add(textOut_materia);
 		textOut_materia.setColumns(10);
 		
@@ -261,7 +297,7 @@ public class DialogAggiungiVoto extends JDialog {
 		textOut_matricola.setForeground(new Color(255, 255, 255));
 		textOut_matricola.setBackground(new Color(0, 0, 128));
 		textOut_matricola.setEditable(false);
-		textOut_matricola.setBounds(467, 119, 96, 20);
+		textOut_matricola.setBounds(467, 140, 96, 20);
 		contentPane.add(textOut_matricola);
 		textOut_matricola.setColumns(10);
 		
@@ -269,9 +305,26 @@ public class DialogAggiungiVoto extends JDialog {
 		textOut_data.setForeground(new Color(255, 255, 255));
 		textOut_data.setBackground(new Color(0, 0, 128));
 		textOut_data.setEditable(false);
-		textOut_data.setBounds(467, 172, 96, 20);
+		textOut_data.setBounds(467, 194, 96, 20);
 		contentPane.add(textOut_data);
 		textOut_data.setColumns(10);
+		
+		JLabel lbl_docente = new JLabel("Docente");
+		lbl_docente.setForeground(Color.WHITE);
+		lbl_docente.setFont(new Font("Tahoma", Font.BOLD, 10));
+		lbl_docente.setBounds(37, 53, 48, 14);
+		contentPane.add(lbl_docente);
+		
+	
+		
+		textOut_docente = new JTextField();
+		textOut_docente.setHorizontalAlignment(SwingConstants.CENTER);
+		textOut_docente.setForeground(Color.WHITE);
+		textOut_docente.setEditable(false);
+		textOut_docente.setColumns(10);
+		textOut_docente.setBackground(new Color(0, 0, 128));
+		textOut_docente.setBounds(467, 50, 96, 20);
+		contentPane.add(textOut_docente);
 		
 		
 
