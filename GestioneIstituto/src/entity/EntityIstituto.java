@@ -177,43 +177,57 @@ public class EntityIstituto {
 	
 	
 	
-	public int aggiungiVoto(String docente, int matricola, int idmaterie, Date data, float voto) {
+	//UPDATE Aggiungivoto
+	public int aggiungiVoto(int matricola, int idmaterie, Date data, float voto) {
 		
-		idvalutazione++;
+		idvalutazione++; //variabile statica per assegnare univocamente l'id
 		
 		EntityValutazione valutazione = new EntityValutazione();
+		valutazione.setIdvalutazioni(idvalutazione);
+		
 		IstitutoDAO singleton = IstitutoDAO.getInstance();
     	
    	 	// Controllo se esiste uno studente con quella matricola
        if (!singleton.esisteStudente(matricola)) {
+    	   System.out.println("Studente non trovato");
            return -1;
        }
+
+       EntityStudente studente_valutato = new EntityStudente(matricola);
+       valutazione.setStudente(studente_valutato);
 
        // Controllo se esiste una materia con idmaterie
-       if (!singleton.esisteMateriaInsegnata(idmaterie,docente)) {
+       if (!singleton.esisteMateria(idmaterie)) {
+    	   System.out.println("Materia non trovata");
            return -1;
        }
 
+       EntityMateria materia_valutata = new EntityMateria(idmaterie);
+       valutazione.setMateria(materia_valutata);
+
+       
        // Controllo se la data è nel quadrimestre corrente
        if (!singleton.isDataValida(data)) {
+    	   System.out.println("Data non valida");
            return -1;
        }
+       
+       
+       valutazione.setData(data);
 
        // Controllo se il voto è compreso tra 0 e 10
        if (voto < 0 || voto > 10) {
            return -1;
        }
    	
-   	int ret = valutazione.scriviSuDB(idvalutazione, matricola,idmaterie,data,voto);
-   	
-	   	if(ret!=-1) {
-	   		valutazione.setData(data);
-	   		valutazione.setVoto(voto);
-	   	}
+       valutazione.setVoto(voto);
+       
+   		int ret = valutazione.scriviSuDB(idvalutazione);
+  
        return ret;
 	}
 	
-	public boolean controllomateria_insegnata(int idmateria, String docente) {
+public boolean controllomateria_insegnata(int idmateria, String docente) {
 		
 		IstitutoDAO singleton = IstitutoDAO.getInstance();
 		
