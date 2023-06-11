@@ -23,11 +23,11 @@ public class IstitutoDAO {
 		return instance;
 	}
 	
-	public int verificamaterie(int idmateria) {
+	public int verificamaterie(int idmaterie) {
 		
 		int ret=0;
 		
-		String query="SELECT * FROM materie WHERE idmaterie='"+idmateria+"';";
+		String query="SELECT * FROM materie WHERE idmaterie='"+idmaterie+"';";
 		
 		try {
 			
