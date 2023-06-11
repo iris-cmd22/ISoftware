@@ -225,7 +225,7 @@ public class IstitutoDAO {
 				
 				MateriaDAO materia = new MateriaDAO();
 				
-				materia.setIdmateria(rs.getInt("idmateria"));
+				materia.setIdmateria(rs.getInt("idmaterie"));
 				materia.setNome(rs.getString("nome"));
 				
 				materie.add(materia);
