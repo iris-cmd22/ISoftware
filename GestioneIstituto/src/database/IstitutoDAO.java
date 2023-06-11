@@ -254,27 +254,61 @@ public class IstitutoDAO {
 		return materie;
 	}
 	
-	public ArrayList<String> visualizzastudenti(){
+	public ArrayList<StudenteDAO> visualizzastudenti(){
 		
-		IstitutoDAO singleton = IstitutoDAO.getInstance();
-		ArrayList<String> studenti = new ArrayList<String>();
+		ArrayList<StudenteDAO> studenti = new ArrayList<StudenteDAO>();
 		
-		for(int i=0; i<singleton.visualizzastudenti().size(); i++) {
-			EntityStudente studente = new EntityStudente(singleton.visualizzastudenti().get(i).getMatricola());
-			studenti.add(studente.toString());
+		String query="SELECT * FROM studenti";
+		
+		try {
+			
+			ResultSet rs = DBConnectionManager.selectQuery(query);
+			System.out.println(query); //per debug
+			
+			while(rs.next()) {
+				
+				StudenteDAO studente = new StudenteDAO();
+				
+				studente.setMatricola(rs.getInt("matricola"));
+				studente.setUsername(rs.getString("username"));
+				studente.setNome(rs.getString("nome"));
+				studente.setNome(rs.getString("cognome"));
+				
+				studenti.add(studente);
+			}
+			
+		}catch(ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
 		}
 		
 		return studenti;
 	}
 	
-	public ArrayList<String> visualizzaclassi(){
+	public ArrayList<ClasseDAO> visualizzaclassi(){
 		
-		IstitutoDAO singleton = IstitutoDAO.getInstance();
-		ArrayList<String> classi = new ArrayList<String>();
+		ArrayList<ClasseDAO> classi = new ArrayList<ClasseDAO>();
 		
-		for(int i=0; i<singleton.visualizzaclassi().size(); i++) {
-			EntityClasse classe = new EntityClasse(singleton.visualizzaclassi().get(i).getIdClasse());
-			classi.add(classe.toString());
+		String query="SELECT * FROM classi";
+		
+		try {
+			
+			ResultSet rs = DBConnectionManager.selectQuery(query);
+			System.out.println(query); //per debug
+			
+			while(rs.next()) {
+				
+				ClasseDAO classe = new ClasseDAO();
+				
+				classe.setIdClasse(rs.getInt("idclassi"));
+				classe.setSezione(rs.getString("sezione"));
+				classe.setAnno(rs.getString("anno"));
+				classe.setAnnoscolastico(rs.getInt("annoScolastico"));
+				
+				classi.add(classe);
+			}
+			
+		}catch(ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
 		}
 		
 		return classi;
