@@ -92,6 +92,21 @@ public class IstitutoDAO {
         }
     }
 
+	
+    public boolean esisteMateria(int idmaterie, String docente){
+        try {
+        	
+        	ResultSet rs = DBConnectionManager.selectQuery("SELECT idmaterie FROM materie WHERE idmaterie = " + idmaterie + " AND docente = '" + docente + "';"); //controlla se la materia esiste ed è insegnata dal docente che vuole aggiungere il voto
+
+            
+
+            return rs.next();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+	
 
       public boolean isDataValida(Date data) { //in ingresso c'è la data della valutazione, che non è necessariamente la data corrente
     	 LocalDate dataCorrente = LocalDate.now();
