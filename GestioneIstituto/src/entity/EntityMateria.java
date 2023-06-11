@@ -9,6 +9,7 @@ public class EntityMateria {
     private int idmaterie;
     private String nome;
     private EntityClasse classe;
+    private EntityDocente docente;
     private ArrayList<EntityValutazione> valutazioni;
 
 	public EntityMateria() {
@@ -56,6 +57,12 @@ public class EntityMateria {
 			this.classe=classe;
 	}
 	
+	public void caricaDocente(MateriaDAO materia) {
+		
+		EntityDocente docente = new EntityDocente(materia.getDocente().getUsername()); //va implementato il copy in Valutazioni
+		this.docente=docente;
+	}
+	
 	public int getIdmaterie() {
 		return idmaterie;
 	}
@@ -91,6 +98,14 @@ public class EntityMateria {
 
 	public void setClasse(EntityClasse classe) {
 		this.classe = classe;
+	}
+
+	public EntityDocente getDocente() {
+		return docente;
+	}
+
+	public void setDocente(EntityDocente docente) {
+		this.docente = docente;
 	}
 	
 	

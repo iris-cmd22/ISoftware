@@ -3,6 +3,7 @@ package entity;
 import java.sql.Date;
 
 import database.GenitoreDAO;
+import database.StudenteDAO;
 
 public class EntityGenitore {
 
@@ -56,9 +57,12 @@ public class EntityGenitore {
 
 	}
 	
-	private void caricaStudente(GenitoreDAO genitore) {
+	public void caricaStudente(String username) {
 			
-			EntityStudente studente =new EntityStudente(genitore.getStudente());
+			GenitoreDAO genitore =new GenitoreDAO(username);
+			genitore.caricaStudenteDaDB();
+			
+			EntityStudente studente =new EntityStudente(genitore.getStudente().getMatricola());
 			this.studente=studente;
 	
 		}
@@ -68,6 +72,7 @@ public class EntityGenitore {
 	public int scriviSuDB(String username) {
 		
 		GenitoreDAO s= new GenitoreDAO(username); //DAO
+		StudenteDAO ss=new StudenteDAO(studente.getMatricola());
 		
 		s.setPassword(this.password);
 		s.setNome(this.nome);
@@ -77,14 +82,11 @@ public class EntityGenitore {
 		s.setComuneResidenza(this.comuneResidenza);
 		s.setEmail(this.email);
 		s.setNumeroCellulare(this.numeroCellulare);
+		s.setStudente(ss);
 		int i = s.SalvaInDB(username);
 		
 		return i;
 	}
-		
-
-
-
 
 	public String getNome() {
 		return nome;

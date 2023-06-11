@@ -21,7 +21,7 @@ public class EntityStudente {
 		private String password;
 		private ArrayList<EntityPagella> pagelle;
 		private ArrayList<EntityValutazione> valutazioni;
-		//private EntityGenitore genitore;
+		private EntityGenitore genitore;
 		
 		public EntityStudente() {
 			super();
@@ -46,10 +46,10 @@ public class EntityStudente {
 			this.pagelle= new ArrayList<EntityPagella>(); //devo inizializzare gli arrayList vuoti
 			this.valutazioni= new ArrayList<EntityValutazione>();
 			
-			studente.caricaPagelleStudenteDaDB();
-			caricaPagelle(studente);
-			studente.caricaValutazioniDaDB();
-			caricaValutazioni(studente);
+			//studente.caricaPagelleStudenteDaDB();
+			//caricaPagelle(studente);
+			//studente.caricaValutazioniDaDB();
+			//caricaValutazioni(studente);
 			//studente.caricaGenitoreDaDB();
 			//caricaGenitore(studente);
 			
@@ -69,10 +69,10 @@ public class EntityStudente {
 			this.pagelle= new ArrayList<EntityPagella>(); 
 			this.valutazioni= new ArrayList<EntityValutazione>();
 			
-			studente.caricaPagelleStudenteDaDB();
-			caricaPagelle(studente);
-			studente.caricaValutazioniDaDB();
-			caricaValutazioni(studente);
+			//studente.caricaPagelleStudenteDaDB();
+			//caricaPagelle(studente);
+			//studente.caricaValutazioniDaDB();
+			//caricaValutazioni(studente);
 			//studente.caricaGenitoreDaDB();
 			//caricaGenitore(studente);
 
@@ -98,7 +98,7 @@ public class EntityStudente {
 				this.pagelle.add(pagelle);
 			}
 		}
-		/*
+	
 		public void caricaGenitore(StudenteDAO studente) {
 			
 			
@@ -106,7 +106,7 @@ public class EntityStudente {
 			this.genitore = genitore;
 			
 		}
-		*/
+
 		public int scriviSuDB(int matricola) {
 			
 			StudenteDAO s= new StudenteDAO(); //DAO
@@ -248,7 +248,7 @@ public class EntityStudente {
 		}
 
 
-	/*
+	
 		public EntityGenitore getGenitore() {
 			return genitore;
 		}
@@ -257,7 +257,7 @@ public class EntityStudente {
 		public void setGenitore(EntityGenitore genitore) {
 			this.genitore = genitore;
 		}
-*/
+
 
 		@Override
 		public String toString() {
@@ -266,6 +266,5 @@ public class EntityStudente {
 					+ comuneResidenza + ", email=" + email + ", numeroCellulare=" + numeroCellulare + ", username="
 					+ username + ", password=" + password + "]";
 		}
-			
 
 }

@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import database.DocenteDAO;
+import database.MateriaDAO;
 
 public class EntityDocente {
 	
@@ -31,7 +32,7 @@ public class EntityDocente {
 		
 		DocenteDAO docente = new DocenteDAO(username);
 		
-		this.nome = docente.getNome();
+		this.username = username;
 		this.password = docente.getPassword();
 		this.nome = docente.getNome();
 		this.cognome = docente.getCognome();
@@ -52,14 +53,16 @@ public class EntityDocente {
 		
 		for(int i=0; i<docente.getMaterie().size(); i++) {
 			
-			EntityMateria materia = new EntityMateria(docente.getMaterie().get(i));
+			EntityMateria materia = new EntityMateria(docente.getMaterie().get(i).getIdmateria());
+			
 			this.materie.add(materia);
+			
 		}
 	}
 	
 	public int scriviSuDB(String username) {
 		
-		DocenteDAO d = new DocenteDAO();
+		DocenteDAO d = new DocenteDAO(username);
 		
 		d.setNome(this.nome);
 		d.setCognome(this.cognome);
@@ -73,6 +76,37 @@ public class EntityDocente {
 		int i = d.SalvaInDB(username);
 		
 		return i;
+	}
+	
+	public int aggiornaMaterieSuDB(String username) {
+		
+			int ret=0;
+			DocenteDAO d = new DocenteDAO(username);
+			
+			d.setNome(this.nome);
+			d.setCognome(this.cognome);
+			d.setComuneResidenza(this.comuneResidenza);
+			d.setCodiceFiscale(this.codiceFiscale);
+			d.setDataNascita(this.dataNascita);
+			d.setEmail(this.email);
+			d.setNumeroCellulare(this.numeroCellulare);
+			d.setPassword(this.password);
+			
+			ArrayList<MateriaDAO> materie_temp = new ArrayList<MateriaDAO>();
+			for(int i=0;i<this.materie.size();i++) {
+				
+				MateriaDAO m = new MateriaDAO(materie.get(i).getIdmaterie());
+				
+				m.setDocente(d);
+				ret=m.SalvaDocenteInDB();
+				System.out.println(ret);
+				
+				materie_temp.add(m);
+			}
+			
+			d.setMaterie(materie_temp);
+			
+			return ret;
 	}
 
 	public String getNome() {
