@@ -8,6 +8,7 @@ public class MateriaDAO {
 
     private int idmaterie;
     private String nome;
+    private ClasseDAO classe;
     private ArrayList<ValutazioneDAO> valutazioni;
     
     public MateriaDAO(){
@@ -63,6 +64,34 @@ public class MateriaDAO {
 			e.printStackTrace();
 		}
     }
+     
+     public void caricaClasseDaDB(){
+         
+         String query= new String("SELECT * FROM classi WHERE materia=\'"+this.idmaterie+"')");
+         //System.out.println(query); //per debug
+
+         	try {
+ 			
+ 			ResultSet rs= DBConnectionManager.selectQuery(query);
+ 			
+ 			if(rs.next()) {
+ 				
+ 				//NB:
+ 				ClasseDAO classe =new ClasseDAO();
+ 				classe.setIdClasse(rs.getInt("idclasse"));
+ 				classe.setSezione(rs.getString("sezione"));
+ 				classe.setSezione(rs.getString("sezione"));
+ 				classe.setAnnoscolastico(rs.getInt("annoscolastico"));
+ 						
+ 				this.classe=classe;
+ 				
+ 			}	
+ 			
+ 		}catch( ClassNotFoundException | SQLException e) {
+ 			
+ 			e.printStackTrace();
+ 		}
+     }
 
 
 	public int getIdmateria() {
@@ -87,5 +116,13 @@ public class MateriaDAO {
 	
 	public void setValutazioni(ArrayList<ValutazioneDAO> valutazioni) {
 		this.valutazioni = valutazioni;
+	}
+
+	public ClasseDAO getClasse() {
+		return classe;
+	}
+
+	public void setClasse(ClasseDAO classe) {
+		this.classe = classe;
 	}
 }
