@@ -14,7 +14,7 @@ public class StudenteDAO {
 	private String codiceFiscale;
 	private String comuneResidenza;
 	private String email;
-	private int numeroCellulare;
+	private String numeroCellulare;
 	private String username;
 	private String password;
 	private GenitoreDAO genitore; //mi serve per risalire all'email del genitore per inviare una notifica in caso di insufficienza
@@ -54,7 +54,7 @@ public class StudenteDAO {
 				this.setCodiceFiscale(rs.getString("codiceFiscale"));
 				this.setComuneResidenza(rs.getString("comuneResidenza"));
 				this.setEmail(rs.getString("email"));
-				this.setNumeroCellulare(rs.getInt("numeroCellulare"));
+				this.setNumeroCellulare(rs.getString("numeroCellulare"));
 				this.setUsername(rs.getString("username"));
 				this.setPassword(rs.getString("password"));
 				
@@ -278,12 +278,12 @@ public void caricaValutazioniDaDB(){
 	}
 
 
-	public int getNumeroCellulare() {
+	public String getNumeroCellulare() {
 		return numeroCellulare;
 	}
 
 
-	public void setNumeroCellulare(int numeroCellulare) {
+	public void setNumeroCellulare(String numeroCellulare) {
 		this.numeroCellulare = numeroCellulare;
 	}
 
