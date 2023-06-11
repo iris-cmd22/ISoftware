@@ -194,10 +194,6 @@ public class DialogRegistraDocente extends JDialog {
 		dateChooser.setBounds(167, 142, 116, 19);
 		contentPane.add(dateChooser);
 		
-		JList list = new JList();
-		list.setBounds(450, 60, 60, 0);
-		contentPane.add(list);
-		
 		//Bottone INSERISCI
 		JButton btn_Inserisci = new JButton("INSERISCI");
 		btn_Inserisci.setEnabled(false);
