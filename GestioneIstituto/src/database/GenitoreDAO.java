@@ -12,7 +12,7 @@ public class GenitoreDAO {
 	private String codiceFiscale;
 	private String comuneResidenza;
 	private String email;
-	private int numeroCellulare;
+	private String numeroCellulare;
 	private String username;
 	private String password;
 	private StudenteDAO studente; //mi serve per risalire alle valutazioni dello studente
@@ -56,7 +56,7 @@ public class GenitoreDAO {
 				this.setDataNascita(rs.getDate("dataNascita"));
 				this.setCodiceFiscale(rs.getString("codiceFiscale"));
 				this.setComuneResidenza(rs.getString("comuneResidenza"));
-				this.setNumeroCellulare(rs.getInt("numeroCellulare"));
+				this.setNumeroCellulare(rs.getString("numeroCellulare"));
 				this.setUsername(rs.getString("username"));
 				this.setPassword(rs.getString("password"));
 				
@@ -88,7 +88,7 @@ public class GenitoreDAO {
 				studente.setDataNascita(rs.getDate("dataNascita"));
 				studente.setComuneResidenza(rs.getString("comuneResidenza"));
 				studente.setEmail(rs.getString("email"));
-				studente.setNumeroCellulare(rs.getInt("numeroCellulare"));
+				studente.setNumeroCellulare(rs.getString("numeroCellulare"));
 				studente.caricaValutazioniDaDB();
 						
 				this.studente=studente;
@@ -165,11 +165,11 @@ public class GenitoreDAO {
 		this.email = email;
 	}
 
-	public int getNumeroCellulare() {
+	public String getNumeroCellulare() {
 		return numeroCellulare;
 	}
 
-	public void setNumeroCellulare(int numeroCellulare) {
+	public void setNumeroCellulare(String numeroCellulare) {
 		this.numeroCellulare = numeroCellulare;
 	}
 
