@@ -27,7 +27,7 @@ public class IstitutoDAO {
 		
 		int ret=0;
 		
-		String query="SELECT * FROM materie WHERE idmateria='"+idmateria+"';";
+		String query="SELECT * FROM materie WHERE idmaterie='"+idmateria+"';";
 		
 		try {
 			
