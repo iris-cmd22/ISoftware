@@ -100,8 +100,16 @@ public static boolean controllodocente(String username) {
 	int ret = 0;
 	EntityIstituto singleton = EntityIstituto.getInstance();
 	return singleton.controllodocente(username);
-
 	
+    }
+	
+ public static ArrayList<String> visualizzamaterie(){
+    	EntityIstituto singleton = EntityIstituto.getInstance();
+        ArrayList<String> materie = new ArrayList<String>();
+        
+        materie=singleton.visualizzamaterie();
+        
+        		return materie;
     }
 
 }
