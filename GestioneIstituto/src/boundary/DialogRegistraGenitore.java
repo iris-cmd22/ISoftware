@@ -317,7 +317,7 @@ public class DialogRegistraGenitore extends JDialog {
 				
 				studenti = Controller.visualizzastudenti();
 				
-				JOptionPane.showMessageDialog(btn_listaMatricole, studenti.toString(), "Lista Materie", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(btn_listaMatricole, studenti.toString(), "Lista Matricole", JOptionPane.INFORMATION_MESSAGE);
 				
 				
 			}
@@ -326,12 +326,6 @@ public class DialogRegistraGenitore extends JDialog {
 		btn_listaMatricole.setForeground(Color.BLACK);
 		btn_listaMatricole.setBounds(342, 187, 116, 21);
 		contentPane.add(btn_listaMatricole);
-		
-		
-		
-		
-		
-		
-		
+
 	}
 }
