@@ -3,7 +3,7 @@ package boundary;
 
 
 import javax.swing.JDialog;
-import java.sql.Date;
+//import java.sql.Date;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
@@ -239,9 +239,10 @@ public class DialogAggiungiVoto extends JDialog {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String matricola = textField_matricola.getText();
+				//String materia = textField_materia.getText();
 				
-				
-				boolean i = Controller.controllostudente(Integer.parseInt(matricola));
+			boolean i = Controller.controllostudente(Integer.parseInt(matricola) );
+			//boolean i = Controller.controllostudenteInClasse(Integer.parseInt(matricola),Integer.parseInt(materia) );
 				
 				if(i==true) {
 					dateChooser.setEnabled(true);
