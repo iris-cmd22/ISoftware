@@ -11,7 +11,7 @@ public class EntityClasse {
 	private int annoscolastico;
 	private String sezione;
 	private String anno;
-	private RegistroDAO registro;
+	private EntityRegistro registro;
 	private ArrayList<EntityStudente> studenti;
 	private ArrayList<EntityMateria> materie;
 
@@ -20,6 +20,7 @@ public class EntityClasse {
 		super();
 		this.studenti= new ArrayList<EntityStudente>();
 		this.materie = new ArrayList<EntityMateria>();
+	
 	}
 	
 
@@ -28,41 +29,35 @@ public class EntityClasse {
 		
 		ClasseDAO classe = new ClasseDAO(idClasse);
 		
+		this.idClasse=idClasse;
 		this.annoscolastico=classe.getAnnoscolastico();
 		this.sezione=classe.getSezione();
-		this.anno=classe.getSezione();
-		this.registro= classe.getRegistro();
+		this.anno=classe.getAnno();
 		this.studenti= new ArrayList<EntityStudente>();
 		this.materie = new ArrayList<EntityMateria>();
 		
-		//classe.caricaRegistroDaDB();
-		//caricaRegistro(classe);
+		/*
+		classe.caricaMaterieDaDB();
+		caricaMaterie(classe);
 		
 		classe.caricaStudentiDaDB();
 		caricaStudenti(classe);
 		
-		classe.caricaMaterieDaDB();
-		caricaMaterie(classe);
-		
+		classe.caricaRegistroDaDB();
+		caricaRegistro(classe);
+		*/
 	}
 	
 	//costruttore con DAO
 	public EntityClasse(ClasseDAO classe) {
+		
+		this.idClasse=classe.getIdClasse();
 		this.annoscolastico=classe.getAnnoscolastico();
 		this.sezione=classe.getSezione();
-		this.anno=classe.getSezione();
-		this.registro= classe.getRegistro();
+		this.anno=classe.getAnno();
 		this.studenti= new ArrayList<EntityStudente>();
 		this.materie = new ArrayList<EntityMateria>();
 		
-		//classe.caricaRegistroDaDB();
-		//caricaRegistro(classe);
-		
-		classe.caricaStudentiDaDB();
-		caricaStudenti(classe);
-		
-		classe.caricaMaterieDaDB();
-		caricaMaterie(classe);
 	}
 
 
@@ -89,13 +84,13 @@ public class EntityClasse {
 		
 	}
 
-	/*
+	
 	private void caricaRegistro(ClasseDAO classe) {
-		// TODO Auto-generated method stub
-		EntityRegistro registro= new EntityRegistro(classe.getRegistro());
+		
+		EntityRegistro registro= new EntityRegistro(classe.getRegistro().getIdRegistro());
 		this.registro=registro;
 		
-	} */
+	} 
 
 	public int scriviSuDB(int idClasse) {
 		
@@ -141,11 +136,11 @@ public class EntityClasse {
 		this.anno = anno;
 	}
 
-	public RegistroDAO getRegistro() {
+	public EntityRegistro getRegistro() {
 		return registro;
 	}
 
-	public void setRegistro(RegistroDAO registro) {
+	public void setRegistro(EntityRegistro registro) {
 		this.registro = registro;
 	}
 
@@ -168,8 +163,8 @@ public class EntityClasse {
 
 	@Override
 	public String toString() {
-		return "[idClasse=" + idClasse + ", annoscolastico=" + annoscolastico + ", sezione=" + sezione
-				+ ", anno=" + anno + ", registro=" + registro + ", studenti=" + studenti + ", materie=" + materie + "]\n";
+		return "EntityClasse [idClasse=" + idClasse + ", annoscolastico=" + annoscolastico + ", sezione=" + sezione
+				+ ", anno=" + anno + ", registro=" + registro + ", studenti=" + studenti + ", materie=" + materie + "]";
 	}
 	
 	
