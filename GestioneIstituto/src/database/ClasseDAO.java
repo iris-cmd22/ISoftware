@@ -63,14 +63,14 @@ public class ClasseDAO {
 	
 	public void caricaStudentiDaDB() {
 		
-		String query = new String ("select * from studenti where matricola IN (select * from studenti_in_classe where classe=\'"+this.idClasse+"')");
+		String query = new String ("select * from studenti where matricola IN (select studente from studente_in_classe where classe=\'"+this.idClasse+"')");
 		System.out.println(query); //per debug
 		
 		try {
 			
 			ResultSet rs =DBConnectionManager.selectQuery(query);
 			
-			while(rs.next()) { //uso un while perchè ho più classi
+			while(rs.next()) { //uso un while perchè ho più studenti in una classe
 				
 				//Dobbiamo istanziare l'oggetto Studente
 				StudenteDAO studente=new StudenteDAO();
@@ -94,7 +94,7 @@ public class ClasseDAO {
 
 	public void caricaMaterieDaDB(){
 
-		String query = new String ("select * from materie where classe=\'"+this.idClasse+"')");
+		String query = new String ("SELECT * FROM materie WHERE classe= '"+this.idClasse+"'");
 		System.out.println(query); //per debug
 		
 		try {
