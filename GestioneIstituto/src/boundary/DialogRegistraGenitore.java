@@ -213,7 +213,7 @@ public class DialogRegistraGenitore extends JDialog {
 				ArrayList<Integer> n = null;
 				String matricola = textField_figlio.getText();
 				
-				ret = Controller.registraUtente("Genitore",nome,cognome,(Date) dataNascita,codiceFiscale,comune ,email,
+				ret = Controller.registraUtente("Genitore",nome,cognome,new java.sql.Date(dataNascita.getTime()),codiceFiscale,comune ,email,
 						numeroCellulare,username,password, n, Integer.parseInt(matricola), 0);
 				
 				
