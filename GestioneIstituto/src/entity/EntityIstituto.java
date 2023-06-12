@@ -84,20 +84,37 @@ public class EntityIstituto {
 				studente.setEmail(email);
 				studente.setNumeroCellulare(numeroCellulare);
 				
-					
 				IstitutoDAO singleton = IstitutoDAO.getInstance();
 				ret=singleton.verificaclassi(classe);
 				
-				if(ret != -1) {
+				if(ret == -1) {
 					
-					ret=studente.scriviSuDB(matricola);
-					
-				}else {
-					
-					System.out.println("Materie non verificate");
+					System.out.println("Classe non verificata");
+					return ret;
 				}
-		
-		return ret;
+				
+				EntityClasse c = new EntityClasse(classe);
+				c.getStudenti().add(studente);
+				
+				
+				ret=studente.scriviSuDB(matricola);
+				if(ret == -1) {
+					
+					System.out.println("Studente non aggiunto");
+					return ret;
+				}
+				
+				
+				
+				ret=singleton.scrivi_studente_in_classe(matricola, c.getIdClasse());
+				
+				if(ret == -1) {
+					
+					System.out.println("Collegamento non aggiunto");
+					return ret;
+				}
+				
+				return ret;
 		
 	}
 	
