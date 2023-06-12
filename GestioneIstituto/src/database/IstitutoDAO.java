@@ -81,7 +81,8 @@ public class IstitutoDAO {
     }
     
 	
-	public boolean esisteStudenteInClasse(int matricola, int idmateria) {
+	public boolean esisteStudenteInClasse(int matricola, int idmateria) {  //serve per la funzionalità aggiungiVoto: controlla che l'utente al quale si vuole aggiungere il voto
+		//sia appartenente alla classe in cui la materia (nella quale è stato valutato) sia insegnata in quella classe 
 	    try {
 	        ResultSet rs = DBConnectionManager.selectQuery("SELECT s.matricola " +
 	                "FROM studenti s " +
