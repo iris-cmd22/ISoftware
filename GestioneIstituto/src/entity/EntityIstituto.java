@@ -199,6 +199,7 @@ public class EntityIstituto {
 		}
 		
 		media = media/ utente.getStudente().getValutazioni().size();
+		System.out.println(media);
 		
 		valutazioni.add("La media complessiva dello studente nel quadrimestre risulta: "+media+" \n");
 		
