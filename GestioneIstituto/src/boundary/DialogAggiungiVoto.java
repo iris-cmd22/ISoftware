@@ -239,10 +239,9 @@ public class DialogAggiungiVoto extends JDialog {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String matricola = textField_matricola.getText();
-				//String materia = textField_materia.getText();
-				
-			boolean i = Controller.controllostudente(Integer.parseInt(matricola) );
-			//boolean i = Controller.controllostudenteInClasse(Integer.parseInt(matricola),Integer.parseInt(materia) );
+				String materia = textField_materia.getText();
+		
+			boolean i = Controller.controllostudenteInClasse(Integer.parseInt(matricola),Integer.parseInt(materia) );
 				
 				if(i==true) {
 					dateChooser.setEnabled(true);
