@@ -227,29 +227,6 @@ public boolean isDataValida(Date data) { //in ingresso c'è la data della valuta
     	return ret;
     }
 	
-	public int verificamaterie(int idmaterie) {
-		
-		int ret=0;
-		
-		String query="SELECT * FROM materie WHERE idmaterie='"+idmaterie+"';";
-		
-		try {
-			
-			ResultSet rs =DBConnectionManager.selectQuery(query);
-			System.out.println(query); //per debug
-			
-			if(rs.next()) {
-				System.out.println("Materia verificata");
-			}
-			
-		}catch( ClassNotFoundException | SQLException e){
-			e.printStackTrace();
-			ret=-1;
-		}
-		
-		return ret;
-	}
-	
 	public ArrayList<StudenteDAO> visualizzastudenti(){
 		
 		ArrayList<StudenteDAO> studenti = new ArrayList<StudenteDAO>();
