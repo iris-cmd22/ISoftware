@@ -292,17 +292,18 @@ public boolean controllodocente(String username) {
 
 
 public ArrayList<String> visualizzamaterie(){
-	
-	IstitutoDAO singleton = IstitutoDAO.getInstance();
-    ArrayList<String> materie = new ArrayList<String>();
-    
-    for(int i=0;i<singleton.visualizzamaterie().size();i++) {
-    	EntityMateria materia=new EntityMateria(singleton.visualizzamaterie().get(i).getIdmateria());
-    	materie.add(materia.toString());
+    	
+    	IstitutoDAO singleton = IstitutoDAO.getInstance();
+        ArrayList<String> materie = new ArrayList<String>();
+        
+        for(int i=0;i<singleton.visualizzamaterie().size();i++) {
+        	EntityMateria materia=new EntityMateria(singleton.visualizzamaterie().get(i));
+        	
+        	materie.add(materia.toString());
+        }
+        
+        return materie;
     }
-    
-    return materie;
-}
 	
 public ArrayList<String> visualizzastudenti(){
 		
