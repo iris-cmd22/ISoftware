@@ -25,7 +25,6 @@ public class prova {
 		System.out.println(Controller.visualizzaclassi());
 		
 		
-		/*
 		//prova studente
 		EntityStudente s=new EntityStudente();
 		s.setMatricola(4);
@@ -146,7 +145,11 @@ public class prova {
 		System.out.println(control);
 		
 		Controller.aggiungiVoto(d.getUsername(), s.getMatricola(), materia2.getIdmaterie(), datanascita, 7);
-		*/
+		Controller.aggiungiVoto(d.getUsername(), s.getMatricola(), materia2.getIdmaterie(), datanascita, 10);
+		
+		
+		//prova visualizzavoto
+		System.out.println(Controller.visualizzaVoti("mammadivinci"));
 		
 	}
 	
