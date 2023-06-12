@@ -47,7 +47,7 @@ public class Controller {
     	
     	
     	EntityIstituto singleton = EntityIstituto.getInstance();
-        int ret=singleton.aggiungiVoto(docente, matricola,materia,data,voto);
+        int ret=singleton.aggiungiVoto(docente,matricola,materia,data,voto);
 
         return ret;
     }
@@ -63,63 +63,63 @@ public class Controller {
     }
 
 
-public static boolean controllomateria_insegnata(int idmateria, String docente) {
+	public static boolean controllomateria_insegnata(int idmateria, String docente) {
+				
+				EntityIstituto singleton = EntityIstituto.getInstance();
+				return singleton.controllomateria_insegnata(idmateria, docente);
+			}
+		
+	public static boolean controllomateria(int idmateria) {
+		
+		EntityIstituto singleton = EntityIstituto.getInstance();
+		return singleton.controllomateria(idmateria);
+	}
+	
+	
+	
+	public static boolean controllostudente(int matricola) {
 			
 			EntityIstituto singleton = EntityIstituto.getInstance();
-			return singleton.controllomateria_insegnata(idmateria, docente);
+			return singleton.controllostudente(matricola);
+		}
+		
+	public static boolean controlloclasse(int classe) {
+			
+			EntityIstituto singleton = EntityIstituto.getInstance();
+			return singleton.controlloclasse(classe);
 		}
 	
-public static boolean controllomateria(int idmateria) {
+	public static int CercaUsername(String username, String ruolo) {
 	
-	EntityIstituto singleton = EntityIstituto.getInstance();
-	return singleton.controllomateria(idmateria);
-}
-
-
-
-public static boolean controllostudente(int matricola) {
-		
+		int ret = 0;
 		EntityIstituto singleton = EntityIstituto.getInstance();
-		return singleton.controllostudente(matricola);
-	}
+		ret = singleton.CercaUsername(username, ruolo);
 	
-public static boolean controlloclasse(int classe) {
-		
+		return ret;
+	    }
+	public static boolean controllodata(Date data) {
+			
+			EntityIstituto singleton = EntityIstituto.getInstance();
+			return singleton.controllodata(data);
+		}
+	
+	public static boolean controllodocente(String username) {
+	
 		EntityIstituto singleton = EntityIstituto.getInstance();
-		return singleton.controlloclasse(classe);
-	}
-
-public static int CercaUsername(String username, String ruolo) {
-
-	int ret = 0;
-	EntityIstituto singleton = EntityIstituto.getInstance();
-	ret = singleton.CercaUsername(username, ruolo);
-
-	return ret;
-    }
-public static boolean controllodata(Date data) {
+		return singleton.controllodocente(username);
 		
-		EntityIstituto singleton = EntityIstituto.getInstance();
-		return singleton.controllodata(data);
-	}
-
-public static boolean controllodocente(String username) {
-
-	EntityIstituto singleton = EntityIstituto.getInstance();
-	return singleton.controllodocente(username);
-	
-    }
-	
- public static ArrayList<String> visualizzamaterie(){
-    	EntityIstituto singleton = EntityIstituto.getInstance();
-        ArrayList<String> materie = new ArrayList<String>();
-        
-        materie=singleton.visualizzamaterie();
-        
-        		return materie;
-    }
-	
-public static ArrayList<String> visualizzastudenti(){
+	    }
+		
+	 public static ArrayList<String> visualizzamaterie(){
+	    	EntityIstituto singleton = EntityIstituto.getInstance();
+	        ArrayList<String> materie = new ArrayList<String>();
+	        
+	        materie=singleton.visualizzamaterie();
+	        
+	        		return materie;
+	    }
+	 
+	 public static ArrayList<String> visualizzastudenti(){
 		 
 		 EntityIstituto singleton = EntityIstituto.getInstance();
 		 ArrayList<String> studenti = new ArrayList<String>();
@@ -129,14 +129,14 @@ public static ArrayList<String> visualizzastudenti(){
 		 return studenti;
 	 }
 	 
- public static ArrayList<String> visualizzaclassi(){
-
-	 EntityIstituto singleton = EntityIstituto.getInstance();
-	 ArrayList<String> classi = new ArrayList<String>();
-
-	 classi = singleton.visualizzaclassi();
-
-	 return classi;
- }
+	 public static ArrayList<String> visualizzaclassi(){
+		 
+		 EntityIstituto singleton = EntityIstituto.getInstance();
+		 ArrayList<String> classi = new ArrayList<String>();
+		 
+		 classi = singleton.visualizzaclassi();
+		 
+		 return classi;
+	 }
 
 }
