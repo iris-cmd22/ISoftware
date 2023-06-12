@@ -112,7 +112,7 @@ public class IstitutoDAO {
     }
 	
 
-           public boolean isDataValida(Date data) { //in ingresso c'è la data della valutazione, che non è necessariamente la data corrente
+  public boolean isDataValida(Date data) { //in ingresso c'è la data della valutazione, che non è necessariamente la data corrente
     	 LocalDate dataCorrente = LocalDate.now();
     	    int annoCorrente = dataCorrente.getYear();
     	    int meseCorrente = dataCorrente.getMonthValue();
@@ -120,12 +120,16 @@ public class IstitutoDAO {
     	   
     	    int annoInput = data.toLocalDate().getYear();
     	    int meseInput = data.toLocalDate().getMonthValue();
-    	   
+    	    
+    	    
+    	    
+    	    
+
             //Si controlla che la data della valutazione sia nel quadrimestre (e anno) corrente, e che non sia successiva alla data corrente
           
     	    // Primo quadrimestre: settembre - gennaio: 
-    	    if ((meseCorrente >= 9 || meseCorrente <= 1) && (annoCorrente  == annoInput || annoCorrente == annoInput +1) && dataCorrente_sql.compareTo(data)>=0) {
-    	        if (meseInput >= 9 || meseInput <= 1) {
+    	    if (((meseCorrente >= 9 || meseCorrente <= 12) ||meseCorrente==1) && (annoCorrente  == annoInput || annoCorrente == annoInput +1) && dataCorrente_sql.compareTo(data)>=0) {
+    	        if ((meseInput >= 9 && meseInput <= 12) || meseInput == 1) {
     	            return true;
     	        }
     	    }
@@ -138,7 +142,6 @@ public class IstitutoDAO {
 
     	    return false;
     }
-	
 	
 	
 	
