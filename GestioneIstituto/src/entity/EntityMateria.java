@@ -29,8 +29,8 @@ public class EntityMateria {
 		caricaClasse(materia);
 		
 		valutazioni = new ArrayList<EntityValutazione>();
-		materia.caricaValutazioniDaDB();
-		caricaValutazione(materia);
+		//materia.caricaValutazioniDaDB();
+		//caricaValutazioni(materia);
 					
 	}
 	
@@ -42,11 +42,12 @@ public class EntityMateria {
 		this.nome = materia.getNome();
 		valutazioni = new ArrayList<EntityValutazione>();
 		
-		caricaValutazione(materia);
+		caricaValutazioni(materia);
 		
 	}
 	
-	public void caricaValutazione(MateriaDAO materia) {
+	public void caricaValutazioni(MateriaDAO materia) {
+		
 		for(int i=0; i<materia.getValutazioni().size(); i++) {
 			
 			EntityValutazione valutazione = new EntityValutazione(materia.getValutazioni().get(i)); //va implementato il copy in Valutazioni
@@ -55,12 +56,16 @@ public class EntityMateria {
 	}
 	
 	public void caricaClasse(MateriaDAO materia) {
-			
-			EntityClasse classe = new EntityClasse(materia.getClasse()); //va implementato il copy in Valutazioni
+		
+			EntityClasse classe = new EntityClasse(materia.getClasse()); //va implementato il copy in Classe
 			this.classe=classe;
+			
+			System.out.println(classe.toString());
 	}
 	
 	public void caricaDocente(MateriaDAO materia) {
+		
+		materia.caricaDocenteDaDB();
 		
 		EntityDocente docente = new EntityDocente(materia.getDocente().getUsername()); //va implementato il copy in Valutazioni
 		this.docente=docente;
@@ -92,7 +97,7 @@ public class EntityMateria {
 
 	@Override
 	public String toString() {
-		return "idmaterie=" + idmaterie + ", nome=" + nome+ ", classe=" + classe+ "\n" ;
+		return "\n idmaterie=" + idmaterie + ", nome=" + nome+ ", classe=" + classe.getIdClasse();
 	}
 
 	public EntityClasse getClasse() {
