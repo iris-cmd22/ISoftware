@@ -48,8 +48,8 @@ public class EntityStudente {
 			
 			//studente.caricaPagelleStudenteDaDB();
 			//caricaPagelle(studente);
-			//studente.caricaValutazioniDaDB();
-			//caricaValutazioni(studente);
+			studente.caricaValutazioniDaDB();
+			caricaValutazioni(studente);
 			//studente.caricaGenitoreDaDB();
 			//caricaGenitore(studente);
 			
@@ -71,8 +71,8 @@ public class EntityStudente {
 			
 			//studente.caricaPagelleStudenteDaDB();
 			//caricaPagelle(studente);
-			//studente.caricaValutazioniDaDB();
-			//caricaValutazioni(studente);
+			studente.caricaValutazioniDaDB();
+			caricaValutazioni(studente);
 			//studente.caricaGenitoreDaDB();
 			//caricaGenitore(studente);
 
