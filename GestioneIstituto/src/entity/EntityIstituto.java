@@ -75,6 +75,7 @@ public class EntityIstituto {
 		EntityStudente studente= new EntityStudente();
 		
 				studente.setMatricola(matricola);
+				studente.setUsername(username);
 				studente.setPassword(password);
 				studente.setNome(nome);
 				studente.setCognome(cognome);
