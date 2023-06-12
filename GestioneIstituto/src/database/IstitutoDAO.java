@@ -151,7 +151,7 @@ public boolean isDataValida(Date data) { //in ingresso c'è la data della valuta
    		 try {
 			 
 			 
-				 ResultSet rs = DBConnectionManager.selectQuery("SELECT username FROM docenti WHERE username = "+username+";");
+				 ResultSet rs = DBConnectionManager.selectQuery("SELECT username FROM docenti WHERE username = '"+username+"';");
 					 
 					return rs.next();	 
 		         
@@ -174,7 +174,7 @@ public boolean isDataValida(Date data) { //in ingresso c'è la data della valuta
     		 try {
 			 
 			 
-				 ResultSet rs = DBConnectionManager.selectQuery("SELECT username FROM docenti WHERE username = "+username+";");
+				 ResultSet rs = DBConnectionManager.selectQuery("SELECT username FROM docenti WHERE username = '"+username+"';");
 					 
 					 if(rs.next()) {
 						 ret=1;
@@ -192,7 +192,7 @@ public boolean isDataValida(Date data) { //in ingresso c'è la data della valuta
     		try {
    			 
    			 
-				 ResultSet rs = DBConnectionManager.selectQuery("SELECT username FROM studenti WHERE username = "+username+";");
+				 ResultSet rs = DBConnectionManager.selectQuery("SELECT username FROM studenti WHERE username = '"+username+"';");
 					 
 					 if(rs.next()) {
 						 ret=1;
@@ -210,7 +210,7 @@ public boolean isDataValida(Date data) { //in ingresso c'è la data della valuta
     		try {
    			 
    			 
-				 ResultSet rs = DBConnectionManager.selectQuery("SELECT username FROM genitori WHERE username = "+username+";");
+				 ResultSet rs = DBConnectionManager.selectQuery("SELECT username FROM genitori WHERE username = '"+username+"';");
 					 
 					 if(rs.next()) {
 						 ret=1;
