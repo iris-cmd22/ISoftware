@@ -19,17 +19,17 @@ public class Controller {
     	
     	EntityIstituto singleton = EntityIstituto.getInstance();
     	
-    	if(ruolo=="docente") {
+    	if(ruolo=="Docente") {
     		
     		ret=singleton.creaDocente(nome,cognome,dataNascita, codiceFiscale, 
 					comuneResidenza,email,numeroCellulare,username,password,materie);
     		
-    	}else if(ruolo=="genitore") {
+    	}else if(ruolo=="Genitore") {
     		
     		ret=singleton.creaStudente(nome,cognome,dataNascita, codiceFiscale, 
 					comuneResidenza,email,numeroCellulare,username,password, classe);
     		
-    	}else if(ruolo=="studente") {
+    	}else if(ruolo=="Studente") {
     		
     		ret=singleton.creaGenitore(nome,cognome,dataNascita, codiceFiscale, 
 					comuneResidenza,email,numeroCellulare,username,password,figlio);
