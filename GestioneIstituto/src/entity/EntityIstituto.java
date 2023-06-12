@@ -177,8 +177,8 @@ public class EntityIstituto {
 	
 	
 	
-	//UPDATE Aggiungivoto
-	public int aggiungiVoto(int matricola, int idmaterie, Date data, float voto) {
+//UPDATE Aggiungivoto
+	public int aggiungiVoto(String docente, int matricola, int idmaterie, Date data, float voto) {
 		
 		idvalutazione++; //variabile statica per assegnare univocamente l'id
 		
@@ -186,6 +186,11 @@ public class EntityIstituto {
 		valutazione.setIdvalutazioni(idvalutazione);
 		
 		IstitutoDAO singleton = IstitutoDAO.getInstance();
+		
+		if(!singleton.esisteDocente(docente)) {
+			System.out.println("Docente non trovato");
+			return -1;
+		}
     	
    	 	// Controllo se esiste uno studente con quella matricola
        if (!singleton.esisteStudente(matricola)) {
@@ -197,7 +202,7 @@ public class EntityIstituto {
        valutazione.setStudente(studente_valutato);
 
        // Controllo se esiste una materia con idmaterie
-       if (!singleton.esisteMateria(idmaterie)) {
+       if (!singleton.esisteMateriaInsegnata(idmaterie,docente)) {
     	   System.out.println("Materia non trovata");
            return -1;
        }
