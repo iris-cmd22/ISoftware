@@ -227,6 +227,34 @@ public boolean isDataValida(Date data) { //in ingresso c'è la data della valuta
     	return ret;
     }
 	
+		public ArrayList<Integer> visualizzamaterie() {
+		
+		ArrayList<Integer> idmaterie = new ArrayList<Integer>();
+		
+		String query="SELECT * FROM materie";
+		
+		try {
+			
+			ResultSet rs =DBConnectionManager.selectQuery(query);
+			System.out.println(query); //per debug
+			
+			while(rs.next()) {
+				
+				Integer idmateria;
+				
+				idmateria=rs.getInt("idmaterie");
+				
+				idmaterie.add(idmateria);
+				
+			}
+			
+		}catch(ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return idmaterie;
+	}
+	
 	public ArrayList<StudenteDAO> visualizzastudenti(){
 		
 		ArrayList<StudenteDAO> studenti = new ArrayList<StudenteDAO>();
