@@ -96,6 +96,8 @@ public class prova {
 		
 		System.out.println(d);
 		
+		Date datavalutazione = Date.valueOf("2023-06-11");
+		
 		
 		//Prova aggiungivoto
 		EntityValutazione v= new EntityValutazione();
@@ -109,7 +111,9 @@ public class prova {
 		control=v.scriviSuDB(3);
 		System.out.println(control);
 		
-		Controller.aggiungiVoto(s.getMatricola(), materia2.getIdmaterie(), datanascita, 7);
+		
+		
+		Controller.aggiungiVoto(d.getUsername(), s.getMatricola(), materia2.getIdmaterie(), datavalutazione, 7);
 		
 		
 	}
