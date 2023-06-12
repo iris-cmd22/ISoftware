@@ -309,4 +309,21 @@ public boolean isDataValida(Date data) { //in ingresso c'è la data della valuta
 		
 		return classi;
 	}
+	
+	public int scrivi_studente_in_classe(int matricola, int idclasse) {
+		int ret=0;
+		
+		String query = "INSERT INTO studente_in_classe(studente,classe) VALUES ( \'"+matricola+"\',"+"\'"+idclasse+"\');";
+		System.out.println(query);
+		try {
+			ret=DBConnectionManager.updateQuery(query);
+			
+		}catch(ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+			ret = -1; //per l'errore di scrittura
+		}
+		
+		
+		return ret;
+	}
 }
