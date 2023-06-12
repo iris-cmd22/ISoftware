@@ -24,8 +24,11 @@ public class EntityMateria {
 		this.idmaterie = idmaterie;//nel db potremmo chiamarlo idMateria
 		MateriaDAO materia = new MateriaDAO(idmaterie); //carico dal DB con la PK
 		this.nome = materia.getNome();
-		valutazioni = new ArrayList<EntityValutazione>();
 		
+		materia.caricaClasseDaDB();
+		caricaClasse(materia);
+		
+		valutazioni = new ArrayList<EntityValutazione>();
 		materia.caricaValutazioniDaDB();
 		caricaValutazione(materia);
 					
