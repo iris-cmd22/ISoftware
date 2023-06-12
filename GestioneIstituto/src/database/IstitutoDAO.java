@@ -80,6 +80,24 @@ public class IstitutoDAO {
         }
     }
     
+	
+	public boolean esisteStudenteInClasse(int matricola, int idmateria) {
+	    try {
+	        ResultSet rs = DBConnectionManager.selectQuery("SELECT s.matricola " +
+	                "FROM studenti s " +
+	                "JOIN studente_in_classe sc ON s.matricola = sc.studente " +
+	                "JOIN classi c ON sc.classe = c.idclassi " +
+	                "JOIN materie m ON c.idclassi = m.classe " +
+	                "WHERE s.matricola = '" + matricola + "' AND m.idmaterie = '" + idmateria + "';");
+	        return rs.next();
+	    } catch (SQLException | ClassNotFoundException e) {
+	        e.printStackTrace();
+	        return false;
+	    }
+	}
+
+	
+	
 
 	  public boolean esisteMateria(int idmaterie){
 	        try {
