@@ -153,7 +153,9 @@ public class DialogAggiungiVoto extends JDialog {
 				java.util.Date data = dateChooser.getDate();
 				int voto = (int) spinner.getValue();
 				
-				ret=Controller.aggiungiVoto(docente, Integer.parseInt(matricola),Integer.parseInt(materia),(Date) data, voto);
+			
+				ret = Controller.aggiungiVoto(docente, Integer.parseInt(matricola), Integer.parseInt(materia), new java.sql.Date(data.getTime()), voto);
+
 				
 				if(ret!=-1) {
 					
@@ -259,8 +261,10 @@ public class DialogAggiungiVoto extends JDialog {
 		    @Override
 		    public void mouseClicked(MouseEvent e) {
 		        java.util.Date data = dateChooser.getDate();
+		        java.sql.Date data2 = new java.sql.Date(data.getTime());
 
-		        boolean i = Controller.controllodata(new java.sql.Date(data.getTime()));
+
+		        boolean i = Controller.controllodata(data2);
 		        if (i == true) {
 		            //se la data è valida
 		            spinner.setEnabled(i);
@@ -271,6 +275,7 @@ public class DialogAggiungiVoto extends JDialog {
 		    }
 		});
 
+	
 		
 		
 		btnCHECK_DATA.addActionListener(new ActionListener() {
