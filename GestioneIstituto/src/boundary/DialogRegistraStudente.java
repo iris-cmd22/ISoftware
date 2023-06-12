@@ -273,7 +273,7 @@ public class DialogRegistraStudente extends JDialog {
 				ArrayList<Integer> materie = null;
 				String classe = textField_Classe.getText();
 				
-				ret = Controller.registraUtente("Studente",nome,cognome,(Date) dataNascita,codiceFiscale,comune ,email,
+				ret = Controller.registraUtente("Studente",nome,cognome,new java.sql.Date(dataNascita.getTime()),codiceFiscale,comune ,email,
 						numeroCellulare,username,password,materie, 0, Integer.parseInt(classe));
 				
 				System.out.println(ret);
