@@ -33,6 +33,10 @@ public class MateriaDAO {
 			if(rs.next()) {
 				this.setIdmateria(rs.getInt("idmaterie"));
                 this.setNome(rs.getString("nome"));
+                
+                ClasseDAO classe= new ClasseDAO(rs.getInt("classe"));
+                
+                this.setClasse(classe);
 
 			}
 		}catch( ClassNotFoundException | SQLException e) {
@@ -69,7 +73,7 @@ public class MateriaDAO {
      
      public void caricaClasseDaDB(){
          
-         String query= new String("SELECT * FROM classi WHERE idclasse ='"+this.classe.getIdClasse()+"'");
+         String query= new String("SELECT * FROM classi WHERE idclassi ='"+this.classe.getIdClasse()+"'");
          System.out.println(query); //per debug
 
          	try {
@@ -80,9 +84,9 @@ public class MateriaDAO {
  				
  				//NB:
  				ClasseDAO classe =new ClasseDAO();
- 				classe.setIdClasse(rs.getInt("idclasse"));
+ 				classe.setIdClasse(rs.getInt("idclassi"));
  				classe.setSezione(rs.getString("sezione"));
- 				classe.setSezione(rs.getString("sezione"));
+ 				classe.setAnno(rs.getString("anno"));
  				classe.setAnnoscolastico(rs.getInt("annoscolastico"));
  						
  				this.classe=classe;
@@ -107,13 +111,17 @@ public class MateriaDAO {
  			if(rs.next()) {
  				
  				//NB:
- 				ClasseDAO classe =new ClasseDAO();
- 				classe.setIdClasse(rs.getInt("idclasse"));
- 				classe.setSezione(rs.getString("sezione"));
- 				classe.setSezione(rs.getString("sezione"));
- 				classe.setAnnoscolastico(rs.getInt("annoscolastico"));
+ 				DocenteDAO docente =new DocenteDAO();
+ 				docente.setUsername(rs.getString("username"));
+ 				docente.setPassword(rs.getString("password"));
+ 				docente.setNome(rs.getString("nome"));
+ 				docente.setCognome(rs.getString("cognome"));
+ 				docente.setDataNascita(rs.getDate("dataNascita"));
+ 				docente.setCodiceFiscale(rs.getString("codiceFiscale"));
+ 				docente.setComuneResidenza(rs.getString("comuneResidenza"));
+ 				docente.setNumeroCellulare(rs.getString("numeroCellulare"));
  						
- 				this.classe=classe;
+ 				this.docente=docente;
  				
  			}	
  			
