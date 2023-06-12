@@ -24,12 +24,12 @@ public class Controller {
     		ret=singleton.creaDocente(nome,cognome,dataNascita, codiceFiscale, 
 					comuneResidenza,email,numeroCellulare,username,password,materie);
     		
-    	}else if(ruolo=="Genitore") {
+    	}else if(ruolo=="Studente") {
     		
     		ret=singleton.creaStudente(nome,cognome,dataNascita, codiceFiscale, 
 					comuneResidenza,email,numeroCellulare,username,password, classe);
     		
-    	}else if(ruolo=="Studente") {
+    	}else if(ruolo=="Genitore") {
     		
     		ret=singleton.creaGenitore(nome,cognome,dataNascita, codiceFiscale, 
 					comuneResidenza,email,numeroCellulare,username,password,figlio);
