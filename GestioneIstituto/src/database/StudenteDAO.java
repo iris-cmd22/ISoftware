@@ -151,6 +151,10 @@ public class StudenteDAO {
 				valutazione.setIdvalutazioni(rs.getInt("idvalutazioni"));
                 valutazione.setData(rs.getDate("data"));
 				valutazione.setVoto(rs.getFloat("voto"));
+				
+				MateriaDAO materia= new MateriaDAO(rs.getInt("materia"));
+				valutazione.setMateria(materia);
+				
 				valutazione.caricaMateriaDaDB(); //caricamento in cascata
 				this.valutazioni.add(valutazione);
 				
