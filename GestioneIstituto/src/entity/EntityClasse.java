@@ -163,8 +163,8 @@ public class EntityClasse {
 
 	@Override
 	public String toString() {
-		return "EntityClasse [idClasse=" + idClasse + ", annoscolastico=" + annoscolastico + ", sezione=" + sezione
-				+ ", anno=" + anno + ", registro=" + registro + ", studenti=" + studenti + ", materie=" + materie + "]";
+		return "Classe [idClasse=" + idClasse + ", annoscolastico=" + annoscolastico + ", sezione=" + sezione
+				+ ", anno=" + anno + ", registro=" + registro + ", studenti=" + studenti + ", materie=" + materie + "]\n";
 	}
 	
 	
