@@ -102,7 +102,7 @@ public class prova {
 		//Prova aggiungivoto
 		EntityValutazione v= new EntityValutazione();
 		
-		v.setIdvalutazioni(3);
+		
 		v.setData(datanascita);
 		v.setVoto((float) 8.5);
 		v.setMateria(materia3);
