@@ -240,10 +240,10 @@ public class DialogRegistraStudente extends JDialog {
 				
 				if(ret==true) {
 					btn_Inserisci.setEnabled(true);
-					textOut_classe.setText("matricola esistente");
+					textOut_classe.setText("classse esistente");
 					
 				}else {
-					textOut_classe.setText("matricola non esistente");
+					textOut_classe.setText("classe non esistente");
 				}
 				
 			}
@@ -273,7 +273,7 @@ public class DialogRegistraStudente extends JDialog {
 				ArrayList<Integer> materie = null;
 				String classe = textField_Classe.getText();
 				
-				ret = Controller.registraUtente("Studente",nome,cognome,new java.sql.Date(dataNascita.getTime()),codiceFiscale,comune ,email,
+				ret = Controller.registraUtente("Studente",nome,cognome,new java.sql.Date(dataNascita.getTime()) ,codiceFiscale,comune ,email,
 						numeroCellulare,username,password,materie, 0, Integer.parseInt(classe));
 				
 				System.out.println(ret);
@@ -281,6 +281,7 @@ public class DialogRegistraStudente extends JDialog {
 				if(ret!=-1) {
 					
 					String conferma = "Lo Studente " + nome + " " + cognome + " è stato registrato correttamente";
+					//dovremmo mostrare la matricola assegnata?
 					
 					JOptionPane.showConfirmDialog(null, conferma, "Conferma", JOptionPane.OK_CANCEL_OPTION);
 					
