@@ -69,8 +69,8 @@ public class MateriaDAO {
      
      public void caricaClasseDaDB(){
          
-         String query= new String("SELECT * FROM classi WHERE materia=\'"+this.idmaterie+"'");
-         //System.out.println(query); //per debug
+         String query= new String("SELECT * FROM classi WHERE idclasse IN (SELECT * FROM materie WHERE classe'"+this.classe.getIdClasse()+"'");
+         System.out.println(query); //per debug
 
          	try {
  			
