@@ -51,13 +51,26 @@ public class EntityIstituto {
 			ret=singleton.verificamaterie(materie.get(i));
 		}
 		
-		if(ret != -1) {
-			
-			ret=docente.scriviSuDB(username);
-			
-		}else {
+		if(ret == -1) {
 			
 			System.out.println("Materie non verificate");
+			return ret;
+		}
+		
+		ret=docente.scriviSuDB(username);
+		
+		if(ret == -1) {
+			
+			System.out.println("Docente non aggiunto");
+			return ret;
+		}
+		
+		ret=docente.aggiornaMaterieSuDB(username);
+		
+		if(ret == -1) {
+			
+			System.out.println("Materia non aggiornata");
+			return ret;
 		}
 		
 		return ret;
