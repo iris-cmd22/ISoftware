@@ -16,8 +16,19 @@ public class prova {
 		// TODO Auto-generated method stub
 		int control=0;
 		
+		//prova visualizzastudenti
+		System.out.println(Controller.visualizzastudenti());
+		
+		
+		
+		//prova visualizzaclassi
+		System.out.println(Controller.visualizzaclassi());
+		
+		
+		/*
+		//prova studente
 		EntityStudente s=new EntityStudente();
-		s.setMatricola(1);
+		s.setMatricola(4);
 		Date datanascita= new Date(2001-01-20);
 		
 		s.setNome("Vincenzo Flavio");
@@ -30,10 +41,25 @@ public class prova {
 		s.setUsername("vincenzofl");
 		s.setPassword("dHSn119LtT%!");
 		
-		control= s.scriviSuDB(1);
 		
+		control= s.scriviSuDB(4);
 		System.out.println(control);
 		
+		//Prova aggiungistudente con classe
+		ArrayList<Integer> vuoto= new ArrayList<Integer>();
+		
+		control= Controller.registraUtente("studente", s.getNome(), s.getCognome(), datanascita, s.getCodiceFiscale(), 
+				s.getComuneResidenza(), s.getEmail(), s.getNumeroCellulare(), "vfc", s.getPassword(), vuoto , 0, 2);
+		System.out.println(control);
+		
+		
+		//Prova username
+		control=Controller.CercaUsername("vincenzofl", "studente");
+		if(control!=-1) {
+			System.out.println(control+" username già in uso");
+		}else {
+			System.out.println(control+" username libero");
+		}
 		
 		
 		//Prova genitore
@@ -96,14 +122,22 @@ public class prova {
 		
 		System.out.println(d);
 		
-		Date datavalutazione = Date.valueOf("2023-06-11");
+	
+		
+		//Prova visualizzamaterie
+		ArrayList<String> materie = new ArrayList<String>();
+		
+		materie = Controller.visualizzamaterie();
+		
+		System.out.println(materie);
 		
 		
 		//Prova aggiungivoto
 		EntityValutazione v= new EntityValutazione();
+		Date dataoggi= new Date(2023-01-15);
 		
-		
-		v.setData(datanascita);
+		v.setIdvalutazioni(3);
+		v.setData(dataoggi);
 		v.setVoto((float) 8.5);
 		v.setMateria(materia3);
 		v.setStudente(s);
@@ -111,10 +145,8 @@ public class prova {
 		control=v.scriviSuDB(3);
 		System.out.println(control);
 		
-		
-		
-		Controller.aggiungiVoto(d.getUsername(), s.getMatricola(), materia2.getIdmaterie(), datavalutazione, 7);
-		
+		Controller.aggiungiVoto(d.getUsername(), s.getMatricola(), materia2.getIdmaterie(), datanascita, 7);
+		*/
 		
 	}
 	
