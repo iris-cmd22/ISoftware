@@ -224,7 +224,7 @@ public class DialogRegistraDocente extends JDialog {
 				String password = textField_Password.getText();
 				String comune = textField_ComuneResidenza.getText();
 				
-				ret = Controller.registraUtente("Docente",nome,cognome,(Date) dataNascita,codiceFiscale,comune ,email,
+				ret = Controller.registraUtente("Docente",nome,cognome,new java.sql.Date(dataNascita.getTime()),codiceFiscale,comune ,email,
 						numeroCellulare,username,password,materie, 0, 0);
 				
 				materie.clear();
