@@ -161,9 +161,7 @@ public class DialogAggiungiVoto extends JDialog {
 
 
 				}else {
-					
 					JOptionPane.showMessageDialog(btnAggiungiVoto, "Inserimento non andato a buon fine", "Error", JOptionPane.ERROR_MESSAGE);
-
 				}
 				
 
@@ -213,7 +211,7 @@ public class DialogAggiungiVoto extends JDialog {
 				String docente = textField_docente.getText();
 				
 			
-				boolean i = Controller.controllomateria(Integer.parseInt(materia), docente);
+				boolean i = Controller.controllomateria_insegnata(Integer.parseInt(materia), docente);
 				
 				if(i==true) {
 					textField_matricola.setEditable(true);
@@ -256,9 +254,6 @@ public class DialogAggiungiVoto extends JDialog {
 		btnCHECK_MATRICOLA.setBounds(287, 139, 119, 23);
 		contentPane.add(btnCHECK_MATRICOLA);
 		
-				
-		
-		
 		JButton btnCHECK_DATA = new JButton("Check Data");
 			btnCHECK_DATA.addMouseListener(new MouseAdapter() {
 		    @Override
@@ -278,7 +273,6 @@ public class DialogAggiungiVoto extends JDialog {
 
 		
 		
-		
 		btnCHECK_DATA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -296,6 +290,7 @@ public class DialogAggiungiVoto extends JDialog {
 		textOut_materia.setColumns(10);
 		
 		textOut_matricola = new JTextField();
+		textOut_matricola.setHorizontalAlignment(SwingConstants.CENTER);
 		textOut_matricola.setForeground(new Color(255, 255, 255));
 		textOut_matricola.setBackground(new Color(0, 0, 128));
 		textOut_matricola.setEditable(false);
@@ -304,6 +299,7 @@ public class DialogAggiungiVoto extends JDialog {
 		textOut_matricola.setColumns(10);
 		
 		textOut_data = new JTextField();
+		textOut_data.setHorizontalAlignment(SwingConstants.CENTER);
 		textOut_data.setForeground(new Color(255, 255, 255));
 		textOut_data.setBackground(new Color(0, 0, 128));
 		textOut_data.setEditable(false);
