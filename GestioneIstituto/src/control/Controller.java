@@ -82,6 +82,13 @@ public class Controller {
 			EntityIstituto singleton = EntityIstituto.getInstance();
 			return singleton.controllostudente(matricola);
 		}
+	
+	public static boolean controllostudenteInClasse(int matricola,int materia) { //controlla che lo studente a cui si vuole aggiungere il voto sia nella classe dove la materia è insegnata
+
+		EntityIstituto singleton = EntityIstituto.getInstance();
+		return singleton.controllostudenteInClasse(matricola,materia);
+		}
+	
 		
 	public static boolean controlloclasse(int classe) {
 			
