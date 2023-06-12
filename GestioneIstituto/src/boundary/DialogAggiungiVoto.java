@@ -256,27 +256,29 @@ public class DialogAggiungiVoto extends JDialog {
 		btnCHECK_MATRICOLA.setBounds(287, 139, 119, 23);
 		contentPane.add(btnCHECK_MATRICOLA);
 		
+				
+		
+		
 		JButton btnCHECK_DATA = new JButton("Check Data");
-		btnCHECK_DATA.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				java.util.Date data = dateChooser.getDate();
+			btnCHECK_DATA.addMouseListener(new MouseAdapter() {
+		    @Override
+		    public void mouseClicked(MouseEvent e) {
+		        java.util.Date data = dateChooser.getDate();
 
-				boolean i=Controller.controllodata((Date)data);
-				if(i==true) {
-					//se la data è valida
-					spinner.setEnabled(i);
-					
-					textOut_data.setText("OK!");
-				}
-				else {
-					textOut_data.setText("Data non valida");
-				}
-				
-				
-				
-			}
+		        boolean i = Controller.controllodata(new java.sql.Date(data.getTime()));
+		        if (i == true) {
+		            //se la data è valida
+		            spinner.setEnabled(i);
+		            textOut_data.setText("OK!");
+		        } else {
+		            textOut_data.setText("Data non valida");
+		        }
+		    }
 		});
+
+		
+		
+		
 		btnCHECK_DATA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
