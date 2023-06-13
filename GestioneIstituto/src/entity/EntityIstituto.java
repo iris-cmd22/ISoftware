@@ -46,16 +46,25 @@ public class EntityIstituto {
 		
 		IstitutoDAO singleton = IstitutoDAO.getInstance();
 		
+		ArrayList<EntityMateria> m = new ArrayList<EntityMateria>();
+		
 		for(int i=0; i<materie.size();i++) {
 			
 			ret=singleton.verificamaterie(materie.get(i));
+			
+			EntityMateria materia = new EntityMateria(materie.get(i));
+			m.add(materia);
+			
+			if(ret == -1) {
+				
+				System.out.println("Materie non verificate");
+				return ret;
+			}
+			
 		}
 		
-		if(ret == -1) {
-			
-			System.out.println("Materie non verificate");
-			return ret;
-		}
+		docente.setMaterie(m);
+		
 		
 		ret=docente.scriviSuDB(username);
 		
