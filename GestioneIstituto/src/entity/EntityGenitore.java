@@ -41,6 +41,9 @@ public class EntityGenitore {
 		this.email=genitore.getEmail();
 		this.numeroCellulare=genitore.getNumeroCellulare();
 		
+		genitore.caricaStudenteDaDB();
+		caricaStudente(username);
+		
 	}
 	
 	//costruttore che prende in ingresso la DAO
