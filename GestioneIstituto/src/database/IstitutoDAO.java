@@ -24,6 +24,51 @@ public class IstitutoDAO {
 		return instance;
 	}
 	
+	public int getultimamatricola() {
+		
+		int matricola=0;
+		
+		String query="SELECT COUNT(*) AS num_studenti FROM studenti";
+		
+		try {
+			
+			ResultSet rs =DBConnectionManager.selectQuery(query);
+			System.out.println(query); //per debug
+			
+			if(rs.next()) {
+			
+				matricola=rs.getInt("num_studenti");
+			}
+			
+		}catch(ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return matricola;
+	}
+	
+public int getultimoidvalutazioni() {
+		
+		int id=0;
+		
+		String query="SELECT COUNT(*) AS num_valutazioni FROM valutazioni";
+		
+		try {
+			
+			ResultSet rs =DBConnectionManager.selectQuery(query);
+			System.out.println(query); //per debug
+			if(rs.next()) {
+				
+				id=rs.getInt("num_valutazioni");
+			}
+			
+		}catch(ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return id;
+	}
+	
 	public int verificamaterie(int idmaterie) {
 		
 		int ret=0;
@@ -120,9 +165,6 @@ public class IstitutoDAO {
         try {
         	
         	ResultSet rs = DBConnectionManager.selectQuery("SELECT idmaterie FROM materie WHERE idmaterie = " + idmaterie + " AND docente = '" + docente + "';"); //controlla se la materia esiste ed è insegnata dal docente che vuole aggiungere il voto
-
-            
-
             return rs.next();
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -131,7 +173,7 @@ public class IstitutoDAO {
     }
 	
 
-public boolean isDataValida(Date data) { //in ingresso c'è la data della valutazione, che non è necessariamente la data corrente
+    public boolean isDataValida(Date data) { //in ingresso c'è la data della valutazione, che non è necessariamente la data corrente
     	 LocalDate dataCorrente = LocalDate.now();
     	    int annoCorrente = dataCorrente.getYear();
     	    int meseCorrente = dataCorrente.getMonthValue();
@@ -157,23 +199,14 @@ public boolean isDataValida(Date data) { //in ingresso c'è la data della valuta
     	    }
 
     	    return false;
-    }
-
-	
-	
-	
-	      
+    }   
       
     public boolean esisteDocente(String username) {
     	
    	 
    		 try {
-			 
-			 
 				 ResultSet rs = DBConnectionManager.selectQuery("SELECT username FROM docenti WHERE username = '"+username+"';");
-					 
 					return rs.next();	 
-		         
 		         
 		     } catch (SQLException | ClassNotFoundException e) {
 		         e.printStackTrace();
@@ -191,9 +224,7 @@ public boolean isDataValida(Date data) { //in ingresso c'è la data della valuta
     	
     	 if(ruolo == "Docente") {
     		 try {
-			 
-			 
-				 ResultSet rs = DBConnectionManager.selectQuery("SELECT username FROM docenti WHERE username = '"+username+"';");
+				 	ResultSet rs = DBConnectionManager.selectQuery("SELECT username FROM docenti WHERE username = '"+username+"';");
 					 
 					 if(rs.next()) {
 						 ret=1;

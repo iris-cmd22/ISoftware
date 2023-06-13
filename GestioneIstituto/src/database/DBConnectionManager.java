@@ -11,13 +11,13 @@ public class DBConnectionManager {
 	public static String dbName = "mydb_argo";
 	public static String driver = "com.mysql.cj.jdbc.Driver";
 	public static String userName = "root"; 
-	public static String password = "FNSdl56@Squadre!";
+	public static String password = "Cifrescula20!";
 	
 	
 	//Serve a connetterci
 	public static Connection getConnection() throws ClassNotFoundException, SQLException {
 		
-		Connection conn = null;//capisco se la connessione è andata a buon fine o meno
+		Connection conn = null;		//capisco se la connessione è andata a buon fine o meno
 		Class.forName(driver); //com.mysql.cj.jdbc.Driver
 		
 		conn = DriverManager.getConnection(url+dbName,userName,password); //gli attributi della nostra classe andranno in input 
