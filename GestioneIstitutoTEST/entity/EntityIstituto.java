@@ -395,10 +395,12 @@ public int aggiungiVoto(String docente, int matricola, int idmaterie, Date data,
        
        valutazione.setData(data);
 
-       // Controllo se il voto è compreso tra 0 e 10
-       if (voto < 0 || voto > 10) {
-           return -1;
-       }
+      	try {
+       valutazione.setVoto(voto);
+   	}catch(VotoNotValid e) {
+   		
+   		return -2;
+   	}
    	
        valutazione.setVoto(voto);
        
