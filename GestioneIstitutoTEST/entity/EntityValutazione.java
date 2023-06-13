@@ -97,10 +97,15 @@ public class EntityValutazione {
 		return voto;
 	}
 
-	public void setVoto(float voto) {
+	public void setVoto(float voto) throws VotoNotValid {
+		if(voto<1) {
+			throw new VotoNotValid("Il voto deve essere almeno pari a 1!");
+		}
+		if(voto>10) {
+			throw new VotoNotValid("Il voto deve essere al massimo pari a 10!");
+		}
 		this.voto = voto;
 	}
-
 
 
 	public EntityMateria getMateria() {
