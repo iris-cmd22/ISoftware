@@ -10,6 +10,7 @@ import Exception.EmailNotValid;
 import Exception.NomeNotValid;
 import Exception.NumeroDiCellulareNotValid;
 import Exception.PasswordNotValid;
+import Exception.UsernameNotValid;
 import database.IstitutoDAO;
 
 //class facade del package entity: viene richiamata nel controller come singleton
@@ -35,10 +36,11 @@ public class EntityIstituto {
 		
 		int ret=0;
 		
-		EntityDocente docente= new EntityDocente(username);
+		EntityDocente docente= new EntityDocente();
 		
 		try {
 			
+			docente.setUsername(username);
 			docente.setPassword(password);
 			docente.setNome(nome);
 			docente.setCognome(cognome);
@@ -49,31 +51,43 @@ public class EntityIstituto {
 			docente.setNumeroCellulare(numeroCellulare);
 			
 		}catch(NomeNotValid e) {
+			e.printStackTrace();
 			ret=-2;
 			return ret;
 			
-		} catch (PasswordNotValid e) {
+		} catch (UsernameNotValid e) {
+			e.printStackTrace();
 			ret=-3;
 			return ret;
 			
-		} catch (CognomeNotValid e) {
+		}catch (PasswordNotValid e) {
+			e.printStackTrace();
 			ret=-4;
 			return ret;
 			
-		} catch (CodiceFiscaleNotValid e) {
+		} catch (CognomeNotValid e) {
+			e.printStackTrace();
 			ret=-5;
 			return ret;
 			
-		} catch (ComuneDiResidenzaNotValid e) {
+		} catch (CodiceFiscaleNotValid e) {
+			e.printStackTrace();
 			ret=-6;
 			return ret;
 			
-		} catch (EmailNotValid e) {
+		} catch (ComuneDiResidenzaNotValid e) {
+			e.printStackTrace();
 			ret=-7;
+			return ret;
+		
+		} catch (EmailNotValid e) {
+			e.printStackTrace();
+			ret=-8;
 			return ret;
 			
 		} catch (NumeroDiCellulareNotValid e) {
-			ret=-8;
+			e.printStackTrace();
+			ret=-9;
 			return ret;
 		}
 		
@@ -135,6 +149,7 @@ public class EntityIstituto {
 	
 		EntityStudente studente= new EntityStudente();
 		
+		try {
 				studente.setMatricola(matricola);
 				studente.setUsername(username);
 				studente.setPassword(password);
@@ -145,7 +160,42 @@ public class EntityIstituto {
 				studente.setComuneResidenza(comuneResidenza);
 				studente.setEmail(email);
 				studente.setNumeroCellulare(numeroCellulare);
-				
+		}catch(NomeNotValid e) {
+			e.printStackTrace();
+			ret=-2;
+			return ret;
+			
+		} catch (UsernameNotValid e) {
+			e.printStackTrace();
+			ret=-3;
+			return ret;
+			
+		} catch (PasswordNotValid e) {
+			e.printStackTrace();
+			ret=-4;
+			return ret;
+		} catch (CognomeNotValid e) {
+			e.printStackTrace();
+			ret=-5;
+			return ret;
+			
+		} catch (CodiceFiscaleNotValid e) {
+			e.printStackTrace();
+			ret=-6;
+			return ret;
+		} catch (ComuneDiResidenzaNotValid e) {
+			e.printStackTrace();
+			ret=-7;
+			return ret;
+		} catch (EmailNotValid e) {
+			e.printStackTrace();
+			ret=-8;
+			return ret;
+		} catch (NumeroDiCellulareNotValid e) {
+			e.printStackTrace();
+			ret=-9;
+			return ret;
+		}
 			
 				ret=singleton.verificaclassi(classe);
 				
@@ -190,14 +240,56 @@ public class EntityIstituto {
 
 	        EntityGenitore genitore= new EntityGenitore();
 	        
-	        genitore.setPassword(password);
-	        genitore.setNome(nome);
-	        genitore.setCognome(cognome);
-	        genitore.setDataNascita(dataNascita);
-	        genitore.setCodiceFiscale(codiceFiscale);
-	        genitore.setComuneResidenza(comuneResidenza);
-	        genitore.setEmail(email);
-	        genitore.setNumeroCellulare(numeroCellulare);
+	        try {
+	        	
+	        	genitore.setUsername(username);
+	        	genitore.setPassword(password);
+		        genitore.setNome(nome);
+		        genitore.setCognome(cognome);
+		        genitore.setDataNascita(dataNascita);
+		        genitore.setCodiceFiscale(codiceFiscale);
+		        genitore.setComuneResidenza(comuneResidenza);
+		        genitore.setEmail(email);
+		        genitore.setNumeroCellulare(numeroCellulare);
+		        
+	        }catch(NomeNotValid e) {
+				e.printStackTrace();
+				ret=-2;
+				return ret;
+				
+			} catch (UsernameNotValid e) {
+				e.printStackTrace();
+				ret=-3;
+				return ret;
+				
+			} catch (PasswordNotValid e) {
+				e.printStackTrace();
+				ret=-4;
+				return ret;
+			} catch (CognomeNotValid e) {
+				e.printStackTrace();
+				ret=-5;
+				return ret;
+				
+			} catch (CodiceFiscaleNotValid e) {
+				e.printStackTrace();
+				ret=-6;
+				return ret;
+			} catch (ComuneDiResidenzaNotValid e) {
+				e.printStackTrace();
+				ret=-7;
+				return ret;
+			} catch (EmailNotValid e) {
+				e.printStackTrace();
+				ret=-8;
+				return ret;
+			} catch (NumeroDiCellulareNotValid e) {
+				e.printStackTrace();
+				ret=-9;
+				return ret;
+			}
+	        
+	        
 	        
 	            
 
