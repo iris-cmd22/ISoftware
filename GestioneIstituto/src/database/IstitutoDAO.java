@@ -51,7 +51,7 @@ public class IstitutoDAO {
 		
 		int ret=0;
 		
-		String query="SELECT * FROM classi WHERE idcasse='"+idclasse+"';";
+		String query="SELECT * FROM classi WHERE idclassi='"+idclasse+"';";
 		
 		try {
 			
