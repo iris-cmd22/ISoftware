@@ -61,16 +61,40 @@ public class EntityIstitutoTest {
 	   // Preparazione dei dati di test
 	
 	 LocalDate localDate = LocalDate.of(2023, 06, 10);
-	 java.sql.Date datavalutazione = java.sql.Date.valueOf(localDate);
+	 java.sql.Date sqlDate = java.sql.Date.valueOf(localDate);
 
-	   float votoValido = 7;
+	   float votoValido = (float)7.5;
 	   
 	   // Esecuzione del metodo con un voto valido
-	   int control = singleton.aggiungiVoto("lb", 4, 1,datavalutazione, votoValido);
+	   int control = singleton.aggiungiVoto("lb", 4, 1,sqlDate, votoValido);
 	   System.out.println(control);
 	   int expected=1;
 	   
 	   assertEquals(expected, control); // Verifica che il risultato sia conforme alle aspettative
 	    
+	   
+	   float votoMaggiore = 11;
+	   
+	   // Esecuzione del metodo con un voto valido
+	    control = singleton.aggiungiVoto("lb", 4, 1,sqlDate, votoMaggiore);
+	   System.out.println(control);
+	   expected=-2;
+	   
+	   assertEquals(expected, control); // Verifica che il risultato sia conforme alle aspettative
+	    
+	   
+	   
+	   float votoMinore = (float) 0.5;
+	   
+	   // Esecuzione del metodo con un voto valido
+	    control = singleton.aggiungiVoto("lb", 4, 1,sqlDate, votoMinore);
+	   System.out.println(control);
+	   expected=-2;
+	   
+	   assertEquals(expected, control); // Verifica che il risultato sia conforme alle aspettative
+	    
+	   
+	}
+	}
 
 }
