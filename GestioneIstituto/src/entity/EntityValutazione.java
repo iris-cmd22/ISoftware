@@ -29,6 +29,8 @@ public class EntityValutazione {
 		
 		valutazione.caricaMateriaDaDB();
 		caricaMateria(valutazione);
+		//valutazione.caricaStudenteDaDB();
+		//caricaStudente(valutazione);
 		
 	}
 
@@ -38,6 +40,8 @@ public class EntityValutazione {
 		this.idvalutazioni=valutazione.getIdvalutazioni();
 		valutazione.caricaMateriaDaDB();
 		caricaMateria(valutazione);
+		//valutazione.caricaStudenteDaDB();
+		//caricaStudente(valutazione);
 		
 	}
 	

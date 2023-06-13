@@ -10,9 +10,9 @@ public class EntityAttivita {
 	private DocenteDAO docente;
 
 	public EntityAttivita() {
+		// TODO Auto-generated constructor stub
 		super();
 	}
-	
 	
 
 	public EntityAttivita(int idattivita) {

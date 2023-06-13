@@ -9,7 +9,7 @@ public class EntityGiudizio {
 	private MateriaDAO materia;
 
 	public EntityGiudizio() {
-		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	public String getQuadrimestre() {

@@ -10,11 +10,6 @@ public class EntityIstituto {
 
 	private static EntityIstituto instance=null; //servirà per verificare che l'istanza sia unica
 	
-	//gli id vengono definiti dal sistema in modo che siano univoci
-	public static int matricola=0; 
-	public static int idvalutazione=0;
-	
-	
 	private EntityIstituto() {
 		//costruttore
 	}
@@ -92,7 +87,12 @@ public class EntityIstituto {
 		
 		int ret=0;
 		
+		//gli id vengono definiti dal sistema in modo che siano univoci
+		IstitutoDAO singleton = IstitutoDAO.getInstance();
+		int matricola=singleton.getultimamatricola();
+		System.out.println(matricola);
 		matricola++;
+		System.out.println(matricola);
 	
 		EntityStudente studente= new EntityStudente();
 		
@@ -107,7 +107,7 @@ public class EntityIstituto {
 				studente.setEmail(email);
 				studente.setNumeroCellulare(numeroCellulare);
 				
-				IstitutoDAO singleton = IstitutoDAO.getInstance();
+			
 				ret=singleton.verificaclassi(classe);
 				
 				if(ret == -1) {
@@ -151,8 +151,6 @@ public class EntityIstituto {
 
 	        EntityGenitore genitore= new EntityGenitore();
 	        
-
-	        genitore.setMatricola(matricola);
 	        genitore.setPassword(password);
 	        genitore.setNome(nome);
 	        genitore.setCognome(cognome);
@@ -222,12 +220,16 @@ public class EntityIstituto {
 
 public int aggiungiVoto(String docente, int matricola, int idmaterie, Date data, float voto) {
 		
+		//gli id vengono definiti dal sistema in modo che siano univoci
+		IstitutoDAO singleton = IstitutoDAO.getInstance();
+		int idvalutazione=singleton.getultimoidvalutazioni();
+		System.out.println(idvalutazione);
 		idvalutazione++; //variabile statica per assegnare univocamente l'id
+		System.out.println(idvalutazione);
 		
 		EntityValutazione valutazione = new EntityValutazione();
 		valutazione.setIdvalutazioni(idvalutazione);
 		
-		IstitutoDAO singleton = IstitutoDAO.getInstance();
 		
 		if(!singleton.esisteDocente(docente)) {
 			System.out.println("Docente non trovato");

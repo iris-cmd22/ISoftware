@@ -80,7 +80,7 @@ public class EntityDocente {
 	
 	public int aggiornaMaterieSuDB(String username) {
 		
-			int ret=0;
+			int ret=1;
 			DocenteDAO d = new DocenteDAO(username);
 			
 			d.setNome(this.nome);
