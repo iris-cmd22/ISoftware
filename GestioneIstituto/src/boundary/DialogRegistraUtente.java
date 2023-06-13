@@ -1,35 +1,28 @@
 package boundary;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import com.toedter.calendar.JDateChooser;
-
-import control.Controller;
-
 import javax.swing.JButton;
-import javax.swing.JList;
 import javax.swing.JComboBox;
-import javax.sound.midi.SysexMessage;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.BoxLayout;
-import java.awt.GridLayout;
 
 public class DialogRegistraUtente extends JDialog {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
 	/**

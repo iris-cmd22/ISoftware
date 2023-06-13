@@ -57,10 +57,10 @@ public class MainFrame extends JFrame {
 		btn_FrameSegreteria.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				DialogSegreteria fs = new DialogSegreteria(); //apri il jFrame Segreteria
-				fs.show(); //display frame segreteria
+				DialogSegreteria fs = new DialogSegreteria(); //apri il jDialog Segreteria
+				fs.show(); //display dialog segreteria
 				
-				dispose();//chiudi il jFrame corrente dopo aver aperto il jFrame Segreteria
+				dispose();//chiudi il jFrame corrente dopo aver aperto il jDialog Segreteria
 				
 			}
 		});
@@ -113,7 +113,7 @@ public class MainFrame extends JFrame {
 		contentPane.add(btn_Alunno);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\39388\\Downloads\\MicrosoftTeams-image.png"));
+		lblNewLabel.setIcon(new ImageIcon(MainFrame.class.getResource("/resources/Screenshot 2023-06-07 115520.png")));
 		lblNewLabel.setBounds(85, 10, 286, 95);
 		contentPane.add(lblNewLabel);
 	}

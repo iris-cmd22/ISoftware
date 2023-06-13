@@ -20,6 +20,10 @@ import java.awt.Color;
 
 public class DialogDocente extends JDialog {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
 	/**
@@ -31,7 +35,7 @@ public class DialogDocente extends JDialog {
 				try {
 					DialogDocente dialog = new DialogDocente();
 					dialog.setVisible(true);
-					dialog.setDefaultCloseOperation(dialog.DISPOSE_ON_CLOSE);
+					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
