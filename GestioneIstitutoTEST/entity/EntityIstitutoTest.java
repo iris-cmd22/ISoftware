@@ -66,7 +66,7 @@ public class EntityIstitutoTest {
 	   float votoValido = (float)7.5;
 	   
 	   // Esecuzione del metodo con un voto valido
-	   int control = singleton.aggiungiVoto("lb", 4, 1,sqlDate, votoValido);
+	   int control = singleton.aggiungiVoto("l.bianchi30", 4, 1,sqlDate, votoValido);
 	   System.out.println(control);
 	   int expected=1;
 	   
@@ -76,7 +76,7 @@ public class EntityIstitutoTest {
 	   float votoMaggiore = 11;
 	   
 	   // Esecuzione del metodo con un voto valido
-	    control = singleton.aggiungiVoto("lb", 4, 1,sqlDate, votoMaggiore);
+	    control = singleton.aggiungiVoto("l.bianchi30", 4, 1,sqlDate, votoMaggiore);
 	   System.out.println(control);
 	   expected=-2;
 	   
@@ -87,7 +87,7 @@ public class EntityIstitutoTest {
 	   float votoMinore = (float) 0.5;
 	   
 	   // Esecuzione del metodo con un voto valido
-	    control = singleton.aggiungiVoto("lb", 4, 1,sqlDate, votoMinore);
+	    control = singleton.aggiungiVoto("l.bianchi30", 4, 1,sqlDate, votoMinore);
 	   System.out.println(control);
 	   expected=-2;
 	   
