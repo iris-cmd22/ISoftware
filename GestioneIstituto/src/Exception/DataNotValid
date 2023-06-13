@@ -1,0 +1,24 @@
+package Exception;
+
+
+
+public class DataNotValid {
+	
+	private String messaggio;
+	
+	public DataNotValid(String m) {
+		
+		messaggio=m;
+	}
+
+	public DataNotValid() {
+		
+	}
+	
+	public String toString() {
+		
+		return messaggio;
+		
+	}
+
+}
