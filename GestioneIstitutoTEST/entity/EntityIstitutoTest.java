@@ -61,12 +61,12 @@ public class EntityIstitutoTest {
 	   // Preparazione dei dati di test
 	
 	 LocalDate localDate = LocalDate.of(2023, 06, 10);
-	 java.sql.Date sqlDate = java.sql.Date.valueOf(localDate);
+	 java.sql.Date datavalutazione = java.sql.Date.valueOf(localDate);
 
 	   float votoValido = 7;
 	   
 	   // Esecuzione del metodo con un voto valido
-	   int control = singleton.aggiungiVoto("lb", 4, 1,sqlDate, votoValido);
+	   int control = singleton.aggiungiVoto("lb", 4, 1,datavalutazione, votoValido);
 	   System.out.println(control);
 	   int expected=1;
 	   
