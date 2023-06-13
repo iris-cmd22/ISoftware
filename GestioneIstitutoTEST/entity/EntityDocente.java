@@ -267,11 +267,11 @@ public class EntityDocente {
 
 	public void setPassword(String password) throws PasswordNotValid{
 		
-		if(username.length()>20) {
+		if(password.length()>20) {
 			throw new PasswordNotValid("Password troppo lunga");
 		}
 		
-		if(numeroCellulare.length()==0) {
+		if(password.length()==0) {
 			throw new PasswordNotValid("Password vuoto");
 		}
 		
