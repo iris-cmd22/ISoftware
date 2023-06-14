@@ -349,7 +349,7 @@ public class DialogAggiungiVoto extends JDialog {
 				JOptionPane.showMessageDialog(btnCHECK_MATERIA, materie.toString(), "Lista Materie", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
-		btn_ListaMaterie.setFont(new Font("Tahoma", Font.BOLD, 10));
+		btn_ListaMaterie.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btn_ListaMaterie.setBounds(266, 88, 128, 22);
 		contentPane.add(btn_ListaMaterie);
 		
