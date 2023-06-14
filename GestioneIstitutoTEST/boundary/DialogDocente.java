@@ -52,16 +52,18 @@ public class DialogDocente extends JDialog {
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 0, 139));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
 		JLabel lbl_titoloDocente = new JLabel("DOCENTE");
+		lbl_titoloDocente.setBounds(5, 5, 426, 20);
 		lbl_titoloDocente.setForeground(new Color(255, 255, 255));
 		lbl_titoloDocente.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_titoloDocente.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 16));
-		contentPane.add(lbl_titoloDocente, BorderLayout.NORTH);
+		contentPane.add(lbl_titoloDocente);
 		
 		JButton btn_AggiungiVoto = new JButton("AGGIUNGI VOTO");
+		btn_AggiungiVoto.setBounds(115, 86, 199, 89);
 		btn_AggiungiVoto.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -76,15 +78,7 @@ public class DialogDocente extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		contentPane.add(btn_AggiungiVoto, BorderLayout.WEST);
-		
-		JButton btn_InserisciClasse = new JButton("AGGIUNGI ATTIVITÀ");
-		btn_InserisciClasse.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btn_InserisciClasse.setFont(new Font("Tahoma", Font.BOLD, 12));
-		contentPane.add(btn_InserisciClasse, BorderLayout.EAST);
+		contentPane.add(btn_AggiungiVoto);
 	}
 
 }
