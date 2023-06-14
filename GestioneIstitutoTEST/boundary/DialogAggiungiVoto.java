@@ -156,7 +156,7 @@ public class DialogAggiungiVoto extends JDialog {
 				
 			
 				ret = Controller.aggiungiVoto(docente, Integer.parseInt(matricola), Integer.parseInt(materia), new java.sql.Date(data.getTime()), voto);
-
+				
 				
 				if(ret!=-1) {
 					
@@ -183,7 +183,7 @@ public class DialogAggiungiVoto extends JDialog {
 		contentPane.add(textField_docente);
 		textField_docente.setColumns(10);
 		
-		JButton btnCHECK_DOCENTE = new JButton("Check Docente");
+		JButton btnCHECK_DOCENTE = new JButton("Check Docente"); 	//con Check Docente si controlla se esiste un docente con lo username inserito 
 		btnCHECK_DOCENTE.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -206,7 +206,7 @@ public class DialogAggiungiVoto extends JDialog {
 		
 		
 		
-		JButton btnCHECK_MATERIA = new JButton("Check Materia");
+		JButton btnCHECK_MATERIA = new JButton("Check Materia");	//con Check Materia si controlla se la materia con quell'id esiste ed è insegnata da quel docente
 		btnCHECK_MATERIA.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -235,7 +235,7 @@ public class DialogAggiungiVoto extends JDialog {
 		
 		
 		
-		JButton btnCHECK_MATRICOLA = new JButton("Check Matricola");
+		JButton btnCHECK_MATRICOLA = new JButton("Check Matricola");	//con Check Matricola si controlla se esiste uno studente con quella matricola e si trova nella classe dove quella materia è insegnata
 		btnCHECK_MATRICOLA.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -257,7 +257,7 @@ public class DialogAggiungiVoto extends JDialog {
 		btnCHECK_MATRICOLA.setBounds(404, 139, 119, 23);
 		contentPane.add(btnCHECK_MATRICOLA);
 		
-		JButton btnCHECK_DATA = new JButton("Check Data");
+		JButton btnCHECK_DATA = new JButton("Check Data");	//con Check Data si controlla se la data inserita per una valutazione è appartenente al quadrimestre corrente e non è successiva alla data corrente
 			btnCHECK_DATA.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseClicked(MouseEvent e) {
@@ -333,7 +333,7 @@ public class DialogAggiungiVoto extends JDialog {
 		
 		
 		
-		JButton btn_ListaMaterie = new JButton("Lista Materie");
+		JButton btn_ListaMaterie = new JButton("Lista Materie");	//Consente di visualizzare tutte le materie insegnate dal docente che intende inserire il voto
 		btn_ListaMaterie.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -353,7 +353,7 @@ public class DialogAggiungiVoto extends JDialog {
 		btn_ListaMaterie.setBounds(266, 88, 128, 22);
 		contentPane.add(btn_ListaMaterie);
 		
-		JButton btn_listaMatricole = new JButton("Lista Matricole");
+		JButton btn_listaMatricole = new JButton("Lista Matricole");	//Consente di visualizzare tutti gli studenti che appartengono alla classe in cui il docente insegna la materia in cui vuole aggiungere il voto
 		btn_listaMatricole.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
