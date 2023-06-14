@@ -182,14 +182,13 @@ public class DialogRegistraGenitore extends JDialog {
 		contentPane.add(dateChooser);
 		
 		
-		//Bottone INSERISCI
-		JButton btn_Inserisci = new JButton("INSERISCI");
+		JButton btn_Inserisci = new JButton("INSERISCI"); //Bottone di inserimento dati dello Studente
 		btn_Inserisci.setEnabled(false);
 		btn_Inserisci.setForeground(Color.RED);
 		
 		btn_Inserisci.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e) { //al click del mouse viene richiamata la funzione Registra Utente
 				
 				int ret = -1;
 		
@@ -211,7 +210,7 @@ public class DialogRegistraGenitore extends JDialog {
 				
 				System.out.println(ret);
 				
-				if(ret!=-1) {
+				if(ret!=-1) { //se l'inserimento è andato a buon fine
 					
 					String conferma = "Il Genitore " + nome + " " + cognome + " è stato registrato correttamente";
 					
@@ -240,11 +239,13 @@ public class DialogRegistraGenitore extends JDialog {
 		contentPane.add(textField_figlio);
 		textField_figlio.setColumns(10);
 		
-		JButton btn_checkMatricola = new JButton("Check Matricola");
+		//Bottone per verificare l'esistenza della matricola inserita
+			//e  per controllare che nessun genitore sia già stato assegnato a quella matricola
+		JButton btn_checkMatricola = new JButton("Check Matricola"); 
 		btn_checkMatricola.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
-				//controlla se la matricola è presente nel DB
+			public void mouseClicked(MouseEvent e) { //al click del mouse viene richiamata la funzione di controllo classe
+														// e di controllo genitoreStudente
 				
 				String matricola = textField_figlio.getText();
 				
@@ -254,14 +255,14 @@ public class DialogRegistraGenitore extends JDialog {
 				boolean j=false;
 				j = Controller.controllogenitoreStudente(Integer.parseInt(matricola));
 				
-				if(i==true && j==false) {
-					btn_Inserisci.setEnabled(true);
+				if(i==true && j==false) {//se la matricola esiste e il genitore non è stato assegnato
+					btn_Inserisci.setEnabled(true); //il bottone di inserimento viene abilitato
 					textOut_matricole.setText("matricola valida");
 					
-				}else if(i==true && j==true) {
+				}else if(i==true && j==true) {//se la matricola esiste ma è già associata ad un genitore
 					textOut_matricole.setText("genitore già assegnato");
 					
-				}else {
+				}else {//se la matricola non esiste
 					textOut_matricole.setText("matricola non esistente");
 				}
 			}
@@ -272,8 +273,7 @@ public class DialogRegistraGenitore extends JDialog {
 		contentPane.add(btn_checkMatricola);
 		
 		
-		//Bottotone Check Username
-		JButton btn_checkUsername = new JButton("Check Username");
+		JButton btn_checkUsername = new JButton("Check Username");//Bottone per la verifica dell'username
 		btn_checkUsername.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -306,10 +306,10 @@ public class DialogRegistraGenitore extends JDialog {
 		
 		
 		
-		JButton btn_listaMatricole = new JButton("Lista Matricole");
+		JButton btn_listaMatricole = new JButton("Lista Matricole"); //Bottone per visualizzare la lista delle matricole
 		btn_listaMatricole.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e) { //al click del mouse viene richiamata la funzione visualizza studenti
 				//mostra lista Matricole
 				ArrayList<String> studenti = new ArrayList<String>();
 				
