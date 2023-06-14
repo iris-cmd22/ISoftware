@@ -255,7 +255,7 @@ public class EntityDocente {
 			throw new UsernameNotValid("Username troppo lungo");
 		}
 		
-		if(numeroCellulare.length()==0) {
+		if(username.length()==0) {
 			throw new UsernameNotValid("Username vuoto");
 		}
 		this.username = username;
