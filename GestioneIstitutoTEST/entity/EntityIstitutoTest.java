@@ -41,6 +41,8 @@ public class EntityIstitutoTest {
 		assertEquals(expected, control);		
 		
 		
+		
+		
 	}
 
 	
@@ -67,7 +69,144 @@ public class EntityIstitutoTest {
 
 	@Test
 	public void testCreaGenitore() {
-		fail("Not yet implemented");
+		
+		EntityIstituto singleton = EntityIstituto.getInstance();
+		Date datanascita = new Date(1980-06-13);
+		
+		//Test Case 1: Tutti input validi
+		int control=singleton.creaGenitore("Carla", "Viola", datanascita, "CRLVLI80H53F839Z","Napoli" , "carlaviola80@gmail.com", "327673435", "c.viola13", "IstitutoCarla80", 1);
+		System.out.println(control);
+		
+		int expected=1;
+		assertEquals(expected, control);
+		
+		//Test Case 2: Nome string he inizia con una minuscola
+		control=singleton.creaGenitore("carla", "Viola", datanascita, "CRLVLI80H53F839Z","Napoli" , "carlaviola80@gmail.com", "327673435", "c.viola13", "IstitutoCarla80", 1);
+		System.out.println(control);
+		
+		expected=-2;
+		assertEquals(expected, control);
+		
+		//Test Case 3: Nome vuoto
+		control=singleton.creaGenitore("", "Viola", datanascita, "CRLVLI80H53F839Z","Napoli" , "carlaviola80@gmail.com", "327673435", "c.viola13", "IstitutoCarla80", 1);
+		System.out.println(control);
+		
+		expected=-2;
+		assertEquals(expected, control);
+		
+		//Test Case 4: Nome stringa di lunghezza >100
+		control=singleton.creaGenitore("Carla Carla Carla Carla Carla Carla Carla Carla Carla Carla Carla Carla  Carla Carla Carla Carla Carla Carla Carla Carla Carla", "Viola", datanascita, "CRLVLI80H53F839Z","Napoli" , "carlaviola80@gmail.com", "327673435", "c.viola13", "IstitutoCarla80", 1);
+		System.out.println(control);
+		
+		expected=-2;
+		assertEquals(expected, control);
+		
+		//Test Case 5: Cognome stringa di caratteri che inizia con una minuscola
+		control=singleton.creaGenitore("Carla", "viola", datanascita, "CRLVLI80H53F839Z","Napoli" , "carlaviola80@gmail.com", "327673435", "c.viola13", "IstitutoCarla80", 1);
+		System.out.println(control);
+		
+		expected=-4;
+		assertEquals(expected, control);
+		
+		//Test Case 6:Cognome stringa vuota
+		control=singleton.creaGenitore("Carla", "", datanascita, "CRLVLI80H53F839Z","Napoli" , "carlaviola80@gmail.com", "327673435", "c.viola13", "IstitutoCarla80", 1);
+		System.out.println(control);
+		
+		expected=-4;
+		assertEquals(expected, control);
+		
+		//Test Case 7:Cognome stringa di lunghezza >100
+		control=singleton.creaGenitore("Carla", "Viola Viola Viola Viola Viola Viola Viola Viola Viola Viola Viola Viola Viola Viola Viola Viola Viola Viola Viola Viola Viola", datanascita, "CRLVLI80H53F839Z","Napoli" , "carlaviola80@gmail.com", "327673435", "c.viola13", "IstitutoCarla80", 1);
+		System.out.println(control);
+
+		expected=-4;
+		assertEquals(expected, control);
+		
+		//Test Case 8: Codice Fiscale stringa alfanumerica di lunghezza != 16
+		control=singleton.creaGenitore("Carla", "Viola", datanascita, "CRLVLI80H53F839Z910","Napoli" , "carlaviola80@gmail.com", "327673435", "c.viola13", "IstitutoCarla80", 1);
+		System.out.println(control);
+
+		expected=-5;
+		assertEquals(expected, control);
+		
+		//Test Case 9: Codice Fiscale composta da simboli non validi
+		control=singleton.creaGenitore("Carla", "Viola", datanascita, "CR%L&80/5&F8$9Z","Napoli" , "carlaviola80@gmail.com", "327673435", "c.viola13", "IstitutoCarla80", 1);
+		System.out.println(control);
+
+		expected=-5;
+		assertEquals(expected, control);
+		
+		//Test Case 10: Comune di residenza stringa vuota
+		control=singleton.creaGenitore("Carla", "Viola", datanascita, "CRLVLI80H53F839Z","" , "carlaviola80@gmail.com", "327673435", "c.viola13", "IstitutoCarla80", 1);
+		System.out.println(control);
+
+		expected=-6;
+		assertEquals(expected, control);
+		
+		//Test Case 11: Comune di Residenza stringa di lunghezza > 50
+		control=singleton.creaGenitore("Carla", "Viola", datanascita, "CRLVLI80H53F839Z","Napoli Napoli Napoli Napoli Napoli Napoli Napoli Napoli Napoli Napoli" , "carlaviola80@gmail.com", "327673435", "c.viola13", "IstitutoCarla80", 1);
+		System.out.println(control);
+
+		expected=-6;
+		assertEquals(expected, control);
+		
+		//Test Case 12: Comune di Residenza stringa composta da simboli non validi
+		control=singleton.creaGenitore("Carla", "Viola", datanascita, "CRLVLI80H53F839Z","N@p0li" , "carlaviola80@gmail.com", "327673435", "c.viola13", "IstitutoCarla80", 1);
+		System.out.println(control);
+
+		expected=-6;
+		assertEquals(expected, control);
+		
+		//Test Case 13: Email stringa in cui non è presente il simbolo @
+		control=singleton.creaGenitore("Carla", "Viola", datanascita, "CRLVLI80H53F839Z","Napoli" , "carlaviola80.gmail.com", "327673435", "c.viola13", "IstitutoCarla80", 1);
+		System.out.println(control);
+
+		expected=-7;
+		assertEquals(expected, control);
+		
+		//Test Case 14: Numero Cellulare Stringa vuota 
+		control=singleton.creaGenitore("Carla", "Viola", datanascita, "CRLVLI80H53F839Z","Napoli" , "carlaviola80@gmail.com", "", "c.viola13", "IstitutoCarla80", 1);
+		System.out.println(control);
+
+		expected=-4;
+		assertEquals(expected, control);
+		
+		//Test Case 15: Numero Cellulare stringa di lunghezza > 15
+		control=singleton.creaGenitore("Carla", "Viola", datanascita, "CRLVLI80H53F839Z","Napoli" , "carlaviola80@gmail.com", "+39 33920182038402810 ", "c.viola13", "IstitutoCarla80", 1);
+		System.out.println(control);
+
+		expected=-4;
+		assertEquals(expected, control);
+		
+		//Test Case 16: Username stringa vuota
+		control=singleton.creaGenitore("Carla", "Viola", datanascita, "CRLVLI80H53F839Z","Napoli" , "carlaviola80@gmail.com", "327673435", "", "IstitutoCarla80", 1);
+		System.out.println(control);
+
+		expected=-4;
+		assertEquals(expected, control);
+		
+		//Test Case 17: Username stringa di lunghezza > 20
+		control=singleton.creaGenitore("Carla", "Viola", datanascita, "CRLVLI80H53F839Z","Napoli" , "carlaviola80@gmail.com", "327673435", "carla.viola13278738193037", "IstitutoCarla80", 1);
+		System.out.println(control);
+
+		expected=-4;
+		assertEquals(expected, control);
+		
+		//Test Case 18: Password stringa vuota
+		control=singleton.creaGenitore("Carla", "Viola", datanascita, "CRLVLI80H53F839Z","Napoli" , "carlaviola80@gmail.com", "327673435", "c.viola13", "", 1);
+		System.out.println(control);
+
+		expected=-4;
+		assertEquals(expected, control);
+		
+		//Test Case 19:Password stringa di lunghezza  > 50
+		control=singleton.creaGenitore("Carla", "Viola", datanascita, "CRLVLI80H53F839Z","Napoli" , "carlaviola80@gmail.com", "327673435", "c.viola13", "IstitutoCarlaIstitutoCarlaIstitutoCarlaIstitutoCarlaIstitutoCarla", 1);
+		System.out.println(control);
+
+		expected=-4;
+		assertEquals(expected, control);
+		
+		
 	}
 
 	@Test
