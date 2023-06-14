@@ -11,7 +11,7 @@ public class DBConnectionManager {
 	public static String dbName = "mydb_argo";
 	public static String driver = "com.mysql.cj.jdbc.Driver";
 	public static String userName = "root"; 
-	public static String password = "Cifrescula20!";
+	public static String password = "";
 	
 	
 	//Serve a connetterci
