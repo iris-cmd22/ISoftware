@@ -2,6 +2,7 @@ package entity;
 
 import java.sql.Date;
 
+import Exception.VotoNotValid;
 import database.ValutazioneDAO;
 import database.StudenteDAO;
 import database.MateriaDAO;
@@ -106,6 +107,7 @@ public class EntityValutazione {
 		}
 		this.voto = voto;
 	}
+
 
 
 	public EntityMateria getMateria() {
