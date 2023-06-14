@@ -134,7 +134,7 @@ public class EntityIstitutoTest {
 		assertEquals(expected, control);
 		
 		//Test Case 9: Codice Fiscale composta da simboli non validi
-		control=singleton.creaGenitore("Carla", "Viola", datanascita, "CR%L&80/5&F8$9Z","Napoli" , "carlaviola80@gmail.com", "327673435", "c.viola13", "IstitutoCarla80", 1);
+		control=singleton.creaGenitore("Carla", "Viola", datanascita, "CR%L&80/5&F8$9ZF","Napoli" , "carlaviola80@gmail.com", "327673435", "c.viola13", "IstitutoCarla80", 1);
 		System.out.println(control);
 
 		expected=-6;
