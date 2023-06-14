@@ -60,7 +60,7 @@ public class DialogRegistraDocente extends JDialog {
 	 */
 	public DialogRegistraDocente() {
 		
-		ArrayList<Integer> materie = new ArrayList<Integer>();
+		ArrayList<Integer> materie = new ArrayList<Integer>(); //Array di materie che viene richiamato in più funzioni e pulito ad ogni inserimento
 		
 		setBounds(100, 100, 613, 447);
 		contentPane = new JPanel();
@@ -200,9 +200,9 @@ public class DialogRegistraDocente extends JDialog {
 		btn_Inserisci.setEnabled(false);
 		btn_Inserisci.setForeground(Color.RED);
 		
-		btn_Inserisci.addMouseListener(new MouseAdapter() {
+		btn_Inserisci.addMouseListener(new MouseAdapter() {//Bottone di inserimento dati del Docente
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e) { //al click del mouse viene richiamata la funzione Registra Utente
 				
 				int ret = -1;
 		
@@ -223,7 +223,7 @@ public class DialogRegistraDocente extends JDialog {
 				
 				System.out.println(ret);
 				
-				if(ret!=-1) {
+				if(ret>0) {//se l'inserimento è andato a buon fine
 					
 					String conferma = "Il Docente " + nome + " " + cognome + " è stato registrato correttamente";
 					
@@ -240,8 +240,7 @@ public class DialogRegistraDocente extends JDialog {
 		btn_Inserisci.setBounds(450, 373, 139, 21);
 		contentPane.add(btn_Inserisci);
 		
-		//Bottotone Check Username
-		JButton btn_checkUsername = new JButton("Check Username");
+		JButton btn_checkUsername = new JButton("Check Username"); //Bottone per la verifica dell'username
 		btn_checkUsername.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -274,7 +273,7 @@ public class DialogRegistraDocente extends JDialog {
 		lbl_materie.setBounds(348, 148, 60, 13);
 		contentPane.add(lbl_materie);
 		
-		JButton btn_selezionaMateria = new JButton("Seleziona Materia");
+		JButton btn_selezionaMateria = new JButton("Seleziona Materia"); //Bottone per l'inserimento della materia nell'array
 		btn_selezionaMateria.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -287,7 +286,7 @@ public class DialogRegistraDocente extends JDialog {
                     
                     textout_inserimento.setText("Id inserito: " + number);
                     text_materie.setText(" ");
-                } catch (NumberFormatException ex) {
+                } catch (NumberFormatException ex) { //se il numero non è in un formato valido
                     JOptionPane.showMessageDialog(null, "Inserisci un numero valido!", "Errore", JOptionPane.ERROR_MESSAGE);
                 }
 				
@@ -297,8 +296,8 @@ public class DialogRegistraDocente extends JDialog {
 		btn_selezionaMateria.setBounds(450, 230, 139, 21);
 		contentPane.add(btn_selezionaMateria);
 		
-		JButton btn_ListaMaterie = new JButton("Lista Materie");
-		btn_ListaMaterie.addMouseListener(new MouseAdapter() {
+		JButton btn_ListaMaterie = new JButton("Lista Materie");//Bottone per visualizzare la lista delle materie
+		btn_ListaMaterie.addMouseListener(new MouseAdapter() { //al click del mouse viene richiamata la funzione visualizza classi
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				//mostra a video la lista delle materie
@@ -312,10 +311,6 @@ public class DialogRegistraDocente extends JDialog {
 		btn_ListaMaterie.setFont(new Font("Tahoma", Font.BOLD, 10));
 		btn_ListaMaterie.setBounds(348, 187, 101, 21);
 		contentPane.add(btn_ListaMaterie);
-		
-		
-		
-		
 		
 	}
 }
