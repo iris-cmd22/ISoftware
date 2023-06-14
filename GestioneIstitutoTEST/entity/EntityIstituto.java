@@ -498,6 +498,19 @@ public ArrayList<String> visualizzamaterie(){
         
         return materie;
     }
+public ArrayList<String> visualizzamateriePerDocente(String docente){
+	
+	IstitutoDAO singleton = IstitutoDAO.getInstance();
+    ArrayList<String> materie = new ArrayList<String>();
+    
+    for(int i=0;i<singleton.visualizzamateriePerDocente(docente).size();i++) {
+    	EntityMateria materia=new EntityMateria(singleton.visualizzamateriePerDocente(docente).get(i));
+    	
+    	materie.add(materia.toString());
+    }
+    
+    return materie;
+}
 	
 public ArrayList<String> visualizzastudenti(){
 		
@@ -511,6 +524,20 @@ public ArrayList<String> visualizzastudenti(){
 		
 		return studenti;
 	}
+
+
+public ArrayList<String> visualizzastudentiPerMateria(int idmateria){
+	
+	IstitutoDAO singleton = IstitutoDAO.getInstance();
+	ArrayList<String> studenti = new ArrayList<String>();
+	
+	for(int i=0; i<singleton.visualizzastudentiPerMateria(idmateria).size(); i++) {
+		EntityStudente studente = new EntityStudente(singleton.visualizzastudentiPerMateria(idmateria).get(i).getMatricola());
+		studenti.add(studente.toString());
+	}
+	
+	return studenti;
+}
 	
 public ArrayList<String> visualizzaclassi(){
 
