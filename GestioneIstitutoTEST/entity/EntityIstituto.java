@@ -432,12 +432,18 @@ public boolean controllomateria(int idmateria) {
 		return singleton.esisteStudente(matricola);
 	}
 	
+	public boolean controllogenitoreStudente(int matricola) {
+		IstitutoDAO singleton = IstitutoDAO.getInstance();
 
-public boolean controllostudenteInClasse(int matricola,int materia) {
-	IstitutoDAO singleton = IstitutoDAO.getInstance();
+		return singleton.esisteGenitoreStudente(matricola);
+	}
 	
-	return singleton.esisteStudenteInClasse(matricola,materia);
-}
+
+	public boolean controllostudenteInClasse(int matricola,int materia) {
+		IstitutoDAO singleton = IstitutoDAO.getInstance();
+
+		return singleton.esisteStudenteInClasse(matricola,materia);
+	}
 
 
 
