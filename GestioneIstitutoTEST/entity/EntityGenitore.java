@@ -189,6 +189,10 @@ public class EntityGenitore {
         	throw new ComuneDiResidenzaNotValid("Comune di residenza: lunghezza non valida");
         }
         
+        if(comuneResidenza.length()==0) {
+        	throw new ComuneDiResidenzaNotValid("Comune di residenza: vuoto");
+        }
+        
         if(!comuneResidenza.matches(regex)) {
         	throw new ComuneDiResidenzaNotValid("Comune di residenza: formato non valido");
         }
