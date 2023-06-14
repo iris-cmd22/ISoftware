@@ -348,9 +348,7 @@ public class EntityIstituto {
 	
 	
 	
-//UPDATE Aggiungivoto
-
-public int aggiungiVoto(String docente, int matricola, int idmaterie, Date data, float voto) {
+public int aggiungiVoto(String docente, int matricola, int idmaterie, Date data, float voto) {	//funzione che permette a un docente di inserire un voto, in una materia che insegna, ad uno studente nella classe in cui insegna tale materia
 		
 		//gli id vengono definiti dal sistema in modo che siano univoci
 		IstitutoDAO singleton = IstitutoDAO.getInstance();
@@ -362,13 +360,19 @@ public int aggiungiVoto(String docente, int matricola, int idmaterie, Date data,
 		EntityValutazione valutazione = new EntityValutazione();
 		valutazione.setIdvalutazioni(idvalutazione);
 		
-		
+		//Controllo se esiste lo username del docente che vuole inserire il voto
 		if(!singleton.esisteDocente(docente)) {
 			System.out.println("Docente non trovato");
 			return -1;
 		}
-    	
-   	 	// Controllo se esiste uno studente con quella matricola
+		
+    	// Controllo se esiste una materia con identificativo idmaterie ed è insegnata dal docente che vuole inserire il voto 
+       if (!singleton.esisteMateriaInsegnata(idmaterie,docente)) {
+    	   System.out.println("Materia non trovata");
+           return -1;
+       }
+       
+   	 	// Controllo se esiste uno studente con quella matricola ed è nella classe in cui la materia per cui si vuole inserire il voto è insegnata
        if (!singleton.esisteStudenteInClasse(matricola,idmaterie)) {
     	   System.out.println("Studente non trovato");
            return -1;
@@ -377,17 +381,13 @@ public int aggiungiVoto(String docente, int matricola, int idmaterie, Date data,
        EntityStudente studente_valutato = new EntityStudente(matricola);
        valutazione.setStudente(studente_valutato);
 
-       // Controllo se esiste una materia con idmaterie
-       if (!singleton.esisteMateriaInsegnata(idmaterie,docente)) {
-    	   System.out.println("Materia non trovata");
-           return -1;
-       }
+       
 
        EntityMateria materia_valutata = new EntityMateria(idmaterie);
        valutazione.setMateria(materia_valutata);
 
        
-       // Controllo se la data è nel quadrimestre corrente
+       // Controllo se la data è nel quadrimestre corrente e non è successiva alla data corrente
        if (!singleton.isDataValida(data)) {
     	   System.out.println("Data non valida");
            return -1;
