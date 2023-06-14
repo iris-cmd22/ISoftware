@@ -402,9 +402,9 @@ public int aggiungiVoto(String docente, int matricola, int idmaterie, Date data,
    		return -2;
    	}
    	
-       valutazione.setVoto(voto);
+     
        
-   		int ret = valutazione.scriviSuDB(idvalutazione);
+   	int ret = valutazione.scriviSuDB(idvalutazione);
   
        return ret;
 	}
