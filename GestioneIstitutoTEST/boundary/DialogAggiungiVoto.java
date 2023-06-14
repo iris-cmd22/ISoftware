@@ -21,6 +21,7 @@ import control.Controller;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
@@ -66,7 +67,7 @@ public class DialogAggiungiVoto extends JDialog {
 	 */
 	public DialogAggiungiVoto() {
 		//setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 585, 355);
+		setBounds(100, 100, 738, 355);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 0, 139));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -198,7 +199,7 @@ public class DialogAggiungiVoto extends JDialog {
 				
 			}
 		});
-		btnCHECK_DOCENTE.setBounds(287, 49, 119, 23);
+		btnCHECK_DOCENTE.setBounds(404, 49, 119, 23);
 		contentPane.add(btnCHECK_DOCENTE);
 		
 		
@@ -229,7 +230,7 @@ public class DialogAggiungiVoto extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnCHECK_MATERIA.setBounds(287, 87, 119, 23);
+		btnCHECK_MATERIA.setBounds(404, 87, 119, 23);
 		contentPane.add(btnCHECK_MATERIA);
 		
 		
@@ -253,7 +254,7 @@ public class DialogAggiungiVoto extends JDialog {
 				
 			}
 		});
-		btnCHECK_MATRICOLA.setBounds(287, 139, 119, 23);
+		btnCHECK_MATRICOLA.setBounds(404, 139, 119, 23);
 		contentPane.add(btnCHECK_MATRICOLA);
 		
 		JButton btnCHECK_DATA = new JButton("Check Data");
@@ -282,7 +283,7 @@ public class DialogAggiungiVoto extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnCHECK_DATA.setBounds(287, 193, 119, 23);
+		btnCHECK_DATA.setBounds(404, 193, 119, 23);
 		contentPane.add(btnCHECK_DATA);
 		
 		textOut_materia = new JTextField();
@@ -290,7 +291,7 @@ public class DialogAggiungiVoto extends JDialog {
 		textOut_materia.setForeground(new Color(255, 255, 255));
 		textOut_materia.setBackground(new Color(0, 0, 128));
 		textOut_materia.setEditable(false);
-		textOut_materia.setBounds(416, 88, 147, 20);
+		textOut_materia.setBounds(533, 88, 147, 20);
 		contentPane.add(textOut_materia);
 		textOut_materia.setColumns(10);
 		
@@ -299,7 +300,7 @@ public class DialogAggiungiVoto extends JDialog {
 		textOut_matricola.setForeground(new Color(255, 255, 255));
 		textOut_matricola.setBackground(new Color(0, 0, 128));
 		textOut_matricola.setEditable(false);
-		textOut_matricola.setBounds(416, 140, 147, 20);
+		textOut_matricola.setBounds(533, 140, 147, 20);
 		contentPane.add(textOut_matricola);
 		textOut_matricola.setColumns(10);
 		
@@ -308,7 +309,7 @@ public class DialogAggiungiVoto extends JDialog {
 		textOut_data.setForeground(new Color(255, 255, 255));
 		textOut_data.setBackground(new Color(0, 0, 128));
 		textOut_data.setEditable(false);
-		textOut_data.setBounds(416, 194, 147, 20);
+		textOut_data.setBounds(533, 194, 147, 20);
 		contentPane.add(textOut_data);
 		textOut_data.setColumns(10);
 		
@@ -326,8 +327,51 @@ public class DialogAggiungiVoto extends JDialog {
 		textOut_docente.setEditable(false);
 		textOut_docente.setColumns(10);
 		textOut_docente.setBackground(new Color(0, 0, 128));
-		textOut_docente.setBounds(416, 50, 147, 20);
+		textOut_docente.setBounds(533, 50, 147, 20);
 		contentPane.add(textOut_docente);
+		
+		
+		
+		
+		JButton btn_ListaMaterie = new JButton("Lista Materie");
+		btn_ListaMaterie.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btn_ListaMaterie.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//mostra a video la lista delle materie
+				ArrayList<String> materie = new ArrayList<String>();
+				
+			materie = Controller.visualizzamateriePerDocente(textField_docente.getText());
+				
+				JOptionPane.showMessageDialog(btnCHECK_MATERIA, materie.toString(), "Lista Materie", JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
+		btn_ListaMaterie.setFont(new Font("Tahoma", Font.BOLD, 10));
+		btn_ListaMaterie.setBounds(266, 88, 128, 22);
+		contentPane.add(btn_ListaMaterie);
+		
+		JButton btn_listaMatricole = new JButton("Lista Matricole");
+		btn_listaMatricole.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//mostra lista Matricole
+				ArrayList<String> studenti = new ArrayList<String>();
+				String materia= textField_materia.getText();
+				
+				studenti = Controller.visualizzastudentiPerMateria(Integer.parseInt(materia));
+				
+				JOptionPane.showMessageDialog(btn_listaMatricole, studenti.toString(), "Lista Matricole", JOptionPane.INFORMATION_MESSAGE);
+				
+				
+			}
+		});
+		btn_listaMatricole.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btn_listaMatricole.setForeground(Color.BLACK);
+		btn_listaMatricole.setBounds(266, 140, 128, 19);
+		contentPane.add(btn_listaMatricole);
 		
 		
 
