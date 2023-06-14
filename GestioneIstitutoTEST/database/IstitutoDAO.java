@@ -314,12 +314,75 @@ public int getultimoidvalutazioni() {
 		
 		return idmaterie;
 	}
+
+
+			public ArrayList<Integer> visualizzamateriePerDocente(String docente) {
+			
+			ArrayList<Integer> idmaterie = new ArrayList<Integer>();
+			
+			String query="SELECT * FROM materie WHERE docente='"+docente+"';";
+			
+			try {
+				
+				ResultSet rs =DBConnectionManager.selectQuery(query);
+				System.out.println(query); //per debug
+				
+				while(rs.next()) {
+					
+					Integer idmateria;
+					
+					idmateria=rs.getInt("idmaterie");
+					
+					idmaterie.add(idmateria);
+					
+				}
+				
+			}catch(ClassNotFoundException | SQLException e) {
+				e.printStackTrace();
+			}
+			
+			return idmaterie;
+		}
 	
 	public ArrayList<StudenteDAO> visualizzastudenti(){
 		
 		ArrayList<StudenteDAO> studenti = new ArrayList<StudenteDAO>();
 		
 		String query="SELECT * FROM studenti";
+		
+		try {
+			
+			ResultSet rs = DBConnectionManager.selectQuery(query);
+			System.out.println(query); //per debug
+			
+			while(rs.next()) {
+				
+				StudenteDAO studente = new StudenteDAO();
+				
+				studente.setMatricola(rs.getInt("matricola"));
+				studente.setUsername(rs.getString("username"));
+				studente.setNome(rs.getString("nome"));
+				studente.setNome(rs.getString("cognome"));
+				
+				studenti.add(studente);
+			}
+			
+		}catch(ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return studenti;
+	}
+
+
+	public ArrayList<StudenteDAO> visualizzastudentiPerMateria(int idmaterie){
+		
+		ArrayList<StudenteDAO> studenti = new ArrayList<StudenteDAO>();
+		
+		String query = "SELECT s.* FROM studenti s " +
+                "JOIN studente_in_classe sic ON s.matricola = sic.studente " +
+                "JOIN materie m ON sic.classe = m.classe " +
+                "WHERE m.idmaterie = '" + idmaterie+"';";
 		
 		try {
 			
