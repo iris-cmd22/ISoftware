@@ -132,6 +132,15 @@ public class Controller {
 	        
 	        		return materie;
 	    }
+
+		 public static ArrayList<String> visualizzamateriePerDocente(String docente){
+	    	EntityIstituto singleton = EntityIstituto.getInstance();
+	        ArrayList<String> materie = new ArrayList<String>();
+	        
+	        materie=singleton.visualizzamateriePerDocente(docente);
+	        
+	        		return materie;
+	    }
 	 
 	 public static ArrayList<String> visualizzastudenti(){
 		 
@@ -142,7 +151,17 @@ public class Controller {
 		 
 		 return studenti;
 	 }
-	 
+
+		 public static ArrayList<String> visualizzastudentiPerMateria(int idmateria){
+		 
+		 EntityIstituto singleton = EntityIstituto.getInstance();
+		 ArrayList<String> studenti = new ArrayList<String>();
+		 
+		 studenti = singleton.visualizzastudentiPerMateria(idmateria);
+		 
+		 return studenti;
+	 }
+	
 	 public static ArrayList<String> visualizzaclassi(){
 		 
 		 EntityIstituto singleton = EntityIstituto.getInstance();
