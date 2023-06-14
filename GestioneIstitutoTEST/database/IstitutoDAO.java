@@ -196,18 +196,20 @@ public int getultimoidvalutazioni() {
 
             //Si controlla che la data della valutazione sia nel quadrimestre (e anno) corrente, e che non sia successiva alla data corrente
           
+    	        
     	    // Primo quadrimestre: settembre - gennaio: 
-    	    if (((meseCorrente >= 9 && meseCorrente <= 12) ||meseCorrente==1) && (annoCorrente  == annoInput || annoCorrente == annoInput +1) && Date.valueOf(dataCorrente).compareTo(data)>=0) {
+    	    if (((meseCorrente >= 9 && meseCorrente <= 12) ||meseCorrente==1) && (annoCorrente  == annoInput || annoCorrente == annoInput +1) && (Date.valueOf(dataCorrente).compareTo(data)>=0|| (dataCorrente.getDayOfMonth()==data.toLocalDate().getDayOfMonth() && dataCorrente.getMonth()==data.toLocalDate().getMonth()))) {
     	        if ((meseInput >= 9 && meseInput <= 12) || meseInput == 1) {
     	            return true;
     	        }
     	    }
     	    // Secondo quadrimestre: febbraio - giugno
-    	    else if (meseCorrente >= 2 && meseCorrente <= 6 && annoCorrente == annoInput && Date.valueOf(dataCorrente).compareTo(data)>=0) {
+    	    else if (meseCorrente >= 2 && meseCorrente <= 6 && annoCorrente == annoInput && (Date.valueOf(dataCorrente).compareTo(data)>=0 || (dataCorrente.getDayOfMonth()==data.toLocalDate().getDayOfMonth() && dataCorrente.getMonth()==data.toLocalDate().getMonth()))) {
     	        if (meseInput >= 2 && meseInput <= 6) {
     	            return true;
     	        }
     	    }
+
 
     	    return false;
     }   
