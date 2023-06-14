@@ -11,6 +11,7 @@ import Exception.NomeNotValid;
 import Exception.NumeroDiCellulareNotValid;
 import Exception.PasswordNotValid;
 import Exception.UsernameNotValid;
+import Exception.VotoNotValid;
 import database.IstitutoDAO;
 
 //class facade del package entity: viene richiamata nel controller come singleton
