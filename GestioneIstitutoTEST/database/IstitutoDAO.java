@@ -171,7 +171,8 @@ public int getultimoidvalutazioni() {
 	
 
 	
-    public boolean esisteMateriaInsegnata(int idmaterie, String docente){
+    public boolean esisteMateriaInsegnata(int idmaterie, String docente){//serve per la funzionalità aggiungiVoto: serve per verificare che la materia con identificativo idmaterie esista e sia insegnata dal docente che ha come username quello in input
+        
         try {
         	
         	ResultSet rs = DBConnectionManager.selectQuery("SELECT idmaterie FROM materie WHERE idmaterie = " + idmaterie + " AND docente = '" + docente + "';"); //controlla se la materia esiste ed è insegnata dal docente che vuole aggiungere il voto
@@ -211,7 +212,8 @@ public int getultimoidvalutazioni() {
     	    return false;
     }   
       
-    public boolean esisteDocente(String username) {
+    public boolean esisteDocente(String username) {//controlla che il docente con lo username fornito in input esista
+    	
     	
    	 
    		 try {
@@ -316,7 +318,8 @@ public int getultimoidvalutazioni() {
 	}
 
 
-			public ArrayList<Integer> visualizzamateriePerDocente(String docente) {
+			public ArrayList<Integer> visualizzamateriePerDocente(String docente) { //serve a visualizzare tutte le materie insegnate dal docente che ha come username quello in input
+			
 			
 			ArrayList<Integer> idmaterie = new ArrayList<Integer>();
 			
@@ -375,7 +378,8 @@ public int getultimoidvalutazioni() {
 	}
 
 
-	public ArrayList<StudenteDAO> visualizzastudentiPerMateria(int idmaterie){
+	public ArrayList<StudenteDAO> visualizzastudentiPerMateria(int idmaterie){//serve a visualizzare tutti gli studenti presenti nella classe in cui la materia che ha come identificativo quello in ingresso è insegnata
+		
 		
 		ArrayList<StudenteDAO> studenti = new ArrayList<StudenteDAO>();
 		
