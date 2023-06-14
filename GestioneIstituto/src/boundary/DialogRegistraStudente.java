@@ -198,10 +198,10 @@ public class DialogRegistraStudente extends JDialog {
 		contentPane.add(textField_Classe);
 		textField_Classe.setColumns(10);
 		
-		JButton btn_listaClassi = new JButton("Lista Classi");
+		JButton btn_listaClassi = new JButton("Lista Classi"); //Bottone per visualizzare la lista delle classi
 		btn_listaClassi.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e) { //al click del mouse viene richiamata la funzione visualizza classi
 				//mostra lista classi
 				ArrayList<String> classi = new ArrayList<String>();
 				
@@ -219,10 +219,10 @@ public class DialogRegistraStudente extends JDialog {
 		btn_Inserisci.setEnabled(false);
 		btn_Inserisci.setForeground(Color.RED);
 		
-		JButton btn_checkClasse = new JButton("Check Classe");
+		JButton btn_checkClasse = new JButton("Check Classe"); //Bottone per verificare l'esistenza della classe inserita
 		btn_checkClasse.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e) { //al click del mouse viene richiamata la funzione di controllo classe
 				
 				String classe = textField_Classe.getText();
 				
@@ -230,11 +230,13 @@ public class DialogRegistraStudente extends JDialog {
 				
 				ret = Controller.controlloclasse(Integer.parseInt(classe));
 				
-				if(ret==true) {
-					btn_Inserisci.setEnabled(true);
+				if(ret==true) { //Se la classe esiste
+					
+					btn_Inserisci.setEnabled(true); //viene abilitato il bottone di Inserimento
 					textOut_classe.setText("classse esistente");
 					
 				}else {
+					
 					textOut_classe.setText("classe non esistente");
 				}
 				
@@ -247,9 +249,9 @@ public class DialogRegistraStudente extends JDialog {
 		
 		
 		
-		btn_Inserisci.addMouseListener(new MouseAdapter() {
+		btn_Inserisci.addMouseListener(new MouseAdapter() { //Bottone di inserimento dati dello Studente
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e) { //al click del mouse viene richiamata la funzione Registra Utente
 				
 				int ret = -1;
 		
@@ -270,10 +272,9 @@ public class DialogRegistraStudente extends JDialog {
 				
 				System.out.println(ret);
 				
-				if(ret!=-1) {
+				if(ret!=-1) { //se l'inserimento è andato a buon fine
 					
-					String conferma = "Lo Studente " + nome + " " + cognome + " è stato registrato correttamente";
-					//dovremmo mostrare la matricola assegnata?
+					String conferma = "Lo Studente " + nome + " " + cognome + " è stato registrato correttamente"; 
 					
 					JOptionPane.showConfirmDialog(null, conferma, "Conferma", JOptionPane.OK_CANCEL_OPTION);
 					
@@ -289,9 +290,7 @@ public class DialogRegistraStudente extends JDialog {
 		contentPane.add(btn_Inserisci);
 		
 		
-		
-		//Bottotone Check Username
-		JButton btn_checkUsername = new JButton("Check Username");
+		JButton btn_checkUsername = new JButton("Check Username"); //Bottone per la verifica dell'username
 		btn_checkUsername.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
