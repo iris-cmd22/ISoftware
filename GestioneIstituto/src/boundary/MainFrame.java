@@ -47,20 +47,18 @@ public class MainFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(255, 255, 255));
+		contentPane.setBackground(new Color(135, 206, 235));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btn_FrameSegreteria = new JButton("Segreteria");
+		JButton btn_FrameSegreteria = new JButton("Segreteria"); //Bottone per aprire il menu Segreteria
 		btn_FrameSegreteria.setBounds(10, 156, 120, 25);
 		btn_FrameSegreteria.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e) { //al click del mouse
 				DialogSegreteria fs = new DialogSegreteria(); //apri il jDialog Segreteria
 				fs.show(); //display dialog segreteria
-				
-				dispose();//chiudi il jFrame corrente dopo aver aperto il jDialog Segreteria
 				
 			}
 		});
@@ -71,15 +69,12 @@ public class MainFrame extends JFrame {
 		});
 		contentPane.add(btn_FrameSegreteria);
 		
-		JButton btn_Genitore = new JButton("Genitore");
+		JButton btn_Genitore = new JButton("Genitore"); //Bottone per aprire il menu Genitore
 		btn_Genitore.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
-				DialogGenitore fd = new DialogGenitore();
-				fd.show();
-				
-				dispose();
-				
+			public void mouseClicked(MouseEvent e) { //al click del mouse
+				DialogGenitore fd = new DialogGenitore(); //apri il jDialog Genitore
+				fd.show(); //display dialog genitore
 				
 			}
 		});
@@ -90,29 +85,21 @@ public class MainFrame extends JFrame {
 		
 		
 		
-		JButton btn_DialogDocente = new JButton("Docente");
+		JButton btn_DialogDocente = new JButton("Docente"); //Bottone per aprire il menu Docente
 		btn_DialogDocente.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e) { //al click del mouse
 				DialogDocente fd = new DialogDocente(); //apri il jDialog Docente
 				fd.show(); //display dialog docente
 				
-				dispose();//chiudi il jFrame corrente dopo aver aperto il jDialog Docente
+				
 			}
 		});
-		btn_DialogDocente.setBounds(10, 206, 120, 25);
+		btn_DialogDocente.setBounds(159, 206, 120, 25);
 		btn_DialogDocente.setFont(new Font("Tahoma", Font.BOLD, 14));
 		contentPane.add(btn_DialogDocente);
 		
-		
-		
-		
-		JButton btn_Alunno = new JButton("Alunno");
-		btn_Alunno.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btn_Alunno.setBounds(306, 210, 120, 21);
-		contentPane.add(btn_Alunno);
-		
-		JLabel lblNewLabel = new JLabel("");
+		JLabel lblNewLabel = new JLabel(""); //label per l'immagine contenuta nel classpath all'interno del package resources
 		lblNewLabel.setIcon(new ImageIcon(MainFrame.class.getResource("/resources/Screenshot 2023-06-07 115520.png")));
 		lblNewLabel.setBounds(85, 10, 286, 95);
 		contentPane.add(lblNewLabel);
