@@ -47,7 +47,7 @@ public class MainFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(255, 255, 255));
+		contentPane.setBackground(new Color(135, 206, 235));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -60,7 +60,6 @@ public class MainFrame extends JFrame {
 				DialogSegreteria fs = new DialogSegreteria(); //apri il jDialog Segreteria
 				fs.show(); //display dialog segreteria
 				
-				dispose();//chiudi il jFrame corrente dopo aver aperto il jDialog Segreteria
 				
 			}
 		});
@@ -78,7 +77,6 @@ public class MainFrame extends JFrame {
 				DialogGenitore fd = new DialogGenitore();
 				fd.show();
 				
-				dispose();
 				
 				
 			}
@@ -97,20 +95,12 @@ public class MainFrame extends JFrame {
 				DialogDocente fd = new DialogDocente(); //apri il jDialog Docente
 				fd.show(); //display dialog docente
 				
-				dispose();//chiudi il jFrame corrente dopo aver aperto il jDialog Docente
+				
 			}
 		});
-		btn_DialogDocente.setBounds(10, 206, 120, 25);
+		btn_DialogDocente.setBounds(159, 206, 120, 25);
 		btn_DialogDocente.setFont(new Font("Tahoma", Font.BOLD, 14));
 		contentPane.add(btn_DialogDocente);
-		
-		
-		
-		
-		JButton btn_Alunno = new JButton("Alunno");
-		btn_Alunno.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btn_Alunno.setBounds(306, 210, 120, 21);
-		contentPane.add(btn_Alunno);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(MainFrame.class.getResource("/resources/Screenshot 2023-06-07 115520.png")));
