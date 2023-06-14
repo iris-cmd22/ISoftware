@@ -124,6 +124,16 @@ public int getultimoidvalutazioni() {
             return false;
         }
     }
+	
+	public boolean esisteGenitoreStudente(int matricola) {
+		 try {
+	            ResultSet rs = DBConnectionManager.selectQuery("SELECT * FROM genitori WHERE studente_figlio = '"+matricola+"';");;
+	            return rs.next();
+	        } catch (SQLException | ClassNotFoundException e) {
+	            e.printStackTrace();
+	            return false;
+	        }
+	}
     
 	
 	public boolean esisteStudenteInClasse(int matricola, int idmateria) {  //serve per la funzionalità aggiungiVoto: controlla che l'utente al quale si vuole aggiungere il voto
