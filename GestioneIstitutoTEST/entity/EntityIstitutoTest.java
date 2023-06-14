@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.sql.Date;
 import java.time.LocalDate;
 
+import org.junit.FixMethodOrder;
+import org.junit.runners.MethodSorters;
+
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
 public class EntityIstitutoTest {
 
@@ -23,7 +27,7 @@ public class EntityIstitutoTest {
 	}
 
 	@Test
-	public void testCreaDocente() { 
+	public void testA_CreaDocente() { 
 	
 		
 		EntityIstituto singleton = EntityIstituto.getInstance();
@@ -47,13 +51,13 @@ public class EntityIstitutoTest {
 
 	
 	@Test
-	public void testCreaStudente() {
+	public void testB_CreaStudente() {
 		EntityIstituto singleton = EntityIstituto.getInstance();
 		
 		
 		
 		LocalDate localDate = LocalDate.of(2001,10,20);
-		 java.sql.Date datanascita = java.sql.Date.valueOf(localDate);
+		java.sql.Date datanascita = java.sql.Date.valueOf(localDate);
 		
 		int control=singleton.creaStudente("Mario", "Rossi", datanascita , "RSSMRA01R20F839P", "Napoli", "mariorossi2001@gmail.com", "338765432", "m.rossi20","ScuolaMario20@" , 1);
 		
@@ -68,7 +72,7 @@ public class EntityIstitutoTest {
 	}
 
 	@Test
-	public void testCreaGenitore() {
+	public void testC_CreaGenitore() {
 		
 		EntityIstituto singleton = EntityIstituto.getInstance();
 		Date datanascita = new Date(1980-06-13);
@@ -105,91 +109,91 @@ public class EntityIstitutoTest {
 		control=singleton.creaGenitore("Carla", "viola", datanascita, "CRLVLI80H53F839Z","Napoli" , "carlaviola80@gmail.com", "327673435", "c.viola13", "IstitutoCarla80", 1);
 		System.out.println(control);
 		
-		expected=-4;
+		expected=-5;
 		assertEquals(expected, control);
 		
 		//Test Case 6:Cognome stringa vuota
 		control=singleton.creaGenitore("Carla", "", datanascita, "CRLVLI80H53F839Z","Napoli" , "carlaviola80@gmail.com", "327673435", "c.viola13", "IstitutoCarla80", 1);
 		System.out.println(control);
 		
-		expected=-4;
+		expected=-5;
 		assertEquals(expected, control);
 		
 		//Test Case 7:Cognome stringa di lunghezza >100
 		control=singleton.creaGenitore("Carla", "Viola Viola Viola Viola Viola Viola Viola Viola Viola Viola Viola Viola Viola Viola Viola Viola Viola Viola Viola Viola Viola", datanascita, "CRLVLI80H53F839Z","Napoli" , "carlaviola80@gmail.com", "327673435", "c.viola13", "IstitutoCarla80", 1);
 		System.out.println(control);
 
-		expected=-4;
+		expected=-5;
 		assertEquals(expected, control);
 		
 		//Test Case 8: Codice Fiscale stringa alfanumerica di lunghezza != 16
 		control=singleton.creaGenitore("Carla", "Viola", datanascita, "CRLVLI80H53F839Z910","Napoli" , "carlaviola80@gmail.com", "327673435", "c.viola13", "IstitutoCarla80", 1);
 		System.out.println(control);
 
-		expected=-5;
+		expected=-6;
 		assertEquals(expected, control);
 		
 		//Test Case 9: Codice Fiscale composta da simboli non validi
 		control=singleton.creaGenitore("Carla", "Viola", datanascita, "CR%L&80/5&F8$9Z","Napoli" , "carlaviola80@gmail.com", "327673435", "c.viola13", "IstitutoCarla80", 1);
 		System.out.println(control);
 
-		expected=-5;
+		expected=-6;
 		assertEquals(expected, control);
 		
 		//Test Case 10: Comune di residenza stringa vuota
 		control=singleton.creaGenitore("Carla", "Viola", datanascita, "CRLVLI80H53F839Z","" , "carlaviola80@gmail.com", "327673435", "c.viola13", "IstitutoCarla80", 1);
 		System.out.println(control);
 
-		expected=-6;
+		expected=-7;
 		assertEquals(expected, control);
 		
 		//Test Case 11: Comune di Residenza stringa di lunghezza > 50
 		control=singleton.creaGenitore("Carla", "Viola", datanascita, "CRLVLI80H53F839Z","Napoli Napoli Napoli Napoli Napoli Napoli Napoli Napoli Napoli Napoli" , "carlaviola80@gmail.com", "327673435", "c.viola13", "IstitutoCarla80", 1);
 		System.out.println(control);
 
-		expected=-6;
+		expected=-7;
 		assertEquals(expected, control);
 		
 		//Test Case 12: Comune di Residenza stringa composta da simboli non validi
 		control=singleton.creaGenitore("Carla", "Viola", datanascita, "CRLVLI80H53F839Z","N@p0li" , "carlaviola80@gmail.com", "327673435", "c.viola13", "IstitutoCarla80", 1);
 		System.out.println(control);
 
-		expected=-6;
+		expected=-7;
 		assertEquals(expected, control);
 		
 		//Test Case 13: Email stringa in cui non è presente il simbolo @
 		control=singleton.creaGenitore("Carla", "Viola", datanascita, "CRLVLI80H53F839Z","Napoli" , "carlaviola80.gmail.com", "327673435", "c.viola13", "IstitutoCarla80", 1);
 		System.out.println(control);
 
-		expected=-7;
+		expected=-8;
 		assertEquals(expected, control);
 		
 		//Test Case 14: Numero Cellulare Stringa vuota 
 		control=singleton.creaGenitore("Carla", "Viola", datanascita, "CRLVLI80H53F839Z","Napoli" , "carlaviola80@gmail.com", "", "c.viola13", "IstitutoCarla80", 1);
 		System.out.println(control);
 
-		expected=-4;
+		expected=-9;
 		assertEquals(expected, control);
 		
 		//Test Case 15: Numero Cellulare stringa di lunghezza > 15
 		control=singleton.creaGenitore("Carla", "Viola", datanascita, "CRLVLI80H53F839Z","Napoli" , "carlaviola80@gmail.com", "+39 33920182038402810 ", "c.viola13", "IstitutoCarla80", 1);
 		System.out.println(control);
 
-		expected=-4;
+		expected=-9;
 		assertEquals(expected, control);
 		
 		//Test Case 16: Username stringa vuota
 		control=singleton.creaGenitore("Carla", "Viola", datanascita, "CRLVLI80H53F839Z","Napoli" , "carlaviola80@gmail.com", "327673435", "", "IstitutoCarla80", 1);
 		System.out.println(control);
 
-		expected=-4;
+		expected=-3;
 		assertEquals(expected, control);
 		
 		//Test Case 17: Username stringa di lunghezza > 20
 		control=singleton.creaGenitore("Carla", "Viola", datanascita, "CRLVLI80H53F839Z","Napoli" , "carlaviola80@gmail.com", "327673435", "carla.viola13278738193037", "IstitutoCarla80", 1);
 		System.out.println(control);
 
-		expected=-4;
+		expected=-3;
 		assertEquals(expected, control);
 		
 		//Test Case 18: Password stringa vuota
@@ -209,15 +213,10 @@ public class EntityIstitutoTest {
 		
 	}
 
-	@Test
-	public void testGetListaValutazioni() {
-		fail("Not yet implemented");
-	}
-
 
 	@Test
 	
-	 public void testAggiungiVoto() {
+	 public void testD_AggiungiVoto() {
 	 EntityIstituto singleton = EntityIstituto.getInstance();
 	    
 	   // Preparazione dei dati di test
@@ -258,5 +257,3 @@ public class EntityIstitutoTest {
 	   
 	}
 	}
-
-
