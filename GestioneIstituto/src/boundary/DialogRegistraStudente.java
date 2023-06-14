@@ -272,7 +272,7 @@ public class DialogRegistraStudente extends JDialog {
 				
 				System.out.println(ret);
 				
-				if(ret!=-1) { //se l'inserimento è andato a buon fine
+				if(ret>=0) { //se l'inserimento è andato a buon fine
 					
 					String conferma = "Lo Studente " + nome + " " + cognome + " è stato registrato correttamente"; 
 					
