@@ -120,7 +120,7 @@ public class DialogAggiungiVoto extends JDialog {
 		
 		JSpinner spinner = new JSpinner();
 		spinner.setEnabled(false);
-		spinner.setModel(new SpinnerNumberModel(1, 1, 10, 1));
+		spinner.setModel(new SpinnerNumberModel(Float.valueOf(1), Float.valueOf(1), Float.valueOf(10), Float.valueOf(1)));
 		spinner.setBounds(111, 235, 145, 20);
 		contentPane.add(spinner);
 		
@@ -152,7 +152,7 @@ public class DialogAggiungiVoto extends JDialog {
 				String materia = textField_materia.getText();
 				String docente = textField_docente.getText();
 				java.util.Date data = dateChooser.getDate();
-				int voto = (int) spinner.getValue();
+				float voto = (float) spinner.getValue();
 				
 			
 				ret = Controller.aggiungiVoto(docente, Integer.parseInt(matricola), Integer.parseInt(materia), new java.sql.Date(data.getTime()), voto);
