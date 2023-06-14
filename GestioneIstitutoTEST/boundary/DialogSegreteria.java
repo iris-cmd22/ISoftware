@@ -44,16 +44,18 @@ public class DialogSegreteria extends JDialog {
 		contentPanel.setBackground(new Color(0, 0, 139));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		contentPanel.setLayout(new BorderLayout(0, 0));
+		contentPanel.setLayout(null);
 		{
 			JLabel lbl_Segreteria = new JLabel("SEGRETERIA");
+			lbl_Segreteria.setBounds(5, 5, 426, 19);
 			lbl_Segreteria.setForeground(new Color(255, 255, 255));
 			lbl_Segreteria.setHorizontalAlignment(SwingConstants.CENTER);
 			lbl_Segreteria.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 15));
-			contentPanel.add(lbl_Segreteria, BorderLayout.NORTH);
+			contentPanel.add(lbl_Segreteria);
 		}
 		{
 			JButton btn_RegistraUtente = new JButton("REGISTRA UTENTE");
+			btn_RegistraUtente.setBounds(109, 87, 214, 99);
 			btn_RegistraUtente.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -66,12 +68,7 @@ public class DialogSegreteria extends JDialog {
 			btn_RegistraUtente.setBackground(new Color(255, 255, 255));
 			btn_RegistraUtente.setFont(new Font("Tahoma", Font.BOLD, 13));
 			
-			contentPanel.add(btn_RegistraUtente, BorderLayout.WEST);
-		}
-		{
-			JButton btn_InserisciClasse = new JButton("INSERISCI CLASSE");
-			btn_InserisciClasse.setFont(new Font("Tahoma", Font.BOLD, 13));
-			contentPanel.add(btn_InserisciClasse, BorderLayout.EAST);
+			contentPanel.add(btn_RegistraUtente);
 		}
 		{
 			JPanel buttonPane = new JPanel();
