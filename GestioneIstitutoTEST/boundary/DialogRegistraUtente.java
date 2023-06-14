@@ -79,21 +79,21 @@ public class DialogRegistraUtente extends JDialog {
 		btn_enter.setBounds(341, 232, 85, 21);
 		contentPane.add(btn_enter);
 		
-		JComboBox cmb_Ruolo = new JComboBox();
+		JComboBox cmb_Ruolo = new JComboBox(); //Scelta Ruolo
 		cmb_Ruolo.setFont(new Font("Tahoma", Font.BOLD, 12));
 		cmb_Ruolo.setBounds(157, 107, 142, 49);
 		cmb_Ruolo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) { //Finchè non si è scelto il Ruolo, non si può andare avanti
 				if(cmb_Ruolo.getSelectedItem().equals("Docente") || cmb_Ruolo.getSelectedItem().equals("Studente") || cmb_Ruolo.getSelectedItem().equals("Genitore") ) {
 					
 					btn_enter.setEnabled(true);
 				}
 			}
 		});
-		cmb_Ruolo.setModel(new DefaultComboBoxModel(new String[] {"Docente", "Studente", "Genitore"}));
+		cmb_Ruolo.setModel(new DefaultComboBoxModel(new String[] {"Docente", "Studente", "Genitore"})); //Ruoli disponibili
 		contentPane.add(cmb_Ruolo);
 		
-		btn_enter.addMouseListener(new MouseAdapter() {
+		btn_enter.addMouseListener(new MouseAdapter() { //Scelta ruolo per la schermata di registrazione
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(cmb_Ruolo.getSelectedItem().equals("Docente")) {
