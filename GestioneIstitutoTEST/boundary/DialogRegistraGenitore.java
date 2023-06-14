@@ -251,9 +251,15 @@ public class DialogRegistraGenitore extends JDialog {
 				boolean i = false;
 				i = Controller.controllostudente(Integer.parseInt(matricola));
 				
-				if(i==true) {
+				boolean j=false;
+				j = Controller.controllogenitoreStudente(Integer.parseInt(matricola));
+				
+				if(i==true && j==false) {
 					btn_Inserisci.setEnabled(true);
-					textOut_matricole.setText("matricola esistente");
+					textOut_matricole.setText("matricola valida");
+					
+				}else if(i==true && j==true) {
+					textOut_matricole.setText("genitore già assegnato");
 					
 				}else {
 					textOut_matricole.setText("matricola non esistente");
@@ -275,7 +281,7 @@ public class DialogRegistraGenitore extends JDialog {
 				
 				String username = textField_Username.getText();
 				
-				int i = Controller.CercaUsername(username,"Docente");
+				int i = Controller.CercaUsername(username,"Genitore");
 				
 				if(i==1) {
 					//se ho trovato l'username
