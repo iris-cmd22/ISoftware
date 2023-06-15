@@ -18,19 +18,22 @@ public class DocenteDAO {
 	private String password;
     private ArrayList<MateriaDAO> materie;
 
+    //costruttore di default
     public DocenteDAO() {
 		super();
         this.materie =new ArrayList<MateriaDAO>();
 	}
 	
+    //costruttore con username
 	public DocenteDAO(String username) {
 		
 		this.username=username;
 		this.materie =new ArrayList<MateriaDAO>();
 		caricaDaDB();
 	}
-
-    	public DocenteDAO(DocenteDAO docente) {
+	
+	//costruttore con DocenteDAO
+	public DocenteDAO(DocenteDAO docente) {
 		
 		this.username=docente.getUsername();
 		this.password=docente.getPassword();
@@ -44,7 +47,7 @@ public class DocenteDAO {
 		
 	}
 
-
+	//Caricamento dati Docente da DataBase
     public void caricaDaDB() {
 		
 		String query =new String("SELECT * FROM docenti WHERE username = '"+this.username+"'");
@@ -72,7 +75,7 @@ public class DocenteDAO {
 	}
 
 
-
+    //Caricamento dati Materie da Database
     public void caricaMaterieDaDB(){
         
         String query= new String("SELECT * FROM materie WHERE docente=\'"+this.username+"'");
@@ -99,7 +102,7 @@ public class DocenteDAO {
     }
 
 
-
+    //Inserimento dati Docente nel DB
 	public int SalvaInDB(String username) {
 		
 		int ret=0;
