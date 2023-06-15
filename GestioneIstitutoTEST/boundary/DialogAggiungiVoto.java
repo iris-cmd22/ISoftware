@@ -156,7 +156,7 @@ public class DialogAggiungiVoto extends JDialog {
 				
 			
 				ret = Controller.aggiungiVoto(docente, Integer.parseInt(matricola), Integer.parseInt(materia), new java.sql.Date(data.getTime()), voto);
-				
+				//La funzione del controller aggiungiVoto, che fa sì che venga inserita la valutazione sul database
 				
 				if(ret!=-1) {
 					
@@ -188,7 +188,8 @@ public class DialogAggiungiVoto extends JDialog {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String docente=textField_docente.getText();
-				boolean i= Controller.controllodocente(docente);
+				boolean i= Controller.controllodocente(docente); //al boolean i è attribuito il valore restituito dalla funzione booleana del Controller controllodocente, per
+										//stabilire se un docente con lo username inserito esiste
 				
 				if(i==true) {
 					textField_materia.setEditable(true);
@@ -214,7 +215,9 @@ public class DialogAggiungiVoto extends JDialog {
 				String docente = textField_docente.getText();
 				
 			
-				boolean i = Controller.controllomateria_insegnata(Integer.parseInt(materia), docente);
+				boolean i = Controller.controllomateria_insegnata(Integer.parseInt(materia), docente); //al boolean i è attribuito il valore restituito dalla funzione
+															//booleana controllomateria_insegnata del Controller, per stabilire
+															//se la materia inserita è insegnata da quel docente
 				
 				if(i==true) {
 					textField_matricola.setEditable(true);
@@ -242,7 +245,9 @@ public class DialogAggiungiVoto extends JDialog {
 				String matricola = textField_matricola.getText();
 				String materia = textField_materia.getText();
 		
-			boolean i = Controller.controllostudenteInClasse(Integer.parseInt(matricola),Integer.parseInt(materia) );
+			boolean i = Controller.controllostudenteInClasse(Integer.parseInt(matricola),Integer.parseInt(materia) ); // al boolean i è attribuito il valore restituito 
+//dalla funzione booleana controllostudenteInClasse del controller per stabilire se la matricola inserita dall'interfaccia è di un utente appartenente alla classe in cui la materia 
+//inserita è insegnata
 				
 				if(i==true) {
 					dateChooser.setEnabled(true);
@@ -265,7 +270,8 @@ public class DialogAggiungiVoto extends JDialog {
 		        java.sql.Date data2 = new java.sql.Date(data.getTime());
 
 
-		        boolean i = Controller.controllodata(data2);
+		        boolean i = Controller.controllodata(data2); //attribuisco al boolean i il valore restituito dalla funzione booleana controllo data per stabilire se la data
+			    //nella quale si vuole aggiungere la valutazione appartiene al quadrimestre corrente ed è non successiva alla data corrente
 		        if (i == true) {
 		            //se la data è valida
 		            spinner.setEnabled(i);
@@ -333,7 +339,8 @@ public class DialogAggiungiVoto extends JDialog {
 		
 		
 		
-		JButton btn_ListaMaterie = new JButton("Lista Materie");	//Consente di visualizzare tutte le materie insegnate dal docente che intende inserire il voto
+		JButton btn_ListaMaterie = new JButton("Lista Materie");	//Consente di visualizzare tutte le materie insegnate dal docente che intende inserire il voto,
+										//in modo da rendere più agevole la scelta
 		btn_ListaMaterie.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -353,7 +360,8 @@ public class DialogAggiungiVoto extends JDialog {
 		btn_ListaMaterie.setBounds(266, 88, 128, 22);
 		contentPane.add(btn_ListaMaterie);
 		
-		JButton btn_listaMatricole = new JButton("Lista Matricole");	//Consente di visualizzare tutti gli studenti che appartengono alla classe in cui il docente insegna la materia in cui vuole aggiungere il voto
+		JButton btn_listaMatricole = new JButton("Lista Matricole");	//Consente di visualizzare tutti gli studenti che appartengono alla classe in cui il docente insegna 
+										// la materia in cui vuole aggiungere il voto in modo da rendere più agevole la scelta
 		btn_listaMatricole.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
