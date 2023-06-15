@@ -17,17 +17,19 @@ public class GenitoreDAO {
 	private String password;
 	private StudenteDAO studente; //mi serve per risalire alle valutazioni dello studente
 	
+	//costruttore di default
 	public GenitoreDAO() {
 		super();
 	}
 	
+	//costruttore con username
 	public GenitoreDAO(String username) {
 		
 		this.username=username;
 		caricaDaDB();
 	}
 	
-	
+	//costruttore con GenitoreDAO
 	public GenitoreDAO(GenitoreDAO genitore) {
 		
 		this.username=genitore.getUsername();
@@ -42,6 +44,7 @@ public class GenitoreDAO {
 		
 	}
 	
+	//Caricamento dati Genitore da DataBase
 	public void caricaDaDB() {
 		
 		String query =new String("SELECT * FROM genitori WHERE username = '"+this.username+"';");
@@ -67,6 +70,7 @@ public class GenitoreDAO {
 		}
 	}
 	
+	//Caricamento dati Studente associato da DataBase
 	public void caricaStudenteDaDB() {
 		String query= new String("SELECT * FROM studenti WHERE matricola in (SELECT studente_figlio FROM genitori WHERE username =\'"+this.username+"')");
         System.out.println(query); //per debug
@@ -101,6 +105,7 @@ public class GenitoreDAO {
 		}
 	}
 	
+	//Inserimento dati Genitore nel DB
 	public int SalvaInDB(String username) {
 		
 		int ret=0;
