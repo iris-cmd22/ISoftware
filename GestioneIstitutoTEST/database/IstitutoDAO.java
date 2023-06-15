@@ -24,6 +24,9 @@ public class IstitutoDAO {
 		return instance;
 	}
 	
+	//Funzione per acquisire l'ultima matricola presente nel DB
+		//in modo tale da incrementarla in maniera progressiva ed assegnarla ad ogni studente registrato
+			//in questo modo il grado di accoppiamento con il DB è contenuto (non ci basiamo sull'auto-increment)
 	public int getultimamatricola() {
 		
 		int matricola=0;
@@ -47,7 +50,10 @@ public class IstitutoDAO {
 		return matricola;
 	}
 	
-public int getultimoidvalutazioni() {
+	//Funzione per acquisire l'ultimo idvalutazione presente nel DB
+		//in modo tale da incrementarlo in maniera progressiva ed assegnarla ad ogni valutazione registrata
+			//in questo modo il grado di accoppiamento con il DB è contenuto (non ci basiamo sull'auto-increment)
+	public int getultimoidvalutazioni() {
 		
 		int id=0;
 		
@@ -69,6 +75,7 @@ public int getultimoidvalutazioni() {
 		return id;
 	}
 	
+	//Controllo esistenza della materia nel DB
 	public int verificamaterie(int idmaterie) {
 		
 		int ret=0;
@@ -91,7 +98,8 @@ public int getultimoidvalutazioni() {
 		
 		return ret;
 	}
-
+	
+	//Controllo esitenza della classe nel DB
 	public int verificaclassi(int idclasse) {
 		
 		int ret=0;
@@ -115,6 +123,7 @@ public int getultimoidvalutazioni() {
 		return ret;
 	}
 	
+	//Controllo esistenza della matricola nel DB
 	public boolean esisteStudente(int matricola) {
         try {
             ResultSet rs = DBConnectionManager.selectQuery("SELECT matricola FROM studenti WHERE matricola = '"+matricola+"';");;
@@ -125,6 +134,7 @@ public int getultimoidvalutazioni() {
         }
     }
 	
+	//Controllo sulla corrispondenza tra genitore e figlio
 	public boolean esisteGenitoreStudente(int matricola) {
 		 try {
 	            ResultSet rs = DBConnectionManager.selectQuery("SELECT * FROM genitori WHERE studente_figlio = '"+matricola+"';");;
@@ -135,9 +145,9 @@ public int getultimoidvalutazioni() {
 	        }
 	}
     
-	
-	public boolean esisteStudenteInClasse(int matricola, int idmateria) {  //serve per la funzionalità aggiungiVoto: controlla che l'utente al quale si vuole aggiungere il voto
-		//sia appartenente alla classe in cui la materia (nella quale è stato valutato) sia insegnata in quella classe 
+	//serve per la funzionalità aggiungiVoto: controlla che l'utente al quale si vuole aggiungere il voto
+			//sia appartenente alla classe in cui la materia (nella quale è stato valutato) sia insegnata in quella class
+	public boolean esisteStudenteInClasse(int matricola, int idmateria) {  
 	    try {
 	        ResultSet rs = DBConnectionManager.selectQuery("SELECT s.matricola " +
 	                "FROM studenti s " +
@@ -154,25 +164,25 @@ public int getultimoidvalutazioni() {
 
 	
 	
+	//Controllo esistenza della materia nel DB
+    public boolean esisteMateria(int idmaterie){
+        try {
+        	
+        	ResultSet rs = DBConnectionManager.selectQuery("SELECT idmaterie FROM materie WHERE idmaterie = " + idmaterie + "';"); //controlla se la materia esiste 
 
-	  public boolean esisteMateria(int idmaterie){
-	        try {
-	        	
-	        	ResultSet rs = DBConnectionManager.selectQuery("SELECT idmaterie FROM materie WHERE idmaterie = " + idmaterie + "';"); //controlla se la materia esiste ed è insegnata dal docente che vuole aggiungere il voto
+            
 
-	            
-
-	            return rs.next();
-	        } catch (SQLException | ClassNotFoundException e) {
-	            e.printStackTrace();
-	            return false;
-	        }
-	    }
+            return rs.next();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }
+     }
 	
 
-	
-    public boolean esisteMateriaInsegnata(int idmaterie, String docente){//serve per la funzionalità aggiungiVoto: serve per verificare che la materia con identificativo idmaterie esista e sia insegnata dal docente che ha come username quello in input
-        
+  //serve per la funzionalità aggiungiVoto: 
+    //serve per verificare che la materia con identificativo idmaterie esista e sia insegnata dal docente che ha come username quello in input
+    public boolean esisteMateriaInsegnata(int idmaterie, String docente){
         try {
         	
         	ResultSet rs = DBConnectionManager.selectQuery("SELECT idmaterie FROM materie WHERE idmaterie = " + idmaterie + " AND docente = '" + docente + "';"); //controlla se la materia esiste ed è insegnata dal docente che vuole aggiungere il voto
@@ -183,7 +193,7 @@ public int getultimoidvalutazioni() {
         }
     }
 	
-
+   //Controllo validità data inserita
    public boolean isDataValida(Date data) { //in ingresso c'è la data della valutazione, che non è necessariamente la data corrente
     	 LocalDate dataCorrente = LocalDate.now();
     	    int annoCorrente = dataCorrente.getYear();
@@ -216,9 +226,8 @@ public int getultimoidvalutazioni() {
     	    return false;
     }   
       
-    public boolean esisteDocente(String username) {//controlla che il docente con lo username fornito in input esista
-    	
-    	
+    //controlla che il docente con lo username fornito in input esista
+    public boolean esisteDocente(String username) {
    	 
    		 try {
 				 ResultSet rs = DBConnectionManager.selectQuery("SELECT username FROM docenti WHERE username = '"+username+"';");
@@ -233,7 +242,7 @@ public int getultimoidvalutazioni() {
     }
       
     
-	
+	//Controllo esistenza Username nel DB
 	public int esisteUsername(String username, String ruolo) {
     	
     	 int ret = 0;
@@ -293,11 +302,42 @@ public int getultimoidvalutazioni() {
     	return ret;
     }
 	
-		public ArrayList<Integer> visualizzamaterie() {
+	//Query per selezionare tutte le materie presenti nel DB
+	public ArrayList<Integer> visualizzamaterie() {
+	
+	ArrayList<Integer> idmaterie = new ArrayList<Integer>();
+	
+	String query="SELECT * FROM materie";
+	
+	try {
+		
+		ResultSet rs =DBConnectionManager.selectQuery(query);
+		System.out.println(query); //per debug
+		
+		while(rs.next()) {
+			
+			Integer idmateria;
+			
+			idmateria=rs.getInt("idmaterie");
+			
+			idmaterie.add(idmateria);
+			
+		}
+		
+	}catch(ClassNotFoundException | SQLException e) {
+		e.printStackTrace();
+		}
+	
+	return idmaterie;
+	}
+
+	//Serve a visualizzare tutte le materie insegnate dal docente che ha come username quello in input
+	public ArrayList<Integer> visualizzamateriePerDocente(String docente) { 
+		
 		
 		ArrayList<Integer> idmaterie = new ArrayList<Integer>();
 		
-		String query="SELECT * FROM materie";
+		String query="SELECT * FROM materie WHERE docente='"+docente+"';";
 		
 		try {
 			
@@ -320,37 +360,8 @@ public int getultimoidvalutazioni() {
 		
 		return idmaterie;
 	}
-
-
-			public ArrayList<Integer> visualizzamateriePerDocente(String docente) { //serve a visualizzare tutte le materie insegnate dal docente che ha come username quello in input
-			
-			
-			ArrayList<Integer> idmaterie = new ArrayList<Integer>();
-			
-			String query="SELECT * FROM materie WHERE docente='"+docente+"';";
-			
-			try {
-				
-				ResultSet rs =DBConnectionManager.selectQuery(query);
-				System.out.println(query); //per debug
-				
-				while(rs.next()) {
-					
-					Integer idmateria;
-					
-					idmateria=rs.getInt("idmaterie");
-					
-					idmaterie.add(idmateria);
-					
-				}
-				
-			}catch(ClassNotFoundException | SQLException e) {
-				e.printStackTrace();
-			}
-			
-			return idmaterie;
-		}
 	
+	//Query per selezionare tutte gli studenti presenti nel DB
 	public ArrayList<StudenteDAO> visualizzastudenti(){
 		
 		ArrayList<StudenteDAO> studenti = new ArrayList<StudenteDAO>();
@@ -381,8 +392,9 @@ public int getultimoidvalutazioni() {
 		return studenti;
 	}
 
-
-	public ArrayList<StudenteDAO> visualizzastudentiPerMateria(int idmaterie){//serve a visualizzare tutti gli studenti presenti nella classe in cui la materia che ha come identificativo quello in ingresso è insegnata
+	//serve a visualizzare tutti gli studenti presenti nella classe in cui la materia 
+		//che ha come identificativo quello in ingresso è insegnata
+	public ArrayList<StudenteDAO> visualizzastudentiPerMateria(int idmaterie){
 		
 		
 		ArrayList<StudenteDAO> studenti = new ArrayList<StudenteDAO>();
@@ -416,6 +428,7 @@ public int getultimoidvalutazioni() {
 		return studenti;
 	}
 	
+	//Query per visualizzare tutte le classi presenti nel DB
 	public ArrayList<ClasseDAO> visualizzaclassi(){
 		
 		ArrayList<ClasseDAO> classi = new ArrayList<ClasseDAO>();
@@ -446,6 +459,7 @@ public int getultimoidvalutazioni() {
 		return classi;
 	}
 	
+	//Funzione per inserire gli studenti in una data classe
 	public int scrivi_studente_in_classe(int matricola, int idclasse) {
 		int ret=0;
 		
