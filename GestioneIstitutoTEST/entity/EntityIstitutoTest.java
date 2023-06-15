@@ -12,7 +12,7 @@ import java.time.LocalDate;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)//per eseguire i test in ordine alfabetico
 
 public class EntityIstitutoTest {
 
@@ -43,9 +43,6 @@ public class EntityIstitutoTest {
 		int expected=1;
 		
 		assertEquals(expected, control);		
-		
-		
-		
 		
 	}
 
@@ -256,4 +253,4 @@ public class EntityIstitutoTest {
 	    
 	   
 	}
-	}
+}
