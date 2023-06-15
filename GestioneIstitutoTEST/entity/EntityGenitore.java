@@ -29,6 +29,7 @@ public class EntityGenitore {
 	
 	//costruttore di default
 	public EntityGenitore() {
+		
 		super();
 	}
 	
@@ -104,15 +105,15 @@ public class EntityGenitore {
 	}
 	public void setNome(String nome) throws NomeNotValid{
 		
-		if(nome.length()>100) {
+		if(nome.length()>100) {//se la lunghezza della stringa maggiore di 100
 			throw new NomeNotValid("Nome non valido");
 		}
 		
-		if(nome.length()==0) {
+		if(nome.length()==0) {//se la stringa è vuota
 			throw new NomeNotValid("Nome vuoto");
 		}
 		
-		if(!Character.isUpperCase(nome.charAt(0))) {
+		if(!Character.isUpperCase(nome.charAt(0))) {//se il primo carattere della stringa non è maiuscola
 			throw new NomeNotValid("Il nome deve iniziare con una maiuscola");
 		}
 		
@@ -125,15 +126,15 @@ public class EntityGenitore {
 	
 	public void setCognome(String cognome) throws CognomeNotValid{
 		
-		if(cognome.length()>100) {
+		if(cognome.length()>100) {//se la lunghezza della stringa maggiore di 100
 			throw new CognomeNotValid("Cognome non valido");
 		}	
 		
-		if(cognome.length()==0) {
+		if(cognome.length()==0) {//se la stringa è vuota
 			throw new CognomeNotValid("Cognome vuoto");
 		}
 		
-		if(!Character.isUpperCase(cognome.charAt(0))) {
+		if(!Character.isUpperCase(cognome.charAt(0))) {//se il primo carattere della stringa non è maiuscola
 			throw new CognomeNotValid("Il cognome deve iniziare con una maiuscola");
 		}
 		
@@ -165,11 +166,11 @@ public class EntityGenitore {
 		//Regex per verificare che la stringa contenga solo lettere maiuscole e numeri
 		String regex = "^[A-Z0-9]+$"; 
 		
-		if(codiceFiscale.length()!=16) {
+		if(codiceFiscale.length()!=16) { //se la lunghezza della stringa è diversa da 16
 			throw new CodiceFiscaleNotValid("Codice fiscale: lunghezza non valida");
 		}
 		
-		if(!codiceFiscale.matches(regex)) {
+		if(!codiceFiscale.matches(regex)) {//regex per verificare il formato
 			throw new CodiceFiscaleNotValid("Codice fiscale: formato non valido");
 		}
 		
@@ -185,15 +186,15 @@ public class EntityGenitore {
 		// Verifica se la stringa contiene solo caratteri alfanumerici e spazi vuoti
         String regex = "^[A-Za-z0-9\\s]+$";
         
-        if(comuneResidenza.length()>50) {
+        if(comuneResidenza.length()>50) {//se la lunghezza della stringa è maggiore di 50
         	throw new ComuneDiResidenzaNotValid("Comune di residenza: lunghezza non valida");
         }
         
-        if(comuneResidenza.length()==0) {
+        if(comuneResidenza.length()==0) {//se la stringa è vuota
         	throw new ComuneDiResidenzaNotValid("Comune di residenza: vuoto");
         }
         
-        if(!comuneResidenza.matches(regex)) {
+        if(!comuneResidenza.matches(regex)) {//regex per verificare il formato
         	throw new ComuneDiResidenzaNotValid("Comune di residenza: formato non valido");
         }
 		
@@ -206,7 +207,7 @@ public class EntityGenitore {
 	
 	public void setEmail(String email) throws EmailNotValid{
 		
-		if(!email.contains("@")) {
+		if(!email.contains("@")) {//se la stringa contiene la @
 			throw new EmailNotValid("Email non valida");
 		}
 		
@@ -219,11 +220,11 @@ public class EntityGenitore {
 	
 	public void setNumeroCellulare(String numeroCellulare) throws NumeroDiCellulareNotValid{
 		
-		if(numeroCellulare.length()>15) {
+		if(numeroCellulare.length()>15) {//se la lunghezza della stringa è maggiore di 15
 			throw new NumeroDiCellulareNotValid("Numero di cellulare non valido: numero troppo lungo");
 		}
 		
-		if(numeroCellulare.length()==0) {
+		if(numeroCellulare.length()==0) {//se la stringa è vuota
 			throw new NumeroDiCellulareNotValid("Numero di cellulare vuoto");
 		}
 		
@@ -236,11 +237,11 @@ public class EntityGenitore {
 	
 	public void setUsername(String username) throws UsernameNotValid{
 		
-		if(username.length()>20) {
+		if(username.length()>20) {//se la lunghezza della stringa è maggiore di 20
 			throw new UsernameNotValid("Username troppo lungo");
 		}
 		
-		if(username.length()==0) {
+		if(username.length()==0) {//se la stringa è vuota
 			throw new UsernameNotValid("Username vuoto");
 		}
 		this.username = username;
@@ -252,11 +253,11 @@ public class EntityGenitore {
 	
 	public void setPassword(String password) throws PasswordNotValid{
 		
-		if(password.length()>20) {
+		if(password.length()>20) {//se la lunghezza della stringa è maggiore di 20
 			throw new PasswordNotValid("Password troppo lunga");
 		}
 		
-		if(password.length()==0) {
+		if(password.length()==0) {//se la stringa è vuota
 			throw new PasswordNotValid("Password vuoto");
 		}
 		
@@ -282,7 +283,5 @@ public class EntityGenitore {
 				+ "]";
 	}
 	
-	
-	
-	
+
 }
