@@ -348,7 +348,7 @@ public class EntityIstituto {
 	
 	
 	
-public int aggiungiVoto(String docente, int matricola, int idmaterie, Date data, float voto) {	//funzione che permette a un docente di inserire un voto, in una materia che insegna, ad uno studente nella classe in cui insegna tale materia
+public int aggiungiVoto(String docente, int matricola, int idmaterie, Date data, float voto) {	//funzione che permette a un docente di inserire un voto, in una materia che insegna, ad uno studente appartenente alla classe in cui insegna tale materia
 		
 		//gli id vengono definiti dal sistema in modo che siano univoci
 		IstitutoDAO singleton = IstitutoDAO.getInstance();
