@@ -339,8 +339,7 @@ public class DialogAggiungiVoto extends JDialog {
 		
 		
 		
-		JButton btn_ListaMaterie = new JButton("Lista Materie");	//Consente di visualizzare tutte le materie insegnate dal docente che intende inserire il voto,
-										//in modo da rendere più agevole la scelta
+		JButton btn_ListaMaterie = new JButton("Lista Materie");	
 		btn_ListaMaterie.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -351,8 +350,8 @@ public class DialogAggiungiVoto extends JDialog {
 				//mostra a video la lista delle materie
 				ArrayList<String> materie = new ArrayList<String>();
 				
-			materie = Controller.visualizzamateriePerDocente(textField_docente.getText());
-				
+			materie = Controller.visualizzamateriePerDocente(textField_docente.getText()); //Consente di visualizzare tutte le materie insegnate dal docente che intende inserire il voto,
+					//in modo da rendere più agevole la scelta
 				JOptionPane.showMessageDialog(btnCHECK_MATERIA, materie.toString(), "Lista Materie", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
@@ -360,8 +359,7 @@ public class DialogAggiungiVoto extends JDialog {
 		btn_ListaMaterie.setBounds(266, 88, 128, 22);
 		contentPane.add(btn_ListaMaterie);
 		
-		JButton btn_listaMatricole = new JButton("Lista Matricole");	//Consente di visualizzare tutti gli studenti che appartengono alla classe in cui il docente insegna 
-										// la materia in cui vuole aggiungere il voto in modo da rendere più agevole la scelta
+		JButton btn_listaMatricole = new JButton("Lista Matricole");	
 		btn_listaMatricole.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -369,7 +367,8 @@ public class DialogAggiungiVoto extends JDialog {
 				ArrayList<String> studenti = new ArrayList<String>();
 				String materia= textField_materia.getText();
 				
-				studenti = Controller.visualizzastudentiPerMateria(Integer.parseInt(materia));
+				studenti = Controller.visualizzastudentiPerMateria(Integer.parseInt(materia)); //Consente di visualizzare tutti gli studenti che appartengono alla classe in cui il docente insegna 
+				// la materia in cui vuole aggiungere il voto in modo da rendere più agevole la scelta
 				
 				JOptionPane.showMessageDialog(btn_listaMatricole, studenti.toString(), "Lista Matricole", JOptionPane.INFORMATION_MESSAGE);
 				
