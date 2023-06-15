@@ -12,17 +12,19 @@ public class ValutazioneDAO {
 	private MateriaDAO materia;
 	private StudenteDAO studente;
 	
-	
+	//costruttore di Default
 	public ValutazioneDAO() {
 		super();
 	}
 	
+	//costruttore con id
 	public ValutazioneDAO(int idvalutazioni) {
 		
 		this.idvalutazioni=idvalutazioni;
 		caricaDaDB();
 	}
 	
+	//caricamento dati Valutazione nel DataBase
 	public void caricaDaDB() {
 		
 		String query="SELECT * FROM valutazioni WHERE idvalutazioni='"+this.idvalutazioni+"'";
@@ -42,6 +44,7 @@ public class ValutazioneDAO {
 		}
 	}
 	
+	//Caricamento dati Materia associata dal DataBase
 	public void caricaMateriaDaDB() {
 	
 		String query = new String("SELECT * FROM materie WHERE idmaterie =\'"+this.materia.getIdmateria()+"'");
@@ -66,8 +69,8 @@ public class ValutazioneDAO {
 		}
 	}
 	
+	//Caricamento dati Studente associato dal DataBase
 	public void caricaStudenteDaDB() {
-		
 		
 		
 		String query = new String("SELECT * FROM studenti WHERE matricola =\'"+this.studente.getMatricola()+"'");
@@ -101,7 +104,8 @@ public class ValutazioneDAO {
 		}
 	}
 	
-	//aggiunto per implementare la funzione AggiungiVoto	
+	//Inserimento dati Valutazione nel DB
+		//aggiunto per implementare la funzione AggiungiVoto	
 	public int SalvaInDB(int idvalutazioni) {
 		
 		int ret=0;
@@ -159,7 +163,5 @@ public class ValutazioneDAO {
 		this.materia = materie;
 	}
 	
-	
-	
-	
+
 }
