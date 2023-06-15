@@ -12,17 +12,20 @@ public class MateriaDAO {
     private DocenteDAO docente;
     private ArrayList<ValutazioneDAO> valutazioni;
     
+    //costruttore di default
     public MateriaDAO(){
         super();
         this.valutazioni =new ArrayList<ValutazioneDAO>();
     }
 
+    //costruttore con id
     public MateriaDAO(int idmaterie) {
 		this.idmaterie = idmaterie;
 		this.valutazioni =new ArrayList<ValutazioneDAO>();
 		caricaDaDB();
 	}
 
+    //Caricamento dati Materia dal DataBase
     public void caricaDaDB() {
 		
 		String query = "SELECT * FROM materie WHERE idmaterie='"+this.idmaterie+"'";
@@ -43,7 +46,8 @@ public class MateriaDAO {
 			e.printStackTrace();
 		}
 	}
-
+    
+    //Caricamento dati Valutazioni associate da DataBase
      public void caricaValutazioniDaDB(){
         
         String query= new String("SELECT * FROM valutazioni WHERE materia=\'"+this.idmaterie+"'");
@@ -71,6 +75,7 @@ public class MateriaDAO {
 		}
     }
      
+     //Caricamento dati Classe associata dal DataBase
      public void caricaClasseDaDB(){
          
          String query= new String("SELECT * FROM classi WHERE idclassi ='"+this.classe.getIdClasse()+"'");
@@ -99,6 +104,7 @@ public class MateriaDAO {
  		}
      }
      
+     //Caricamente dati Docente da Database
      public void caricaDocenteDaDB(){
          
          String query= new String("SELECT * FROM docenti WHERE username=\'"+this.docente.getUsername()+"'");
@@ -131,6 +137,7 @@ public class MateriaDAO {
  		}
      }
      
+     //Aggiornamento associazione tra materia e docente
 	public int SalvaDocenteInDB() {
 		
 		int ret=0;
