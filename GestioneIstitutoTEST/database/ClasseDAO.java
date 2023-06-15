@@ -21,13 +21,15 @@ public class ClasseDAO {
 	public void setMaterie(ArrayList<MateriaDAO> materie) {
 		this.materie = materie;
 	}
-
+	
+	//costruttore di default
 	public ClasseDAO() {
 		super();
 		this.studenti= new ArrayList<StudenteDAO>();
 		this.materie = new ArrayList<MateriaDAO>();
 	}
 	
+	//costruttore con matricola
 	public ClasseDAO(int idclasse) {
 		
 		this.idClasse=idclasse;
@@ -37,6 +39,7 @@ public class ClasseDAO {
 		
 	}
 	
+	//Caricamento dati dal DataBase
 	public void caricaDaDB() {
 		
 		String query = "SELECT * FROM classi WHERE idclassi='"+ this.idClasse+"';";
@@ -59,8 +62,6 @@ public class ClasseDAO {
 	
 	//devo caricare gli studenti che sono a loro volta degli oggetti, 
 	//quindi mi servirà fare una query con la corrispondente FK
-	
-	
 	public void caricaStudentiDaDB() {
 		
 		String query = new String ("select * from studenti where matricola IN (select studente from studente_in_classe where classe=\'"+this.idClasse+"')");
@@ -91,7 +92,8 @@ public class ClasseDAO {
 		}
 	
 	}
-
+	
+	//Caricamento materie dal DataBAse
 	public void caricaMaterieDaDB(){
 
 		String query = new String ("SELECT * FROM materie WHERE classe= '"+this.idClasse+"'");
@@ -115,6 +117,7 @@ public class ClasseDAO {
 
 	}
 
+	//Caricamento Registro dal DataBase
 	public void caricaRegistroDaDB(){
 
 		String query = new String ("SELECT * FROM registri_elettronici WHERE classe=\'"+this.idClasse+"')");
@@ -139,6 +142,7 @@ public class ClasseDAO {
 
 	}
 
+	//Inserimento dati nel DataBase
 	public int SalvaInDB(int idClasse) {
 		
 		int ret=0;
@@ -202,8 +206,6 @@ public class ClasseDAO {
 	public void setStudenti(ArrayList<StudenteDAO> studenti) {
 		this.studenti = studenti;
 	}
-	
-	
 	
 	
 }
